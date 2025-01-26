@@ -27,6 +27,11 @@
       <%= render CrosswordComponent.new(crossword: @crossword) %>
     </div>
   </div>
+  <div class="puzzle-slat puzzle-slat-actionbar">
+    <div class="puzzle-actionbar">
+      <%= render ActionbarComponent.new %>
+    </div>
+  </div>
   <div class="puzzle-slat puzzle-slat-cluebar">
     <div class="puzzle-cluebar">
       <%= render CluebarComponent.new(entries: @crossword.entries) %>

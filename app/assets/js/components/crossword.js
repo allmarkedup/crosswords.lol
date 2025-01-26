@@ -136,6 +136,24 @@ const crossword = (args) => {
       this.activeEntryId = this.previousEntry.id;
     },
 
+    checkEntry(entry) {
+      const letters = entry.solution.split("");
+      for (let i = 0; i < entry.length; i++) {
+        const cell = entry.cells[i];
+        if (cell.text !== letters[i]) {
+          cell.clear();
+        }
+      }
+    },
+
+    checkActiveEntry() {
+      this.checkEntry(this.activeEntry);
+    },
+
+    checkAllEntries() {
+      this.entries.forEach((entry) => this.checkEntry(entry));
+    },
+
     get previousCell() {
       const index = this.activeCellEntryIndex;
 
@@ -177,11 +195,19 @@ const crossword = (args) => {
 
 const crosswordCell = (args) => {
   return {
-    text: "",
+    _text: "",
     entryIds: args.entries || [],
 
     clear() {
       this.text = "";
+    },
+
+    get text() {
+      return this._text;
+    },
+
+    set text(char) {
+      this._text = char.toUpperCase();
     },
 
     get isEmpty() {

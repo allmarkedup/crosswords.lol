@@ -1,0 +1,25 @@
+.actionbar {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  column-gap: 8px;
+}
+
+.actionbar-button {
+  border: 0;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  color: #111;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}

@@ -61,6 +61,7 @@
 .puzzle-slat-board {
   overflow: auto;
   position: relative;
+  background: #eee;
 }
 
 .puzzle-board {
@@ -70,6 +71,7 @@
   padding: 0.75rem;
 }
 
-.puzzle-slat-board {
+.puzzle-slat-actionbar {
+  border-top: 0 !important;
   background: #eee;
 }

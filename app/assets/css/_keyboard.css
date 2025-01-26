@@ -10,7 +10,7 @@
   column-gap: 4px;
 
   + .keyboard-row {
-    margin-top: 8px;
+    margin-top: 6px;
   }
 }
 
@@ -20,7 +20,7 @@
   border: 0;
   background-color: #ddd;
   width: calc((100% / 10) - (4px * 9 / 10));
-  aspect-ratio: 1 / 1.2;
+  aspect-ratio: 1 / 1.1;
   display: flex;
   align-items: center;
   justify-content: center;
