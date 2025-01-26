@@ -1,10 +1,17 @@
-const crossword = (args) => {
+const crossword = function (args) {
   return {
+    uuid: args.id,
     entries: args.entries,
     cells: [],
     activeCell: null,
+    store: null,
 
     init() {
+      if (this.$store.state.crosswords[this.uuid] === undefined) {
+        this.$store.state.crosswords[this.uuid] = {};
+      }
+      this.store = this.$store.state.crosswords[this.uuid];
+
       this.$nextTick(() => {
         const cellEls = Array.from(this.$root.querySelectorAll("[x-data^='crosswordCell']"));
         this.cells = cellEls.map((cell) => Alpine.$data(cell));
@@ -196,7 +203,15 @@ const crossword = (args) => {
 const crosswordCell = (args) => {
   return {
     _text: "",
-    entryIds: args.entries || [],
+    entryIds: args.entryIds || [],
+
+    init() {
+      this._text = this.store[this.id] || "";
+
+      this.$watch("_text", (char) => {
+        this.store[this.id] = char;
+      });
+    },
 
     clear() {
       this.text = "";

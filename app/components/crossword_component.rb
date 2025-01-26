@@ -7,6 +7,8 @@ class CrosswordComponent < ViewComponent::Base
     tag.rect(**kwargs, class: "crossword-separator")
   end
 
+  delegate :entries, :id, to: :@crossword
+
   attr_reader :cell_size
 
   def initialize(crossword:)
@@ -25,8 +27,6 @@ class CrosswordComponent < ViewComponent::Base
   def height
     (cell_size * @crossword.row_count) + 2
   end
-
-  def entries = @crossword.entries
 
   private
 

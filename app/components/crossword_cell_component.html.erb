@@ -1,7 +1,7 @@
 <g
   class="crossword-cell"
   id="<%= id %>"
-  x-data="crosswordCell({entries: <%= entries.to_json %>})"
+  x-data="crosswordCell({entryIds: <%= entries.to_json %>})"
   :class="{active, highlighted}">
   <%= tag.rect(
     x: x,

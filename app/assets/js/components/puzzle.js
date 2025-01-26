@@ -1,4 +1,4 @@
-const puzzle = (args) => {
+const puzzle = function (args) {
   return {
     entries: args.entries,
     activeEntryId: args.entries[0].id,

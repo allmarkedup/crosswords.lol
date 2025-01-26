@@ -10,6 +10,11 @@
     focus-trap "^6.9.4"
     tabbable "^5.3.3"
 
+"@alpinejs/persist@^3.14.8":
+  version "3.14.8"
+  resolved "https://registry.yarnpkg.com/@alpinejs/persist/-/persist-3.14.8.tgz#ea3898f242bc8a469d12a53a5da29a6fd4475670"
+  integrity sha512-aK30sjUuvhoB4JIqY3QRu9WdBVHCuCq6tXq3vIzxyFSvdPI0vXAGAQNsjQ/Y2ak+GtSFVssd13NlUMotRYMQQA==
+
 "@csstools/selector-resolve-nested@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@csstools/selector-resolve-nested/-/selector-resolve-nested-3.0.0.tgz#704a9b637975680e025e069a4c58b3beb3e2752a"
