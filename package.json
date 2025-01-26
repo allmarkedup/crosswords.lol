@@ -1,0 +1,19 @@
+{
+  "name": "app",
+  "private": true,
+  "devDependencies": {
+    "esbuild": "^0.24.2"
+  },
+  "scripts": {
+    "build": "esbuild app/assets/js/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
+    "build:css": "postcss ./app/assets/css/application.postcss.css -o ./app/assets/builds/application.css"
+  },
+  "dependencies": {
+    "alpinejs": "^3.14.8",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.1.0",
+    "postcss-nesting": "^13.0.1"
+  }
+}

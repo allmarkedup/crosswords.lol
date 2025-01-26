@@ -1,0 +1,22 @@
+<div class="puzzle">
+  <header class="puzzle-header">
+    <h1 class="puzzle-title"><%= @crossword.name %></h1>
+  </header>
+  <div class="puzzle-board">
+    <%= render CrosswordComponent.new(crossword: @crossword) %>
+  </div>
+  <!-- div class="puzzle-clues-list">
+    clues here
+  </div !-->
+  <div class="puzzle-actions-bar">
+    actions
+  </div>
+  <div class="puzzle-clue-bar">
+    active clue
+  </div>
+  <div class="puzzle-keyboard">
+    keyboard
+  </div>
+</div>
+
+

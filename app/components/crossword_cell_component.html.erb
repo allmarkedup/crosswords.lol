@@ -1,0 +1,30 @@
+<g
+  class="crossword-cell"
+  id="<%= id %>"
+  x-data="crosswordCell({entries: <%= entries.to_json %>})"
+  :class="{active, highlighted}">
+  <%= tag.rect(
+    x: x,
+    y: y,
+    width: cell_size,
+    height: cell_size,
+    class: "crossword-cell-background",
+    "@click": "active = true",
+  ) %>
+  <% if number %>
+    <%= tag.text(
+      x: x + 2,
+      y: y + number_text_height,
+      class: "crossword-cell-number"
+    ) do %>
+      <%= number %>
+    <% end %>
+  <% end %>
+  <%= tag.text(
+    x: x + 15,
+    y: y + 21,
+    "text-anchor": "middle",
+    class: "crossword-cell-text",
+    "x-ref": "text"
+  ) %>
+</g>

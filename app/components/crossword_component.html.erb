@@ -1,0 +1,21 @@
+<%= tag.svg(
+  "viewBox": view_box,
+  class: "crossword",
+  "x-data": "crossword",
+  "@keyup.document": "handleInput(event.key)",
+  "@keyup.up.document": "goToPreviousCell",
+  "@keyup.left.document": "goToPreviousCell",
+  "@keyup.down.document": "goToNextCell",
+  "@keyup.right.document": "goToNextCell",
+  "@keyup.backspace.document": "clearCell",
+) do %>
+  <%= tag.rect x: 0, y: 0, width: width, height: height, class: "crossword-background" %>
+
+  <% cells.each do |cell| %>
+    <%= cell %>
+  <% end %>
+
+  <% separators.each do |separator| %>
+    <%= separator %>
+  <% end %>
+<% end %>
