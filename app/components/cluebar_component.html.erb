@@ -1,0 +1,29 @@
+<div class="cluebar" x-data="{}">
+  <button
+    class="cluebar-button cluebar-button-previous"
+    @click.stop="activeEntryId = previousEntry.id">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
+  </button>
+
+  <ul class="cluebar-clues">
+    <% entries.each do |entry| %>
+      <li
+        class="cluebar-clue"
+        x-show="activeEntryId === <%= entry[:id].to_json %>"
+        x-cloak>
+        <strong class="cluebar-clue-number">
+          <%= entry[:number] %><%= entry[:direction].first %>
+        </strong>
+        <span class="cluebar-clue-text">
+          <%= entry[:clue] %>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+
+  <button
+    class="cluebar-button cluebar-button-next"
+    @click.stop="activeEntryId = nextEntry.id">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>
+  </button>
+</div>

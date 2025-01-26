@@ -1,32 +1,69 @@
-const crossword = () => {
+const crossword = (args) => {
   return {
+    entries: args.entries,
     cells: [],
     activeCell: null,
-    activeEntryId: null,
 
     init() {
       this.$nextTick(() => {
         const cellEls = Array.from(this.$root.querySelectorAll("[x-data^='crosswordCell']"));
         this.cells = cellEls.map((cell) => Alpine.$data(cell));
+        this.entries.forEach((entry) => {
+          entry.cells = this.cells.filter((cell) => cell.entryIds.includes(entry.id));
+        });
+
+        this.activeCell = this.activeEntry.cells[0];
+      });
+
+      this.$watch("activeEntryId", (entryId) => {
+        if (!this.activeCell.entryIds.includes(entryId)) {
+          this.makeActiveCell(this.activeEntry.cells[0], this.activeEntry.id);
+        }
+        this.activeCell.$el.scrollIntoView({ behavior: "smooth" });
       });
     },
 
-    makeActiveCell(cell) {
+    makeActiveCell(cell, entryId = null) {
+      const prevCell = this.activeCell;
       this.activeCell = cell;
-      this.updateActiveEntry();
+      if (entryId) {
+        this.activeEntryId = entryId;
+      } else {
+        if (prevCell && prevCell.id === cell.id) {
+          this.toggleActiveEntry();
+        } else {
+          this.setActiveEntry();
+        }
+      }
     },
 
     isActiveCell(cell) {
       return this.activeCell?.id === cell.id;
     },
 
-    isHighlighted(cell) {
-      return this.entryCells.find((entryCell) => entryCell.id === cell.id);
+    isInActiveEntry(cell) {
+      return this.activeEntryCells.find((entryCell) => entryCell.id === cell.id);
     },
 
-    updateActiveEntry() {
-      for (let i = 0; i < this.activeCell.entries.length; i++) {
-        const entryId = this.activeCell.entries[i];
+    setActiveEntry() {
+      if (!this.activeCell.entryIds.includes(this.activeEntryId)) {
+        for (let i = 0; i < this.activeCell.entryIds.length; i++) {
+          const entryId = this.activeCell.entryIds[i];
+          const entry = this.entries.find((entry) => entry.id === entryId);
+          if (entry.cells[0].id === this.activeCell.id) {
+            this.activeEntryId = entryId;
+            return;
+          }
+        }
+        this.activeEntryId = this.activeCell.entryIds[0];
+      }
+    },
+
+    toggleActiveEntry() {
+      if (!this.activeCell) return;
+
+      for (let i = 0; i < this.activeCell.entryIds.length; i++) {
+        const entryId = this.activeCell.entryIds[i];
         if (this.activeEntryId !== entryId) {
           this.activeEntryId = entryId;
           break;
@@ -36,12 +73,40 @@ const crossword = () => {
 
     handleInput(key) {
       if (key.length === 1 && key.match(/[a-z]/i)) {
-        this.activeCell.setText(key);
+        this.activeCell.text = key;
         this.goToNextCell();
       }
     },
 
-    clearCell() {
+    handleNavigation(event) {
+      const { key } = event;
+      if (key === "Tab") {
+        if (event.getModifierState("Shift")) {
+          this.goToPreviousEntry();
+        } else {
+          this.goToNextEntry();
+        }
+        return;
+      }
+
+      if (
+        (["ArrowUp", "ArrowDown"].includes(key) && this.entryDirection === "across") ||
+        (["ArrowLeft", "ArrowRight"].includes(key) && this.entryDirection === "down")
+      ) {
+        this.toggleActiveEntry();
+      }
+
+      const down = this.entryDirection === "down";
+      const across = this.entryDirection === "across";
+
+      if ((key === "ArrowDown" && down) || (key === "ArrowRight" && across)) {
+        this.goToNextCell();
+      } else if ((key === "ArrowUp" && down) || (key === "ArrowLeft" && across)) {
+        this.goToPreviousCell();
+      }
+    },
+
+    handleBackspace() {
       if (this.activeCell.isFilled) {
         this.activeCell.clear();
       } else {
@@ -63,18 +128,26 @@ const crossword = () => {
       }
     },
 
+    goToNextEntry() {
+      this.activeEntryId = this.nextEntry.id;
+    },
+
+    goToPreviousEntry() {
+      this.activeEntryId = this.previousEntry.id;
+    },
+
     get previousCell() {
       const index = this.activeCellEntryIndex;
 
       if (index === 0) {
         return null;
       } else {
-        return this.entryCells[index - 1];
+        return this.activeEntryCells[index - 1];
       }
     },
 
     get nextCell() {
-      const entryCells = this.entryCells;
+      const entryCells = this.activeEntryCells;
       const index = this.activeCellEntryIndex;
 
       if (index === entryCells.length - 1) {
@@ -85,29 +158,30 @@ const crossword = () => {
     },
 
     get activeCellEntryIndex() {
-      return this.entryCells.findIndex((entry) => entry.id === this.activeCell.id);
+      return this.activeEntryCells.findIndex((entry) => entry.id === this.activeCell.id);
     },
 
-    get entryCells() {
-      return this.cells.filter((cell) => cell.entries.includes(this.activeEntryId));
+    get activeEntryCells() {
+      return this.activeEntry?.cells || [];
+    },
+
+    get entryDirection() {
+      if (this.activeCell) {
+        return this.activeEntryId.includes("down") ? "down" : "across";
+      } else {
+        return null;
+      }
     },
   };
 };
 
 const crosswordCell = (args) => {
   return {
-    entries: args.entries || [],
-
-    setText(text) {
-      this.$refs.text.textContent = text.toUpperCase();
-    },
+    text: "",
+    entryIds: args.entries || [],
 
     clear() {
-      this.setText("");
-    },
-
-    get text() {
-      return this.$refs.text.textContent;
+      this.text = "";
     },
 
     get isEmpty() {
@@ -131,11 +205,11 @@ const crosswordCell = (args) => {
     },
 
     get highlighted() {
-      return this.crossword.isHighlighted(this);
+      return this.crossword.isInActiveEntry(this);
     },
 
     get crossword() {
-      return Alpine.$data(this.$root.closest("[x-data='crossword']"));
+      return Alpine.$data(this.$root.closest("[x-data^='crossword']"));
     },
   };
 };

@@ -1,13 +1,17 @@
 <%= tag.svg(
   "viewBox": view_box,
   class: "crossword",
-  "x-data": "crossword",
+  "x-data": "crossword({entries: #{entries.to_json}})",
   "@keyup.document": "handleInput(event.key)",
-  "@keyup.up.document": "goToPreviousCell",
-  "@keyup.left.document": "goToPreviousCell",
-  "@keyup.down.document": "goToNextCell",
-  "@keyup.right.document": "goToNextCell",
-  "@keyup.backspace.document": "clearCell",
+  "@keyboard-input.document": "handleInput(event.detail.key)",
+  "@keyup.up.document": "handleNavigation",
+  "@keyup.left.document": "handleNavigation",
+  "@keyup.down.document": "handleNavigation",
+  "@keyup.right.document": "handleNavigation",
+  "@keyup.tab.document": "handleNavigation",
+  "@keyup.backspace.document": "handleBackspace",
+  "@keyboard-backspace.document": "handleBackspace",
+  "x-trap": "true"
 ) do %>
   <%= tag.rect x: 0, y: 0, width: width, height: height, class: "crossword-background" %>
 

@@ -8,12 +8,6 @@
   margin: 0;
 }
 
-body {
-  font-family: sans-serif;
-  line-height: 1.4;
-  -webkit-font-smoothing: antialiased;
-}
-
 img,
 picture,
 video,
@@ -51,4 +45,16 @@ h4,
 h5,
 h6 {
   text-wrap: balance;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  touch-action: none;
+  overflow: hidden;
+}
+
+[x-cloak] {
+  display: none;
 }

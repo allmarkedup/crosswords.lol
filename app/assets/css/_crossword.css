@@ -1,5 +1,7 @@
 .crossword {
   display: block;
+  width: 100%;
+  background: #000;
 
   .crossword-background {
     fill: #000;

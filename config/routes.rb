@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   root "home#show"
 
 
-  resources :quick, only: [:index, :show], module: :crosswords
+  resources :quick, only: [:index, :show], module: :crosswords, as: :quick_crosswords
 end

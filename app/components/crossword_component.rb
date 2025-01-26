@@ -26,6 +26,8 @@ class CrosswordComponent < ViewComponent::Base
     (cell_size * @crossword.row_count) + 2
   end
 
+  def entries = @crossword.entries
+
   private
 
   def cells_data
