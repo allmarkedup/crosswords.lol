@@ -3,7 +3,6 @@
   <head>
     <title><%= content_for(:title) || "Crisscross" %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,9 +12,8 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%= stylesheet_link_tag :application %>
     <%= javascript_include_tag "application", defer: true %>
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag :application %>
   </head>
 
   <body>

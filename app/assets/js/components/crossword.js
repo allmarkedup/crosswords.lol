@@ -143,6 +143,26 @@ const crossword = function (args) {
       this.activeEntryId = this.previousEntry.id;
     },
 
+    revealActiveCell() {
+      const letters = this.activeEntry.solution.split("");
+      this.activeCell.text = letters[this.activeCellEntryIndex];
+    },
+
+    revealEntry(entry) {
+      const letters = entry.solution.split("");
+      for (let i = 0; i < entry.length; i++) {
+        entry.cells[i].text = letters[i];
+      }
+    },
+
+    revealActiveEntry() {
+      this.revealEntry(this.activeEntry);
+    },
+
+    revealAllEntries() {
+      this.entries.forEach((entry) => this.revealEntry(entry));
+    },
+
     checkEntry(entry) {
       const letters = entry.solution.split("");
       for (let i = 0; i < entry.length; i++) {

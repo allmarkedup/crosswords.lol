@@ -62,13 +62,17 @@
   overflow: auto;
   position: relative;
   background: #eee;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .puzzle-board {
-  padding: 0;
-  position: absolute;
-  inset: 0;
-  padding: 0.75rem;
+  position: relative;
+
+  & > * {
+    position: absolute;
+    inset: 0;
+  }
 }
 
 .puzzle-slat-actionbar {
