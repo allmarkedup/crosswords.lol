@@ -3,18 +3,35 @@
   align-items: center;
   justify-content: center;
   padding: 6px 0;
-  column-gap: 8px;
+
+  &:not(.confirming) {
+    column-gap: 8px;
+  }
 }
 
 .actionbar-button-group {
   display: flex;
   align-items: center;
   column-gap: 8px;
+  flex: none;
+  flex-basis: 100%;
 
-  + .actionbar-button-group {
-    margin-left: 6px;
+  .actionbar:not(.confirming) & + .actionbar-button-group {
+    margin-left: 4px;
     border-left: 1px solid #ccc;
-    padding-left: 14px;
+    padding-left: 12px;
+  }
+}
+
+.actionbar-divider {
+  width: 1px;
+  height: 20px;
+  background: #ccc;
+  flex: none;
+  margin: 0 4px;
+
+  .actionbar.confirming & {
+    display: none;
   }
 }
 
@@ -24,27 +41,58 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
   cursor: pointer;
   background: #fff;
   border-radius: 8px;
   border: 1px solid #ccc;
   color: #111;
+  flex-shrink: 0;
 
-  svg {
-    width: 20px;
-    height: 20px;
+  .actionbar-button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      flex: none;
+    }
+
+    span {
+      position: relative;
+      top: 1px;
+      margin-left: 6px;
+      font-size: 0.85rem;
+      padding-right: 2px;
+      text-wrap: nowrap;
+    }
   }
 
-  span {
-    position: relative;
-    top: 1px;
-    margin-left: 6px;
-    font-size: 0.85rem;
-    padding-right: 2px;
+  &.actionbar-button-cancel {
+    display: none;
   }
 
-  .actionbar-button-group-danger &.confirmed {
+  &.actionbar-button-danger.confirming {
     color: #dc2626;
+  }
+
+  .actionbar.confirming &:not(.confirming, .actionbar-button-cancel) {
+    display: none;
+  }
+
+  .actionbar.confirming &.confirming {
+    flex-grow: 1;
+    /* margin-left: 36px; */
+    /* margin: 0 auto; */
+  }
+
+  .actionbar.confirming &.actionbar-button-cancel {
+    display: flex;
+    flex: none;
+    margin-left: 8px;
+    background: transparent;
+    border: none;
+    opacity: 0.5;
   }
 }

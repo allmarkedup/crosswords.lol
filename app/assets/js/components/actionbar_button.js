@@ -1,14 +1,16 @@
 const actionbarButton = function (eventName) {
   return {
-    confirmed: false,
+    confirming: false,
 
     handleClick(event) {
-      if (this.confirmed) {
+      if (this.confirming) {
         this.$dispatch(eventName);
-        this.confirmed = false;
+        this.confirming = false;
+        this.confirmationButton = null;
       } else {
         event.preventDefault();
-        this.confirmed = true;
+        this.confirming = true;
+        this.confirmationButton = this;
       }
     },
 
@@ -17,9 +19,10 @@ const actionbarButton = function (eventName) {
         this.handleClick(event);
       },
       ["@click.outside"]() {
-        this.confirmed = false;
+        this.confirming = false;
+        this.confirmationButton = null;
       },
-      ":class": "{confirmed}",
+      ":class": "{confirming}",
     },
   };
 };
