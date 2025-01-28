@@ -83,8 +83,6 @@
 
   .actionbar.confirming &.confirming {
     flex-grow: 1;
-    /* margin-left: 36px; */
-    /* margin: 0 auto; */
   }
 
   .actionbar.confirming &.actionbar-button-cancel {
