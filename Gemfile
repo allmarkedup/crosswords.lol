@@ -42,3 +42,5 @@ gem "jsbundling-rails", "~> 1.3"
 gem "cssbundling-rails", "~> 1.4"
 
 gem "litestack", github: "oldmoe/litestack", branch: "master"
+
+gem "dockerfile-rails", ">= 1.7", :group => :development
