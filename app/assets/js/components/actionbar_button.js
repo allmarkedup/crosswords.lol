@@ -19,6 +19,7 @@ const actionbarButton = function (eventName) {
       ["@click.outside"]() {
         this.confirmed = false;
       },
+      ":class": "{confirmed}",
     },
   };
 };

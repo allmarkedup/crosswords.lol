@@ -1,7 +1,7 @@
 .actionbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 6px 0;
   column-gap: 8px;
 }
@@ -10,6 +10,12 @@
   display: flex;
   align-items: center;
   column-gap: 8px;
+
+  + .actionbar-button-group {
+    margin-left: 6px;
+    border-left: 1px solid #ccc;
+    padding-left: 14px;
+  }
 }
 
 .actionbar-button {
@@ -31,8 +37,14 @@
   }
 
   span {
+    position: relative;
+    top: 1px;
     margin-left: 6px;
     font-size: 0.85rem;
     padding-right: 2px;
+  }
+
+  .actionbar-button-group-danger &.confirmed {
+    color: #dc2626;
   }
 }
