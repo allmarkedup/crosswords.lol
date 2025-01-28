@@ -181,6 +181,18 @@ const crossword = function (args) {
       this.entries.forEach((entry) => this.checkEntry(entry));
     },
 
+    clearEntry(entry) {
+      entry.cells.forEach((cell) => cell.clear());
+    },
+
+    clearActiveEntry() {
+      this.clearEntry(this.activeEntry);
+    },
+
+    clearAllEntries() {
+      this.entries.forEach((entry) => this.clearEntry(entry));
+    },
+
     get previousCell() {
       const index = this.activeCellEntryIndex;
 

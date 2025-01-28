@@ -4,6 +4,7 @@ import persist from "@alpinejs/persist";
 
 import { crossword, crosswordCell } from "./components/crossword";
 import { puzzle } from "./components/puzzle";
+import { actionbarButton } from "./components/actionbar_button";
 
 window.Alpine = Alpine;
 
@@ -17,5 +18,6 @@ Alpine.store("state", {
 Alpine.data("crossword", crossword);
 Alpine.data("crosswordCell", crosswordCell);
 Alpine.data("puzzle", puzzle);
+Alpine.data("actionbarButton", actionbarButton);
 
 Alpine.start();

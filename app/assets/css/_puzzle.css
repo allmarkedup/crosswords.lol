@@ -56,6 +56,10 @@
 
 .puzzle-nav-button {
   color: #333;
+
+  &.disabled {
+    opacity: 0.3;
+  }
 }
 
 .puzzle-slat-board {
