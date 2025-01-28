@@ -7,13 +7,19 @@ class CrosswordComponent < ViewComponent::Base
     tag.rect(**kwargs, class: "crossword-separator")
   end
 
-  delegate :entries, :id, to: :@crossword
-
   attr_reader :cell_size
 
   def initialize(crossword:)
     @crossword = crossword
     @cell_size = 30
+  end
+
+  def id
+    @crossword.number
+  end
+
+  def entries
+    @crossword.data[:entries]
   end
 
   def view_box
@@ -32,7 +38,7 @@ class CrosswordComponent < ViewComponent::Base
 
   def cells_data
     data = []
-    @crossword.entries.each do |entry|
+    entries.each do |entry|
       start_x, start_y = start_position(entry)
 
       entry[:length].times do |i|
@@ -66,7 +72,7 @@ class CrosswordComponent < ViewComponent::Base
 
   def separators_data
     data = []
-    @crossword.entries.each do |entry|
+    entries.each do |entry|
       start_x, start_y = start_position(entry)
 
       entry[:separator_locations].flat_map { _2 }.each do |position|

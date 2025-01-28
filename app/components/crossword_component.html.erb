@@ -1,7 +1,7 @@
 <%= tag.svg(
   "viewBox": view_box,
   class: "crossword",
-  "x-data": "crossword({id: #{id.to_json}, entries: #{entries.to_json}})",
+  "x-data": "crossword({id: #{id.to_json}})",
   "@keyup.document": "handleInput(event.key)",
   "@keyboard-input.document": "handleInput(event.detail.key)",
   "@keyup.up.document": "handleNavigation",

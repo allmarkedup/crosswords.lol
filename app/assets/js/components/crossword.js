@@ -1,7 +1,6 @@
 const crossword = function (args) {
   return {
     uuid: args.id,
-    entries: args.entries,
     cells: [],
     activeCell: null,
     store: null,

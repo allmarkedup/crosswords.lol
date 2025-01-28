@@ -1,4 +1,6 @@
-<div class="puzzle" x-data="puzzle({entries: <%= @crossword.entries.to_json %>})">
+
+<% if false %><% end %>
+<div class="puzzle" x-data="puzzle({entries: <%= @crossword.data[:entries].to_json %>})">
   <div class="puzzle-slat puzzle-slat-header">
     <header class="puzzle-header">
       <h1 class="puzzle-title">
@@ -6,8 +8,8 @@
         <span><%= @crossword.number %></span>
       </h1>
       <nav class="puzzle-nav">
-        <% if @next_id %>
-          <%= link_to quick_crossword_path(@next_id), class: "puzzle-nav-button" do %>
+        <% if @next_number %>
+          <%= link_to quick_crossword_path(@next_number), class: "puzzle-nav-button" do %>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
           <% end %>
         <% else %>
@@ -16,7 +18,7 @@
           </span>
         <% end %>
         
-        <%= link_to quick_crossword_path(@previous_id), class: "puzzle-nav-button" do %>
+        <%= link_to quick_crossword_path(@previous_number), class: "puzzle-nav-button" do %>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>
         <% end %>
       </nav>
@@ -34,7 +36,7 @@
   </div>
   <div class="puzzle-slat puzzle-slat-cluebar">
     <div class="puzzle-cluebar">
-      <%= render CluebarComponent.new(entries: @crossword.entries) %>
+      <%= render CluebarComponent.new(entries: @crossword.data[:entries]) %>
     </div>
   </div>
   <div class="puzzle-slat puzzle-slat-keyboard">
@@ -43,5 +45,3 @@
     </div>
   </div>
 </div>
-
-

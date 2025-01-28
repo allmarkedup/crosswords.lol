@@ -6,7 +6,7 @@ module Providers
     base_uri "www.theguardian.com/crosswords"
 
     class << self
-      def latest_id(type)
+      def latest_number(type)
         response = get("/series/#{type}")
         html = Nokogiri::HTML(response.body)
         links = html.css("a[href^='/crosswords/#{type}/']")
