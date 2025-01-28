@@ -11,8 +11,8 @@ module Crosswords
       @crossword = ::Crossword.new(data)
 
       @current_id = params[:id].to_i
-      @next_id = @current_id + 1 unless @current_id == @latest_id;
-      @previous_id = @current_id - 1;
+      @next_id = @current_id + 1 unless @current_id == @latest_id
+      @previous_id = @current_id - 1
     end
 
     private
@@ -22,7 +22,7 @@ module Crosswords
         @latest_id = cookies[:quick_latest_id].to_i
       else
         @latest_id = Providers::Guardian.latest_id(:quick)
-        cookies[:quick_latest_id] = { value: @latest_id, expires: Date.current.end_of_day }
+        cookies[:quick_latest_id] = {value: @latest_id, expires: Date.current.end_of_day}
       end
     end
   end

@@ -10,17 +10,11 @@ gem "sqlite3", ">= 2.1"
 gem "puma", ">= 5.0"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ windows jruby ]
+gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Use the database-backed adapters for Rails.cache and Active Job
 gem "solid_cache"
 gem "solid_queue"
-
-# Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
-gem "kamal", require: false
-
-# Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", require: false
 
 gem "httparty"
 gem "nokogiri"
@@ -28,13 +22,13 @@ gem "view_component"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "debug", platforms: %i[mri windows], require: "debug/prelude"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
-  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem "rubocop-rails-omakase", require: false
+  gem "standard"
+  gem "standard-rails"
 end
 
 gem "jsbundling-rails", "~> 1.3"
@@ -43,4 +37,4 @@ gem "cssbundling-rails", "~> 1.4"
 
 gem "litestack", github: "oldmoe/litestack", branch: "master"
 
-gem "dockerfile-rails", ">= 1.7", :group => :development
+gem "dockerfile-rails", ">= 1.7", group: :development

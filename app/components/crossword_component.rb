@@ -61,7 +61,7 @@ class CrosswordComponent < ViewComponent::Base
         end
       end
     end
-    data.sort_by{ [ _1[:x], _1[:y] ]}
+    data.sort_by { [_1[:x], _1[:y]] }
   end
 
   def separators_data
