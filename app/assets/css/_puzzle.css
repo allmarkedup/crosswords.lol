@@ -60,6 +60,10 @@
   &.disabled {
     opacity: 0.3;
   }
+
+  &.puzzle-nav-button-today {
+    margin-right: 4px;
+  }
 }
 
 .puzzle-slat-board {
