@@ -9,24 +9,11 @@
   }
 }
 
-.actionbar-button-group {
-  display: flex;
-  align-items: center;
-  column-gap: 8px;
-  flex: none;
-  flex-basis: 100%;
-
-  .actionbar:not(.confirming) & + .actionbar-button-group {
-    margin-left: 4px;
-    border-left: 1px solid #ccc;
-    padding-left: 12px;
-  }
-}
-
 .actionbar-divider {
   width: 1px;
-  height: 20px;
-  background: #ccc;
+  height: 12px;
+  background: var(--color-content-light-3);
+  opacity: 0.5;
   flex: none;
   margin: 0 4px;
 
@@ -42,11 +29,15 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background: #fff;
+  background: var(--color-bg-dark-4);
   border-radius: 8px;
-  border: 1px solid #ccc;
-  color: #111;
+  color: var(--color-content-light-1);
   flex-shrink: 0;
+
+  &:focus-visual,
+  &:active {
+    background: var(--color-bg-dark-4);
+  }
 
   .actionbar-button-content {
     display: flex;
@@ -64,7 +55,7 @@
       top: 1px;
       margin-left: 6px;
       font-size: 0.85rem;
-      padding-right: 2px;
+      padding-right: 4px;
       text-wrap: nowrap;
     }
   }
@@ -74,15 +65,20 @@
   }
 
   &.actionbar-button-danger.confirming {
-    color: #dc2626;
+    background-color: var(--color-bg-danger);
+    color: var(--color-content-light-1);
   }
 
   .actionbar.confirming &:not(.confirming, .actionbar-button-cancel) {
     display: none;
   }
 
-  .actionbar.confirming &.confirming {
+  &.confirming {
     flex-grow: 1;
+    svg,
+    span {
+      opacity: 1;
+    }
   }
 
   .actionbar.confirming &.actionbar-button-cancel {
@@ -91,6 +87,6 @@
     margin-left: 8px;
     background: transparent;
     border: none;
-    opacity: 0.5;
+    color: var(--color-content-light-3);
   }
 }

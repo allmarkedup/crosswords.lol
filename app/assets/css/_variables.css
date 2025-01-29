@@ -1,0 +1,17 @@
+:root {
+  --puzzle-max-width: 600px;
+  --puzzle-padding-inline: 12px;
+
+  --color-bg-dark-1: #141e33;
+  --color-bg-dark-2: #1a2740;
+  --color-bg-dark-3: #1d2c49;
+  --color-bg-dark-4: #2a3a5c;
+
+  --color-content-light-1: #fff;
+  --color-content-light-2: #dae6ff;
+  --color-content-light-3: #90a5cf;
+
+  --color-bg-danger: #dc2626;
+  --color-bg-highlight: #ffe501;
+  --color-bg-highlight-muted: #fff7b2;
+}

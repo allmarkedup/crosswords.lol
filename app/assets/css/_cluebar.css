@@ -17,10 +17,11 @@
   vertical-align: middle;
   padding: 0;
   text-align: center;
+  color: var(--color-content-light-1);
 }
 
 .cluebar-clue-number {
-  color: #312e81;
+  color: var(--color-bg-highlight);
   font-size: 15px;
   margin-right: 2px;
 }
@@ -32,7 +33,7 @@
 .cluebar-button {
   border: 0;
   background: transparent;
-  color: #bbb;
+  color: var(--color-content-light-3);
   font-weight: bold;
   text-transform: none;
   width: 24px;
@@ -45,7 +46,7 @@
     height: 100%;
   }
 
-  &:hover {
+  /* &:hover {
     color: #333;
-  }
+  } */
 }

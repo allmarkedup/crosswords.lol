@@ -9,44 +9,47 @@
 }
 
 .puzzle-slat {
-  padding: 0 0.75rem;
-
-  > * {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  + .puzzle-slat {
-    border-top: 1px solid #bbb;
-  }
+  padding-inline: var(--puzzle-padding-inline);
 }
 
-.puzzle-header {
-  padding: 0.5rem 0;
-  display: flex;
-  align-items: center;
+.puzzle-slat-container {
+  max-width: var(--puzzle-max-width);
+  margin: 0 auto;
+  width: 100%;
 }
 
-.puzzle-title {
-  font-size: 0.9rem;
-  line-height: 1;
+.puzzle-header-container {
   display: flex;
   align-items: center;
-  column-gap: 4px;
-  font-weight: normal;
+  padding: 12px 0;
+}
+
+.puzzle-header-logo {
+  color: var(--color-content-light-3);
+  color: #db2777;
+  color: var(--color-bg-highlight);
+  width: 24px;
+  height: 24px;
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 100%;
+    height: 100%;
   }
+}
+
+.puzzle-number {
+  color: var(--color-content-light-1);
+  font-size: 0.9rem;
+  line-height: 1;
+  font-weight: 600;
+  margin-left: 12px;
 }
 
 .puzzle-nav {
   margin-left: auto;
   display: flex;
   align-items: center;
-  column-gap: 4px;
+  column-gap: 8px;
 
   svg {
     width: 20px;
@@ -55,16 +58,41 @@
 }
 
 .puzzle-nav-button {
-  color: #333;
+  color: var(--color-content-light-2);
+  padding: 2px;
+  opacity: 0.8;
 
   &.disabled {
-    opacity: 0.3;
-  }
-
-  &.puzzle-nav-button-today {
-    margin-right: 4px;
+    color: var(--color-content-light-3);
+    opacity: 0.6;
   }
 }
+
+.puzzle-board {
+  overflow: auto;
+  position: relative;
+}
+
+.puzzle-board-container {
+  position: relative;
+
+  & > * {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+.puzzle-cluebar {
+  /* border-top: 1px solid var(--color-bg-dark-4);
+  border-bottom: 1px solid var(--color-bg-dark-4); */
+  background-color: var(--color-bg-dark-1);
+}
+
+.puzzle-keyboard {
+  background-color: var(--color-bg-dark-1);
+}
+
+/* 
 
 .puzzle-slat-board {
   overflow: auto;
@@ -86,4 +114,4 @@
 .puzzle-slat-actionbar {
   border-top: 0 !important;
   background: #eee;
-}
+} */

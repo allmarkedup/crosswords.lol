@@ -1,5 +1,47 @@
 
-<div class="puzzle" x-data="puzzle({entries: <%= @crossword.data[:entries].to_json %>})">
+<div class="puzzle" x-data="puzzle({entries: <%= @crossword.data[:entries].to_json %>})">  
+  <header class="puzzle-header puzzle-slat">
+    <div class="puzzle-header-container puzzle-slat-container">
+      <%= link_to quick_crossword_path(@latest_number), class: "puzzle-header-logo" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48" id="Crossword--Streamline-Outlined-Material"><desc>Crossword Streamline Icon: https://streamlinehq.com</desc><path fill="currentColor" d="M19.3 41h9.35v-9.3H19.3V41ZM7 28.7h9.3v-9.35H7v9.35Zm12.3 0h9.35v-9.35H19.3v9.35Zm12.35 0H41v-9.35h-9.35v9.35Zm0 -12.35H41V7h-9.35v9.35ZM16.3 44V31.7H4V16.35h24.65V4H44v27.7H31.65V44H16.3Z" stroke-width="1"></path></svg>
+      <% end %>
+      <h1 class="puzzle-number">
+        <span>#<%= @crossword.number %></span>
+      </h1>
+      <nav class="puzzle-nav">
+        <%= link_to quick_crossword_path(@next_number || @number), class: {"puzzle-nav-button": true, "disabled": !@next_number} do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-left"><circle cx="12" cy="12" r="10"/><path d="M16 12H8"/><path d="m12 8-4 4 4 4"/></svg>
+        <% end %>
+        
+        <%= link_to quick_crossword_path(@previous_number), class: "puzzle-nav-button" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-right"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="m12 16 4-4-4-4"/></svg>
+        <% end %>
+      </nav>
+    </div>
+  </header>
+  <div class="puzzle-board puzzle-slat">
+    <div class="puzzle-board-container puzzle-slat-container">
+      <%= render CrosswordComponent.new(crossword: @crossword) %>
+    </div>
+  </div>
+  <div class="puzzle-actionbar puzzle-slat">
+    <div class="puzzle-actionbar-container puzzle-slat-container">
+      <%= render ActionbarComponent.new %>
+    </div>
+  </div>
+  <div class="puzzle-cluebar puzzle-slat">
+    <div class="puzzle-cluebar-container puzzle-slat-container">
+      <%= render CluebarComponent.new(entries: @crossword.data[:entries]) %>
+    </div>
+  </div>
+   <div class="puzzle-keyboard puzzle-slat">
+    <div class="puzzle-keyboard-container puzzle-slat-container">
+      <%= render KeyboardComponent.new %>
+    </div>
+  </div>
+  
+
+  <% if false %>
   <div class="puzzle-slat puzzle-slat-header">
     <header class="puzzle-header">
       <h1 class="puzzle-title">
@@ -26,7 +68,7 @@
       </nav>
     </header>
   </div>
-  <div class="puzzle-slat puzzle-slat-board" >
+  <div class="puzzle-slat puzzle-slat-board">
     <div class="puzzle-board">
       <%= render CrosswordComponent.new(crossword: @crossword) %>
     </div>
@@ -46,4 +88,5 @@
       <%= render KeyboardComponent.new %>
     </div>
   </div>
+  <% end %>
 </div>

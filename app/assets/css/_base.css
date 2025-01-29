@@ -2,6 +2,8 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -50,9 +52,14 @@ h6 {
 body {
   font-family: sans-serif;
   line-height: 1.4;
-  -webkit-font-smoothing: antialiased;
+
   touch-action: none;
   overflow: hidden;
+  color: var(--color-content-light-1);
+  background-color: var(--color-bg-dark-2);
+  background-image: url("bg.svg");
+  background-size: 100px;
+  background-repeat: repeat;
 }
 
 [x-cloak] {
