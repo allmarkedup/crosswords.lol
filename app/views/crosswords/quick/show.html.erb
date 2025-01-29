@@ -1,3 +1,4 @@
+<% content_for(:title) { "##{@crossword.number}" } %>
 
 <div class="puzzle" x-data="puzzle({entries: <%= @crossword.data[:entries].to_json %>})">  
   <header class="puzzle-header puzzle-slat">
