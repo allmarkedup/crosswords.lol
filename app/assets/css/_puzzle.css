@@ -39,10 +39,10 @@
 
 .puzzle-number {
   color: var(--color-content-light-1);
-  font-size: 0.9rem;
+  font-size: 15px;
   line-height: 1;
-  font-weight: 600;
-  margin-left: 12px;
+  font-weight: normal;
+  opacity: 0.9;
 }
 
 .puzzle-nav {
@@ -58,7 +58,7 @@
 }
 
 .puzzle-nav-button {
-  color: var(--color-content-light-2);
+  color: var(--color-content-light-1);
   padding: 2px;
   opacity: 0.8;
 
