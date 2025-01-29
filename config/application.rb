@@ -38,7 +38,5 @@ module Crisscross
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-
-    config.hosts << /[a-z0-9\-\.]+\.ngrok\.app/
   end
 end
