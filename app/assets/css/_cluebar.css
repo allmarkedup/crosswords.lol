@@ -1,5 +1,4 @@
 .cluebar {
-  padding: 0.5rem 0;
   width: 100%;
   display: grid;
   grid-template-columns: min-content 1fr min-content;
@@ -18,12 +17,14 @@
   padding: 0;
   text-align: center;
   color: var(--color-content-light-1);
+  user-select: none;
 }
 
 .cluebar-clue-number {
   color: var(--color-bg-highlight);
   font-size: 15px;
   margin-right: 2px;
+  user-select: none;
 }
 
 .cluebar-clue:first-child {
@@ -36,14 +37,17 @@
   color: var(--color-content-light-3);
   font-weight: bold;
   text-transform: none;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 40px;
   padding: 0;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   svg {
-    width: 100%;
-    height: 100%;
+    width: 24px;
+    height: 24px;
   }
 
   /* &:hover {
