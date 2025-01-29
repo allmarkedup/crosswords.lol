@@ -1,3 +1,5 @@
+import "./icons";
+
 import Alpine from "alpinejs";
 import focus from "@alpinejs/focus";
 import persist from "@alpinejs/persist";

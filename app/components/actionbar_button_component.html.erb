@@ -3,7 +3,7 @@
   x-data="actionbarButton('<%= action %>')"
   x-bind="root">
   <div class="actionbar-button-content">
-    <%= icon %>
+    <i data-lucide="<%= icon %>"></i>
     <span x-show="confirming" x-cloak><%= confirm_text %></span>
   </div>
 </button>
