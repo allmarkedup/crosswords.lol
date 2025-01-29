@@ -45,12 +45,8 @@
   align-items: center;
   justify-content: center;
 
-  svg {
+  [data-lucide] {
     width: 24px;
     height: 24px;
   }
-
-  /* &:hover {
-    color: #333;
-  } */
 }

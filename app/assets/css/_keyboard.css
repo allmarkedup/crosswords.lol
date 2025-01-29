@@ -38,7 +38,7 @@
   color: var(--color-content-light-1);
   user-select: none;
 
-  svg {
+  [data-lucide] {
     width: 20px;
   }
 

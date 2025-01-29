@@ -51,7 +51,7 @@
   align-items: center;
   column-gap: 8px;
 
-  svg {
+  [data-lucide] {
     width: 20px;
     height: 20px;
   }

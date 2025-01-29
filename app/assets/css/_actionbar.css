@@ -44,7 +44,7 @@
     align-items: center;
     justify-content: center;
 
-    svg {
+    [data-lucide] {
       width: 20px;
       height: 20px;
       flex: none;
@@ -75,7 +75,7 @@
 
   &.confirming {
     flex-grow: 1;
-    svg,
+    [data-lucide],
     span {
       opacity: 1;
     }
