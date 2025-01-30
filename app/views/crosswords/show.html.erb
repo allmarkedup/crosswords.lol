@@ -3,18 +3,18 @@
 <div class="puzzle" x-data="puzzle({entries: <%= @crossword.data[:entries].to_json %>})">  
   <header class="puzzle-header puzzle-slat">
     <div class="puzzle-header-container puzzle-slat-container">
-      <%= link_to quick_crossword_path(@latest_number), class: "puzzle-header-logo" do %>
+      <%= link_to crossword_path(@style, @latest_number), class: "puzzle-header-logo" do %>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48" id="Crossword--Streamline-Outlined-Material"><desc>Crossword Streamline Icon: https://streamlinehq.com</desc><path fill="currentColor" d="M19.3 41h9.35v-9.3H19.3V41ZM7 28.7h9.3v-9.35H7v9.35Zm12.3 0h9.35v-9.35H19.3v9.35Zm12.35 0H41v-9.35h-9.35v9.35Zm0 -12.35H41V7h-9.35v9.35ZM16.3 44V31.7H4V16.35h24.65V4H44v27.7H31.65V44H16.3Z" stroke-width="1"></path></svg>
       <% end %>
       
       <nav class="puzzle-nav">
-        <%= link_to quick_crossword_path(@next_number || @number), class: {"puzzle-nav-button": true, "disabled": !@next_number} do %>
+        <%= link_to crossword_path(@style, @next_number || @number), class: {"puzzle-nav-button": true, "disabled": !@next_number} do %>
           <i data-lucide="circle-arrow-left"></i>
         <% end %>
         <span class="puzzle-number">
           <%= @crossword.number %>
         </span>  
-        <%= link_to quick_crossword_path(@previous_number), class: "puzzle-nav-button" do %>
+        <%= link_to crossword_path(@style, @previous_number), class: "puzzle-nav-button" do %>
           <i data-lucide="circle-arrow-right"></i>
         <% end %>
       </nav>

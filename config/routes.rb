@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   root "crosswords/quick#index"
 
-  resources :quick, only: [:index, :show], module: :crosswords, as: :quick_crosswords
+  get ":style", to: "crosswords#index", constraints: {style: /quick/}, as: :crosswords
+  get ":style/:number", to: "crosswords#show", constraints: {number: /\d.+/, style: /quick/}, as: :crossword
 end
