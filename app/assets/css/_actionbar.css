@@ -4,6 +4,8 @@
 }
 
 .actionbar-container {
+  max-width: var(--puzzle-max-width);
+  margin: 0 auto;
   width: 100%;
   display: flex;
   align-items: center;
@@ -79,6 +81,7 @@
   }
 
   &.confirming {
+    background-color: var(--color-bg-positive);
     flex-grow: 1;
     [data-lucide],
     span {
