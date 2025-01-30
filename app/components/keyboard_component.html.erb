@@ -1,21 +1,23 @@
 <div class="keyboard" x-data>
-  <% layout.each do |keys| %>
-    <div class="keyboard-row">
-      <% keys.each do |key| %>
-        <% if key == "DEL" %>
-          <button class="keyboard-key keyboard-key-delete" @click.stop="$dispatch('keyboard-backspace')">
-            <span class="keyboard-label">
-              <i data-lucide="delete"></i>
-            </span>
-          </button>
-        <% else %>
-          <button class="keyboard-key" @click.stop="$dispatch('keyboard-input', {key: <%= key.to_json %>})">
-            <span class="keyboard-label">
-              <%= key %>
-            </span>
-          </button>
+  <div class="keyboard-container">
+    <% layout.each do |keys| %>
+      <div class="keyboard-row">
+        <% keys.each do |key| %>
+          <% if key == "DEL" %>
+            <button class="keyboard-key keyboard-key-delete" @click.stop="$dispatch('keyboard-backspace')">
+              <span class="keyboard-label">
+                <i data-lucide="delete"></i>
+              </span>
+            </button>
+          <% else %>
+            <button class="keyboard-key" @click.stop="$dispatch('keyboard-input', {key: <%= key.to_json %>})">
+              <span class="keyboard-label">
+                <%= key %>
+              </span>
+            </button>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-  <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -1,60 +1,61 @@
 <div class="actionbar" x-data="{confirmationButton: null}" :class="{confirming: confirmationButton}">
+  <div class="actionbar-container">    
+    <%= render ActionbarButtonComponent.new(
+      action: "check",
+      icon: :check,
+      confirm_text: "Confirm check word"
+    ) %>
 
-  <%= render ActionbarButtonComponent.new(
-    action: "check",
-    icon: :check,
-    confirm_text: "Confirm check word"
-  ) %>
+    <%= render ActionbarButtonComponent.new(
+      action: "check-all",
+      icon: :check_check,
+      confirm_text: "Confirm check all"
+    ) %>
 
-  <%= render ActionbarButtonComponent.new(
-    action: "check-all",
-    icon: :check_check,
-    confirm_text: "Confirm check all"
-  ) %>
+    <div class="actionbar-divider"></div>
 
-  <div class="actionbar-divider"></div>
+    <%= render ActionbarButtonComponent.new(
+      action: "reveal-letter",
+      icon: :view,
+      confirm_text: "Confirm reveal letter"
+    ) %>
 
-  <%= render ActionbarButtonComponent.new(
-    action: "reveal-letter",
-    icon: :view,
-    confirm_text: "Confirm reveal letter"
-  ) %>
+    <%= render ActionbarButtonComponent.new(
+      action: "reveal",
+      icon: :eye,
+      confirm_text: "Confirm reveal word"
+    )%>
 
-  <%= render ActionbarButtonComponent.new(
-    action: "reveal",
-    icon: :eye,
-    confirm_text: "Confirm reveal word"
-  )%>
+    <div class="actionbar-divider"></div>
 
-  <div class="actionbar-divider"></div>
+    <%= render ActionbarButtonComponent.new(
+      action: "clear",
+      icon: :eraser,
+      confirm_text: "Confirm clear word"
+    ) %>
 
-  <%= render ActionbarButtonComponent.new(
-    action: "clear",
-    icon: :eraser,
-    confirm_text: "Confirm clear word"
-  ) %>
+    <div class="actionbar-divider"></div>
 
-  <div class="actionbar-divider"></div>
+    <%= render ActionbarButtonComponent.new(
+      action: "clear-all",
+      confirm_text: "Confirm clear all",
+      icon: :trash_2,
+      danger: true
+    ) %>
 
-  <%= render ActionbarButtonComponent.new(
-    action: "clear-all",
-    confirm_text: "Confirm clear all",
-    icon: :trash_2,
-    danger: true
-  ) %>
+    <%= render ActionbarButtonComponent.new(
+      action: "reveal-all",
+      icon: :zap,
+      confirm_text: "Confirm reveal all",
+      danger: true
+    ) %>
 
-  <%= render ActionbarButtonComponent.new(
-    action: "reveal-all",
-    icon: :zap,
-    confirm_text: "Confirm reveal all",
-    danger: true
-  ) %>
-
-  <button
-    class="actionbar-button actionbar-button-cancel"
-    @click="confirmationButton = null">
-    <div class="actionbar-button-content">
-      <i data-lucide="x"></i>
-    </div>
-  </button>
+    <button
+      class="actionbar-button actionbar-button-cancel"
+      @click="confirmationButton = null">
+      <div class="actionbar-button-content">
+        <i data-lucide="x"></i>
+      </div>
+    </button>
+  </div>
 </div>

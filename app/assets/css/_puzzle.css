@@ -8,33 +8,23 @@
   touch-action: none;
 }
 
-.puzzle-slat {
+.puzzle-header {
   padding-inline: var(--puzzle-padding-inline);
 }
 
-.puzzle-slat-container {
+.puzzle-header-container {
   max-width: var(--puzzle-max-width);
   margin: 0 auto;
   width: 100%;
-}
-
-.puzzle-header-container {
   display: flex;
   align-items: center;
   padding: 10px 0 12px 0;
 }
 
-.puzzle-header-logo {
-  color: var(--color-content-light-3);
-  color: #db2777;
+.puzzle-logo {
   color: var(--color-bg-highlight);
   width: 24px;
   height: 24px;
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
 }
 
 .puzzle-number {
@@ -71,23 +61,17 @@
 .puzzle-board {
   overflow: auto;
   position: relative;
+  padding-inline: var(--puzzle-padding-inline);
 }
 
 .puzzle-board-container {
   position: relative;
+  max-width: var(--puzzle-max-width);
+  margin: 0 auto;
+  width: 100%;
 
   & > * {
     position: absolute;
     inset: 0;
   }
-}
-
-.puzzle-cluebar {
-  padding-inline: 4px;
-  background-color: var(--color-bg-dark-1);
-}
-
-.puzzle-keyboard {
-  padding-inline: 4px;
-  background-color: var(--color-bg-dark-1);
 }

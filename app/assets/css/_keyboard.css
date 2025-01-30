@@ -6,8 +6,15 @@
       (var(--key-gap) * (var(--max-keys-per-row) - 1) / var(--max-keys-per-row))
   );
 
-  padding: 6px 0;
+  padding: 6px 4px;
   touch-action: none;
+  background-color: var(--color-bg-dark-1);
+}
+
+.keyboard-container {
+  max-width: var(--puzzle-max-width);
+  margin: 0 auto;
+  width: 100%;
 }
 
 .keyboard-row {

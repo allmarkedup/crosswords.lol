@@ -5,7 +5,7 @@ class CrosswordsController < ApplicationController
   before_action :assign_crossword, only: [:show]
 
   def index
-    redirect_to crossword_path(@style, @latest_number)
+    redirect_to crossword_path(@style, @latest_number) and return
   end
 
   def show
