@@ -75,3 +75,7 @@
     inset: 0;
   }
 }
+
+.puzzle-confetti {
+  pointer-events: none;
+}

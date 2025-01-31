@@ -1,6 +1,8 @@
+
 <% content_for(:title) { "##{@crossword.number}" } %>
 
-<div class="puzzle" x-data="puzzle({entries: <%= @crossword.data[:entries].to_json %>})">  
+
+<div class="puzzle" x-data="puzzle({entries: <%= @crossword.data[:entries].to_json %>})" @complete="showConfetti">  
   <header class="puzzle-header">
     <div class="puzzle-header-container">
       <%= link_to crossword_path(@style, @latest_number), class: "puzzle-logo" do %>
@@ -33,4 +35,5 @@
   <div class="puzzle-keyboard">
     <%= render KeyboardComponent.new %>
   </div>
+  <div id="confetti" class="puzzle-confetti"></div>
 </div>

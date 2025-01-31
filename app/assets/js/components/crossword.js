@@ -4,6 +4,7 @@ const crossword = function (args) {
     cells: [],
     activeCell: null,
     store: null,
+    complete: false,
 
     init() {
       if (this.$store.state.crosswords[this.uuid] === undefined) {
@@ -19,6 +20,8 @@ const crossword = function (args) {
         });
 
         this.activeCell = this.activeEntry.cells[0];
+
+        Alpine.effect(() => this.checkCompleteness());
       });
 
       this.$watch("activeEntryId", (entryId) => {
@@ -26,6 +29,10 @@ const crossword = function (args) {
           this.makeActiveCell(this.activeEntry.cells[0], this.activeEntry.id);
         }
         this.activeCell.$el.scrollIntoView({ behavior: "smooth" });
+      });
+
+      this.$watch("complete", (complete) => {
+        if (complete) this.$dispatch("complete");
       });
     },
 
@@ -190,6 +197,21 @@ const crossword = function (args) {
 
     clearAllEntries() {
       this.entries.forEach((entry) => this.clearEntry(entry));
+    },
+
+    checkCompleteness() {
+      for (let i = 0; i < this.entries.length; i++) {
+        const entry = this.entries[i];
+        const letters = entry.solution.split("");
+        for (let j = 0; j < entry.length; j++) {
+          const cell = entry.cells[j];
+          if (cell.text !== letters[j]) {
+            this.complete = false;
+            return;
+          }
+        }
+        this.complete = true;
+      }
     },
 
     get previousCell() {
