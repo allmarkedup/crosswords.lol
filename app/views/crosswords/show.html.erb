@@ -1,6 +1,10 @@
 
 <% content_for(:title) { "##{@crossword.number}" } %>
 
+<% content_for :head do %>
+  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.8.1/tsparticles.confetti.bundle.min.js"></script>
+<% end%>
+
 
 <div class="puzzle" x-data="puzzle({entries: <%= @crossword.data[:entries].to_json %>})" @complete="showConfetti">  
   <header class="puzzle-header">
