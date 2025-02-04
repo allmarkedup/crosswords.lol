@@ -6,38 +6,42 @@
 <% end%>
 
 
-<div class="puzzle" x-data="puzzle({entries: <%= @crossword.data[:entries].to_json %>})" @complete="showConfetti">  
-  <header class="puzzle-header">
-    <div class="puzzle-header-container">
-      <%= link_to crossword_path(@style, @latest_number), class: "puzzle-logo" do %>
-        <%= image_tag "icon.svg" %>
-      <% end %>
-      <nav class="puzzle-nav">
-        <%= link_to crossword_path(@style, @next_number || @number), class: {"puzzle-nav-button": true, "disabled": !@next_number} do %>
-          <i data-lucide="circle-arrow-left"></i>
+<div class="puzzle" x-data="puzzle({entries: <%= @crossword.data[:entries].to_json %>})" @complete="celebrate">
+  <div class="puzzle-layout">    
+    <header class="puzzle-header">
+      <div class="puzzle-header-container">
+        <%= link_to crossword_path(@style, @latest_number), class: "puzzle-logo" do %>
+          <%= image_tag "icon.svg" %>
         <% end %>
-        <span class="puzzle-number">
-          <%= @crossword.number %>
-        </span>  
-        <%= link_to crossword_path(@style, @previous_number), class: "puzzle-nav-button" do %>
-          <i data-lucide="circle-arrow-right"></i>
-        <% end %>
-      </nav>
+        <nav class="puzzle-nav">
+          <%= link_to crossword_path(@style, @next_number || @number), class: {"puzzle-nav-button": true, "disabled": !@next_number} do %>
+            <i data-lucide="circle-arrow-left"></i>
+          <% end %>
+          <span class="puzzle-number">
+            <%= @crossword.number %>
+          </span>  
+          <%= link_to crossword_path(@style, @previous_number), class: "puzzle-nav-button" do %>
+            <i data-lucide="circle-arrow-right"></i>
+          <% end %>
+        </nav>
+      </div>
+    </header>
+    <div class="puzzle-board">
+      <div class="puzzle-board-container">
+        <%= render CrosswordComponent.new(crossword: @crossword) %>
+      </div>
     </div>
-  </header>
-  <div class="puzzle-board">
-    <div class="puzzle-board-container">
-      <%= render CrosswordComponent.new(crossword: @crossword) %>
+    <div class="puzzle-actionbar">
+      <%= render ActionbarComponent.new %>
+    </div>
+    <div class="puzzle-cluebar">
+      <%= render CluebarComponent.new(entries: @crossword.data[:entries]) %>
+    </div>
+    <div class="puzzle-keyboard">
+      <%= render KeyboardComponent.new %>
+    </div>
+    <div class="puzzle-cat" @click="vibing = false" x-show="vibing" x-transition.duration.500ms x-cloak>
+      <%= image_tag "vibing_cat.gif" %>
     </div>
   </div>
-  <div class="puzzle-actionbar">
-    <%= render ActionbarComponent.new %>
-  </div>
-  <div class="puzzle-cluebar">
-    <%= render CluebarComponent.new(entries: @crossword.data[:entries]) %>
-  </div>
-  <div class="puzzle-keyboard">
-    <%= render KeyboardComponent.new %>
-  </div>
-  <div id="confetti" class="puzzle-confetti"></div>
 </div>
