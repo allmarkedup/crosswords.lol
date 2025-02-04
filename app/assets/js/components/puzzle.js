@@ -2,7 +2,7 @@ const confettiCount = 200;
 const confettiDefaults = {
   spread: 70,
   angle: -90,
-  origin: { x: 0.5, y: 0 },
+  origin: { x: 0.5, y: -0.2 },
   shapes: ["emoji", "image"],
   shapeOptions: {
     emoji: {
@@ -45,12 +45,15 @@ const puzzle = function (args) {
 
     celebrate() {
       this.showConfetti();
+      this.startVibing();
+    },
 
+    startVibing() {
       clearTimeout(this.vibeTimer);
       this.vibing = true;
       this.vibeTimer = setTimeout(() => {
         this.vibing = false;
-      }, 2000);
+      }, 10000);
     },
 
     showConfetti() {

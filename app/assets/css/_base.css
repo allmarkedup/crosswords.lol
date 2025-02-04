@@ -52,13 +52,12 @@ h6 {
 body {
   font-family: sans-serif;
   line-height: 1.4;
-
   touch-action: none;
   overflow: hidden;
   color: var(--color-content-light-1);
   background-color: var(--color-bg-dark-2);
   background-image: url("bg.svg");
-  background-size: 100px;
+  background-size: 100px 100px;
   background-repeat: repeat;
 }
 
