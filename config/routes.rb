@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root "crosswords#index"
 
+  get "settings", to: "settings#show", as: :settings
+
   get ":style", to: "crosswords#index", constraints: {style: /quick/}, as: :crosswords
   get ":style/:number", to: "crosswords#show", constraints: {number: /\d.+/, style: /quick/}, as: :crossword
 end
