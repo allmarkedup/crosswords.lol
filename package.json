@@ -6,7 +6,8 @@
   },
   "scripts": {
     "build": "esbuild app/assets/js/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
-    "build:css": "postcss ./app/assets/css/application.postcss.css -o ./app/assets/builds/application.css"
+    "build:css": "postcss ./app/assets/css/application.postcss.css -o ./app/assets/builds/application.css",
+    "deploy": "fly deploy"
   },
   "dependencies": {
     "@alpinejs/focus": "^3.14.8",
