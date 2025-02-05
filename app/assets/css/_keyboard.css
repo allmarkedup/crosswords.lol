@@ -1,8 +1,9 @@
 .keyboard {
   --key-gap: 5px;
   --max-keys-per-row: 10;
+  --keyboard-width: min(var(--puzzle-max-width), 100vw);
   --key-width: calc(
-    (100% / var(--max-keys-per-row)) -
+    ((var(--keyboard-width) - 8px) / var(--max-keys-per-row)) -
       (var(--key-gap) * (var(--max-keys-per-row) - 1) / var(--max-keys-per-row))
   );
 
@@ -12,7 +13,7 @@
 }
 
 .keyboard-container {
-  max-width: var(--puzzle-max-width);
+  max-width: var(--keyboard-width);
   margin: 0 auto;
   width: 100%;
 }
@@ -34,8 +35,8 @@
   padding: 0;
   border: 0;
   background-color: var(--color-bg-dark-4);
-  width: var(--key-width);
-  height: 42px;
+  width: min(var(--key-width));
+  height: calc(var(--key-width) * 1.22);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,7 +64,13 @@
   &.keyboard-key-delete {
     position: absolute;
     right: 0;
-    width: calc(var(--key-width) + 12px);
+    width: calc(var(--key-width) + (var(--key-width) * 0.4));
     background-color: var(--color-bg-dark-3);
+  }
+}
+
+@media all and (max-height: 960px) and (min-width: 960px) {
+  .keyboard-key {
+    height: var(--key-width);
   }
 }

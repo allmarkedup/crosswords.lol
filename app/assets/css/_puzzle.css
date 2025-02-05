@@ -72,21 +72,17 @@
 
 .puzzle-board-container {
   position: relative;
-  max-width: var(--puzzle-max-width);
+  max-width: var(--puzzle-board-max-width);
   margin: 0 auto;
   width: 100%;
-
-  & > * {
-    position: absolute;
-    inset: 0;
-  }
+  height: 100%;
 }
 
 .puzzle-cat {
   position: absolute;
   left: 0;
-  bottom: 195px;
-  width: 125px;
+  bottom: 0;
+  width: min(20vw, 200px);
   z-index: 10;
 }
 

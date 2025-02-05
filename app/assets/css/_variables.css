@@ -1,5 +1,6 @@
 :root {
-  --puzzle-max-width: 600px;
+  --puzzle-max-width: 680px;
+  --puzzle-board-max-width: 600px;
   --puzzle-padding-inline: 12px;
 
   --color-bg-dark-1: #141e33;

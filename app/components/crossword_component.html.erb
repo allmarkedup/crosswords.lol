@@ -1,32 +1,34 @@
-<%= tag.svg(
-  "viewBox": view_box,
-  class: "crossword",
-  "x-data": "crossword({id: #{id.to_json}})",
-  "@keyup.document": "handleInput(event.key)",
-  "@keyboard-input.document": "handleInput(event.detail.key)",
-  "@keyup.up.document": "handleNavigation",
-  "@keyup.left.document": "handleNavigation",
-  "@keyup.down.document": "handleNavigation",
-  "@keyup.right.document": "handleNavigation",
-  "@keyup.tab.document": "handleNavigation",
-  "@keyup.backspace.document": "handleBackspace",
-  "@keyboard-backspace.document": "handleBackspace",
-  "@check.document": "checkActiveEntry",
-  "@check-all.document": "checkAllEntries",
-  "@reveal.document": "revealActiveEntry",
-  "@reveal-all.document": "revealAllEntries",
-  "@reveal-letter.document": "revealActiveCell",
-  "@clear.document": "clearActiveEntry",
-  "@clear-all.document": "clearAllEntries",
-  "x-trap": "true"
-) do %>
-  <%= tag.rect x: 0, y: 0, width: width, height: height, class: "crossword-background" %>
+<div class="crossword-wrapper">
+  <%= tag.svg(
+    "viewBox": view_box,
+    class: "crossword",
+    "x-data": "crossword({id: #{id.to_json}})",
+    "@keyup.document": "handleInput(event.key)",
+    "@keyboard-input.document": "handleInput(event.detail.key)",
+    "@keyup.up.document": "handleNavigation",
+    "@keyup.left.document": "handleNavigation",
+    "@keyup.down.document": "handleNavigation",
+    "@keyup.right.document": "handleNavigation",
+    "@keyup.tab.document": "handleNavigation",
+    "@keyup.backspace.document": "handleBackspace",
+    "@keyboard-backspace.document": "handleBackspace",
+    "@check.document": "checkActiveEntry",
+    "@check-all.document": "checkAllEntries",
+    "@reveal.document": "revealActiveEntry",
+    "@reveal-all.document": "revealAllEntries",
+    "@reveal-letter.document": "revealActiveCell",
+    "@clear.document": "clearActiveEntry",
+    "@clear-all.document": "clearAllEntries",
+    "x-trap": "true"
+  ) do %>
+    <%= tag.rect x: 0, y: 0, width: width, height: height, class: "crossword-background" %>
 
-  <% cells.each do |cell| %>
-    <%= cell %>
-  <% end %>
+    <% cells.each do |cell| %>
+      <%= cell %>
+    <% end %>
 
-  <% separators.each do |separator| %>
-    <%= separator %>
+    <% separators.each do |separator| %>
+      <%= separator %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
