@@ -85,10 +85,14 @@ const crossword = function (args) {
       }
     },
 
-    handleInput(key) {
+    handleInput(key, event) {
       if (key.length === 1 && key.match(/[a-z]/i)) {
-        this.activeCell.text = key;
-        this.goToNextCell();
+        event.stopPropagation();
+        event.preventDefault();
+        this.$nextTick(() => {
+          this.activeCell.text = key;
+          this.goToNextCell();
+        });
       }
     },
 

@@ -3,7 +3,7 @@ export default function state(Alpine) {
     crosswords: Alpine.$persist({}).as("crosswords-state"),
 
     getCrosswordState(id) {
-      if (this.crosswords[id] === undefined) {
+      if (!this.crosswords[id]?.entries) {
         this.crosswords[id] = { activeCellId: null, timer: null, entries: {} };
       }
       return this.crosswords[id];
