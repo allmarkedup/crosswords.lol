@@ -9,6 +9,15 @@
                 <i data-lucide="delete"></i>
               </span>
             </button>
+          <% elsif key == "TIMER" %>
+            <button class="keyboard-key keyboard-key-timer" @click.stop="$dispatch('timer-toggle')">
+              <span class="keyboard-label" x-show="puzzleTimer.stopped">
+                <i data-lucide="timer"></i>
+              </span>
+              <span class="keyboard-label" x-show="puzzleTimer.running">
+                <i data-lucide="timer-off"></i>
+              </span>
+            </button>
           <% else %>
             <button class="keyboard-key" @click.stop="$dispatch('keyboard-input', {key: <%= key.to_json %>})">
               <span class="keyboard-label">

@@ -67,6 +67,13 @@
     width: calc(var(--key-width) + (var(--key-width) * 0.4));
     background-color: var(--color-bg-dark-3);
   }
+
+  &.keyboard-key-timer {
+    position: absolute;
+    left: 0;
+    width: calc(var(--key-width) + (var(--key-width) * 0.4));
+    background-color: var(--color-bg-dark-3);
+  }
 }
 
 @media all and (max-height: 960px) and (min-width: 960px) {

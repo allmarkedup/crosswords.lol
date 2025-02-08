@@ -37,11 +37,20 @@ function fireConfetti(particleRatio, opts) {
 }
 
 const puzzle = function (args) {
+  let focusWatcher = null;
   return {
     entries: args.entries,
     activeEntryId: args.entries[0].id,
     vibing: false,
     vibeTimer: null,
+    puzzleTimer: null,
+    puzzleHasFocus: true,
+
+    init() {
+      focusWatcher = setInterval(() => {
+        this.puzzleHasFocus = document.hasFocus();
+      }, 300);
+    },
 
     celebrate() {
       this.showConfetti();
@@ -83,6 +92,10 @@ const puzzle = function (args) {
         spread: 120,
         startVelocity: 45,
       });
+    },
+
+    destroy() {
+      clearInterval(focusWatcher);
     },
 
     get activeEntry() {

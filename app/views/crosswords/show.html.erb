@@ -6,24 +6,36 @@
 <% end%>
 
 
-<div class="puzzle" x-data="puzzle({entries: <%= @crossword.data[:entries].to_json %>})" @complete="celebrate">
+<div
+  class="puzzle"
+  x-data="puzzle({entries: <%= @crossword.data[:entries].to_json %>})"
+  @complete="celebrate"
+  @visibilitychange.document="visibilityState = document.visibilityState"
+  >
   <div class="puzzle-layout">    
     <header class="puzzle-header">
       <div class="puzzle-header-container">
-        <%= link_to crossword_path(@style, @latest_number), class: "puzzle-logo" do %>
-          <%= image_tag "icon.svg" %>
+        <%= link_to crossword_path(@style, @next_number || @number), class: {"puzzle-header-button": true, "disabled": !@next_number} do %>
+          <i data-lucide="circle-arrow-left"></i>
         <% end %>
-        <nav class="puzzle-nav">
-          <%= link_to crossword_path(@style, @next_number || @number), class: {"puzzle-nav-button": true, "disabled": !@next_number} do %>
-            <i data-lucide="circle-arrow-left"></i>
-          <% end %>
+
+        <div class="puzzle-header-main">
           <span class="puzzle-number">
-            <%= @crossword.number %>
+            #<%= @crossword.number %>
           </span>  
-          <%= link_to crossword_path(@style, @previous_number), class: "puzzle-nav-button" do %>
-            <i data-lucide="circle-arrow-right"></i>
+
+          <%= link_to crossword_path(@style, @latest_number), class: "puzzle-logo" do %>
+            <%= image_tag "icon.svg" %>
           <% end %>
-        </nav>
+          
+          <div class="puzzle-timer">
+            <%= render TimerComponent.new(id: @crossword.id) %>
+          </div>
+        </div>
+
+        <%= link_to crossword_path(@style, @previous_number), class: "puzzle-header-button" do %>
+          <i data-lucide="circle-arrow-right"></i>
+        <% end %>
       </div>
     </header>
     <div class="puzzle-board">

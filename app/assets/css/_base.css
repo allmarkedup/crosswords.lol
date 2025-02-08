@@ -49,6 +49,16 @@ h6 {
   text-wrap: balance;
 }
 
+button {
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+html {
+  font-family: var(--font-sans);
+}
+
 body {
   font-family: sans-serif;
   line-height: 1.4;
