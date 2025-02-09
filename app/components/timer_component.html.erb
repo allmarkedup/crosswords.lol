@@ -1,9 +1,11 @@
 <div
   class="timer"
   x-data="timer({id: <%= id.to_json %>})"
-  @timer-toggle.document="toggle"
-  @timer-reset.document="reset"
-  :class="{visible,running}">
+  @timer:toggle.document="toggle"
+  @timer:stop.document="stop"
+  @timer:start.document="start"
+  @timer:reset.document="reset"
+  :class="{running,started}">
   <span class="timer-display" x-text="formattedTimeElapsed">00:00:00</span>
   <button class="timer-button" x-show="stopped && timeElapsed > 0" @click.stop="reset">
     <i data-lucide="timer-reset"></i>

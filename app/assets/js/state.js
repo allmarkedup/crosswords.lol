@@ -1,5 +1,8 @@
 export default function state(Alpine) {
   return {
+    settings: Alpine.$persist({
+      timer: false,
+    }).as("settings"),
     crosswords: Alpine.$persist({}).as("crosswords-state"),
 
     getCrosswordState(id) {

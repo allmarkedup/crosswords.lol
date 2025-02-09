@@ -1,9 +1,0 @@
-<button
-  class="actionbar-button<%= " actionbar-button-danger" if danger %>"
-  x-data="actionbarButton('<%= action %>')"
-  x-bind="root">
-  <div class="actionbar-button-content">
-    <i data-lucide="<%= icon %>"></i>
-    <span x-show="confirming" x-cloak><%= confirm_text %>?</span>
-  </div>
-</button>

@@ -10,15 +10,11 @@
   font-family: var(--font-mono);
   font-size: 15px;
   user-select: none;
-  opacity: 0;
+  opacity: 0.6;
   transition: all 0.1s ease-in-out;
 
-  .timer.visible & {
-    opacity: 0.6;
-  }
-
-  .timer.visible.running & {
-    opacity: 1;
+  .timer.running & {
+    opacity: 0.9;
   }
 }
 

@@ -1,13 +1,21 @@
 .keyboard {
-  --key-gap: 5px;
+  --key-gap-narrow: 5px;
+  --key-gap-wide: 8px;
   --max-keys-per-row: 10;
+  --row-padding: 4px;
+  --max-actions-per-row: 3;
+
   --keyboard-width: min(var(--puzzle-max-width), 100vw);
   --key-width: calc(
-    ((var(--keyboard-width) - 8px) / var(--max-keys-per-row)) -
-      (var(--key-gap) * (var(--max-keys-per-row) - 1) / var(--max-keys-per-row))
+    ((var(--keyboard-width) - (var(--row-padding) * 2)) / var(--max-keys-per-row)) -
+      (var(--key-gap-narrow) * (var(--max-keys-per-row) - 1) / var(--max-keys-per-row))
   );
 
-  padding: 6px 4px;
+  --key-height: calc((var(--key-width) * 1.44));
+
+  --special-key-width: calc(var(--key-width) + (var(--key-width) * 0.4));
+
+  padding: 6px 0;
   touch-action: none;
   background-color: var(--color-bg-dark-1);
 }
@@ -16,17 +24,47 @@
   max-width: var(--keyboard-width);
   margin: 0 auto;
   width: 100%;
+  position: relative;
+  padding-inline: var(--row-padding);
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.keyboard-container-letters {
+  --row-padding: 4px;
+}
+
+.keyboard-container-actions {
+  --row-padding: 8px;
+  --action-width: calc(
+    ((var(--keyboard-width) - (var(--row-padding) * 2)) / var(--max-actions-per-row)) -
+      (var(--key-gap-wide) * (var(--max-actions-per-row) - 1) / var(--max-actions-per-row))
+  );
+
+  display: flex;
+  flex-direction: columns;
+  align-items: start;
+
+  .keyboard-row {
+    margin-inline: auto;
+    column-gap: var(--key-gap-wide);
+  }
+
+  .keyboard-key.keyboard-key-display {
+    left: 4px !important;
+  }
 }
 
 .keyboard-row {
-  position: relative;
   display: flex;
   align-items: stretch;
   justify-content: center;
-  column-gap: var(--key-gap);
+  column-gap: var(--key-gap-narrow);
 
   + .keyboard-row {
-    margin-top: 8px;
+    margin-top: var(--key-gap-wide);
   }
 }
 
@@ -35,8 +73,6 @@
   padding: 0;
   border: 0;
   background-color: var(--color-bg-dark-4);
-  width: min(var(--key-width));
-  height: calc(var(--key-width) * 1.22);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,17 +81,19 @@
   font-size: 18px;
   color: var(--color-content-light-1);
   user-select: none;
+  height: var(--key-height);
+  width: var(--key-width);
 
   [data-lucide] {
     width: 20px;
   }
 
-  &:active:not(.keyboard-key-delete) {
+  &:active:not(.keyboard-key-special) {
     box-shadow: 0px -1px 0px 2px rgba(20, 30, 51, 0.6);
     transform: scale(1, 1.2) translateY(-10%);
     transform-origin: bottom;
 
-    .keyboard-label {
+    .keyboard-key-label {
       transform: scale(1, 0.76) translateY(-20%);
       transform-origin: bottom;
     }
@@ -63,16 +101,64 @@
 
   &.keyboard-key-delete {
     position: absolute;
-    right: 0;
-    width: calc(var(--key-width) + (var(--key-width) * 0.4));
+    right: var(--row-padding);
+    width: var(--special-key-width);
     background-color: var(--color-bg-dark-3);
   }
 
-  &.keyboard-key-timer {
+  &.keyboard-key-display,
+  &.keyboard-key-settings {
     position: absolute;
-    left: 0;
-    width: calc(var(--key-width) + (var(--key-width) * 0.4));
+    left: var(--row-padding);
+    bottom: 0;
+    width: var(--special-key-width);
     background-color: var(--color-bg-dark-3);
+  }
+
+  &.keyboard-key-settings {
+    left: auto;
+    right: calc(var(--row-padding) / 2);
+  }
+}
+
+.keyboard-action {
+  cursor: pointer;
+  border: 0;
+  background-color: var(--color-bg-dark-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--color-content-light-1);
+  user-select: none;
+  flex: none;
+  min-width: 1%;
+  padding: 8px 4px;
+  width: var(--action-width);
+  height: var(--key-height);
+  /* height: min(var(--key-height), 50px); */
+
+  .keyboard-action-label {
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+    white-space: nowrap;
+  }
+
+  [data-lucide] {
+    width: 16px;
+    flex: none;
+  }
+
+  &.confirming {
+    background-color: #ea580c;
+  }
+}
+
+@media all and (min-width: 520px) {
+  .keyboard {
+    --max-actions-per-row: 3;
   }
 }
 

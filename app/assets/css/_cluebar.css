@@ -1,6 +1,6 @@
 .cluebar {
   width: 100%;
-  padding-inline: 4px;
+  padding: 2px 4px 0 4px;
   background-color: var(--color-bg-dark-1);
 }
 
@@ -52,6 +52,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  top: 1px;
 
   [data-lucide] {
     width: 24px;
@@ -61,7 +63,8 @@
 
 @media all and (min-width: 520px) {
   .cluebar {
-    padding-top: 4px;
+    padding-top: 6px;
+    padding-bottom: 2px;
   }
   .cluebar-clue {
     font-size: 16px;

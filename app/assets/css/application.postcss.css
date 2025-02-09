@@ -1,8 +1,10 @@
 @import "_variables.css";
 @import "_base.css";
+@import "_app.css";
 @import "_puzzle.css";
 @import "_crossword.css";
 @import "_cluebar.css";
 @import "_keyboard.css";
 @import "_actionbar.css";
 @import "_timer.css";
+@import "_settings.css";

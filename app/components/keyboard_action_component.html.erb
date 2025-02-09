@@ -1,0 +1,17 @@
+<button
+  class="keyboard-action<%= " keyboard-action-danger" if danger %>"
+  x-data="keyboardAction(<%= actions.to_json %>, <%= confirm.present?.to_json %>)"
+  x-bind="root">
+  <span class="keyboard-action-label">
+    <i data-lucide="<%= icon %>"></i>
+    <span
+      x-show="!confirming"
+      class="keyboard-action-text"><%= label %></span>
+    <% if confirm %>
+      <span
+         class="keyboard-action-text keyboard-action-confirm"
+         x-show="confirming"
+         x-cloak><%= confirm %></span>
+    <% end %>
+  </span>
+</button>

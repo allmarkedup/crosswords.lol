@@ -23,13 +23,16 @@
           <span class="puzzle-number">
             #<%= @crossword.number %>
           </span>  
-
           <%= link_to crossword_path(@style, @latest_number), class: "puzzle-logo" do %>
             <%= image_tag "icon.svg" %>
           <% end %>
-          
-          <div class="puzzle-timer">
-            <%= render TimerComponent.new(id: @crossword.id) %>
+          <div>
+            <div class="puzzle-date" :hidden="settings.timer || puzzleTimer?.started" x-cloak>
+              <%= @crossword.date.strftime("%-d/%-m/%y") %>
+            </div>
+            <div class="puzzle-timer" :hidden="!settings.timer && !puzzleTimer?.started" x-cloak>
+              <%= render TimerComponent.new(id: @crossword.id) %>
+            </div>
           </div>
         </div>
 
@@ -42,9 +45,6 @@
       <div class="puzzle-board-container">
         <%= render CrosswordComponent.new(crossword: @crossword) %>
       </div>
-    </div>
-    <div class="puzzle-actionbar">
-      <%= render ActionbarComponent.new %>
     </div>
     <div class="puzzle-cluebar">
       <%= render CluebarComponent.new(entries: @crossword.data[:entries]) %>

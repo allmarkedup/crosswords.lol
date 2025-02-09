@@ -29,7 +29,9 @@ const timer = function (args) {
     },
 
     toggle() {
+      console.log(this.running);
       this.running ? this.stop() : this.start();
+      console.log(this.running);
     },
 
     reset() {
@@ -62,10 +64,6 @@ const timer = function (args) {
 
     get stopped() {
       return !this.running;
-    },
-
-    get visible() {
-      return true;
     },
 
     get formattedTimeElapsed() {

@@ -1,0 +1,29 @@
+<div class="settings" x-data="settings">
+  <div class="settings-container">
+    <header class="settings-header">
+      <%#= image_tag "icon.svg", class: "settings-logo" %>
+      <span class="settings-title">Settings</span>
+      <button class="settings-close" @click="hideSettings">
+        <i data-lucide="x"></i>
+      </button>
+    </header>
+    <div class="settings-options">
+      <div class="settings-option-label">
+        Always show timer
+      </div>
+      <div class="settings-option-control">
+        <div class="settings-option-toggle">
+          <button @click="settings.timer = true" :class="{enabled: settings.timer}">
+            Yes
+          </button>
+          <button @click="settings.timer = false"  :class="{enabled: !settings.timer}">
+            No
+          </button>
+        </div>
+      </div>
+    </div>
+    <footer class="settings-footer">
+      <button @click="hideSettings">Back to crosswords</button>
+    </footer>
+  </div>
+</div>

@@ -17,6 +17,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div
+      class="app"
+      x-data="app"
+      @settings:show="showSettings">
+      <div class="app-screen app-screen-puzzle" x-show="puzzleScreen">
+        <%= yield %>
+      </div>
+      <div class="app-screen app-screen-settings" x-show="settingsScreen" x-cloak>
+        <%= render "settings" %>
+      </div>
+    </div>
   </body>
 </html>
