@@ -1,9 +1,13 @@
-@import "_variables.css";
-@import "_base.css";
-@import "_app.css";
-@import "_puzzle.css";
-@import "_crossword.css";
-@import "_cluebar.css";
-@import "_keyboard.css";
-@import "_timer.css";
-@import "_settings.css";
+@import "variables.css";
+@import "base.css";
+
+@import "components/app.css";
+@import "components/button.css";
+@import "components/cluebar.css";
+@import "components/crossword.css";
+@import "components/header.css";
+@import "components/icon.css";
+@import "components/keyboard.css";
+@import "components/puzzle.css";
+@import "components/settings.css";
+@import "components/timer.css";

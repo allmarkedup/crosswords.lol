@@ -1,11 +1,13 @@
-class CrosswordComponent < ViewComponent::Base
+class CrosswordComponent < BaseComponent
   renders_many :cells, ->(**cell) do
-    CrosswordCellComponent.new(cell_size: @cell_size, **cell)
+    CrosswordCellComponent.new(size: @cell_size, **cell)
   end
 
   renders_many :separators, ->(**kwargs) do
     tag.rect(**kwargs, class: "crossword-separator")
   end
+
+  delegate :id, :entries, to: :@crossword
 
   attr_reader :cell_size
 
@@ -14,24 +16,24 @@ class CrosswordComponent < ViewComponent::Base
     @cell_size = 30
   end
 
-  def id
-    @crossword.number
-  end
-
-  def entries
-    @crossword.data[:entries]
-  end
-
   def view_box
     "0 0 #{width} #{height}"
   end
 
   def width
-    (cell_size * @crossword.column_count) + 2
+    (cell_size * column_count) + 2
   end
 
   def height
-    (cell_size * @crossword.row_count) + 2
+    (cell_size * row_count) + 2
+  end
+
+  def column_count
+    @crossword.data.dig(:dimensions, :cols)
+  end
+
+  def row_count
+    @crossword.data.dig(:dimensions, :rows)
   end
 
   private
@@ -42,14 +44,14 @@ class CrosswordComponent < ViewComponent::Base
       start_x, start_y = start_position(entry)
 
       entry[:length].times do |i|
-        number = entry[:number] if i == 0
+        number = entry.number if i == 0
 
-        if entry[:direction] == "across"
+        if entry.direction == "across"
           x = start_x + (i * @cell_size)
           y = start_y
           coordinate_x = entry.dig(:position, :x) + i
           coordinate_y = entry.dig(:position, :y)
-        elsif entry[:direction] == "down"
+        elsif entry.direction == "down"
           x = start_x
           y = start_y + (i * @cell_size)
           coordinate_x = entry.dig(:position, :x)
@@ -60,10 +62,10 @@ class CrosswordComponent < ViewComponent::Base
         cell = data.find { _1[:id] == id }
 
         if cell
-          cell[:entries] << entry[:id]
+          cell[:parent_entries] << entry.id
           cell[:number] = number if cell[:number].blank?
         else
-          data.push({id:, number:, x:, y:, entries: [entry[:id]]})
+          data.push({id:, number:, x:, y:, parent_entries: [entry.id]})
         end
       end
     end
@@ -75,15 +77,15 @@ class CrosswordComponent < ViewComponent::Base
     entries.each do |entry|
       start_x, start_y = start_position(entry)
 
-      entry[:separator_locations].flat_map { _2 }.each do |position|
-        if entry[:direction] == "across"
+      entry.separator_locations.flat_map { _2 }.each do |position|
+        if entry.direction == "across"
           data << {
             x: start_x + (position * @cell_size) - 1,
             y: start_y,
             height: @cell_size,
             width: 1
           }
-        elsif entry[:direction] == "down"
+        elsif entry.direction == "down"
           data << {
             x: start_x,
             y: start_y + (position * @cell_size) - 1,

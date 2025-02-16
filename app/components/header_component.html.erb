@@ -1,0 +1,16 @@
+<header class="header">
+  <div class="header-container">
+    <%= newer_link %>
+    <div class="header-main">
+      <span class="header-number">#<%= number %></span>
+      <%= link_to root_path, class: "header-logo" do %>
+        <%= image_tag "icon.svg" %>
+      <% end %>
+      <span class="header-date" :hidden="$settings.timer || $puzzle.state?.timer?.started" x-cloak><%= date %></span>
+      <div class="header-timer" :hidden="!$settings.timer && !$puzzle.state?.timer?.started" x-cloak>
+        <%= render TimerComponent.new %>
+      </div>
+    </div>
+    <%= older_link %>
+  </div>
+</header>

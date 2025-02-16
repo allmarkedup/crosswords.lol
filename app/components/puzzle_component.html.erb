@@ -1,0 +1,27 @@
+<div
+  class="puzzle"
+  x-data="puzzle(<%= {id:, entries:}.to_json %>)"
+  @crossword:complete="celebrate">
+  <div class="puzzle-header" role="banner">
+    <%= header %>
+  </div>
+  <div class="puzzle-board">
+    <div class="puzzle-board-container">
+      <%= board %>
+    </div>
+  </div>
+  <div class="puzzle-cluebar">
+    <%= cluebar %>
+  </div>
+  <div class="puzzle-keyboard">
+    <%= keyboard %>
+  </div>
+  <div
+    class="puzzle-cat"
+    @click="vibing = false"
+    x-show="vibing"
+    x-transition.duration.500ms
+    x-cloak>
+    <%= image_tag "vibing_cat.gif" %>
+  </div>
+</div>

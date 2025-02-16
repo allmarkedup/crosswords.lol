@@ -1,0 +1,39 @@
+:root {
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono",
+    "Oxygen Mono", "Ubuntu Mono", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Consolas",
+    "Courier New", monospace;
+
+  /* @link https://utopia.fyi/type/calculator?c=320,16,1.2,780,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  --font-size--2: clamp(0.6944rem, 0.621rem + 0.3671vw, 0.8rem);
+  --font-size--1: clamp(0.8333rem, 0.7174rem + 0.5797vw, 1rem);
+  --font-size-0: clamp(1rem, 0.8261rem + 0.8696vw, 1.25rem);
+  --font-size-1: clamp(1.2rem, 0.9478rem + 1.2609vw, 1.5625rem);
+  --font-size-2: clamp(1.44rem, 1.083rem + 1.7848vw, 1.9531rem);
+  --font-size-3: clamp(1.728rem, 1.2317rem + 2.4814vw, 2.4414rem);
+  --font-size-4: clamp(2.0736rem, 1.3931rem + 3.4023vw, 3.0518rem);
+  --font-size-5: clamp(2.4883rem, 1.5656rem + 4.6135vw, 3.8147rem);
+
+  --color-dark-1: #141e33;
+  --color-dark-2: #1a2740;
+  --color-dark-3: #1d2c49;
+  --color-dark-4: #2a3a5c;
+
+  --color-light-1: #fff;
+  --color-light-2: #dae6ff;
+  --color-light-3: #90a5cf;
+
+  --color-bg-positive: #16a34a;
+  --color-bg-danger: #dc2626;
+  --color-bg-highlight: #ffe501;
+  --color-bg-highlight-muted: #fff7b2;
+
+  /* Components */
+
+  --app-max-width: 680px;
+  --app-bg-image: url("bg.svg");
+  --app-padding-inline: max(3vw, 12px);
+
+  --puzzle-max-width: 600px;
+}

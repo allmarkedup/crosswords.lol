@@ -8,7 +8,7 @@
 
 .settings-container {
   border-radius: 8px;
-  background-color: var(--color-bg-dark-2);
+  background-color: var(--color-dark-2);
   display: grid;
   grid-template-rows: min-content 1fr min-content;
   height: 100%;
@@ -31,14 +31,14 @@
 .settings-title {
   font-size: 15px;
   text-transform: uppercase;
-  color: var(--color-content-light-3);
+  color: var(--color-light-3);
   letter-spacing: 1px;
   font-family: var(--font-mono);
 }
 
 .settings-close {
   margin-left: auto;
-  color: var(--color-content-light-1);
+  color: var(--color-light-1);
   padding: 8px;
   margin-right: -10px;
   margin-top: -6px;
@@ -62,14 +62,14 @@
   display: flex;
   align-items: center;
   padding: 4px;
-  background-color: var(--color-bg-dark-1);
+  background-color: var(--color-dark-1);
   border-radius: 6px;
 
   button {
     border-radius: 6px;
     padding: 4px 12px;
-    color: var(--color-content-light-1);
-    background-color: var(--color-bg-dark-1);
+    color: var(--color-light-1);
+    background-color: var(--color-dark-1);
   }
 
   button.enabled {
@@ -85,10 +85,9 @@
   button {
     margin: 0 auto;
     font-size: 14px;
-    background-color: var(--color-bg-dark-1);
-    color: var(--color-content-light-2);
+    background-color: var(--color-dark-1);
+    color: var(--color-light-2);
     padding: 8px 14px;
     border-radius: 6px;
-    /* opacity: 0.5; */
   }
 }

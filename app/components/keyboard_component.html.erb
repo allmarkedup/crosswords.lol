@@ -1,101 +1,49 @@
-<div
-  class="keyboard"
-  x-data="keyboard"
-  x-resize.document="setHeight"
-  @click="resetActions">
-  <div class="keyboard-container keyboard-container-letters" x-ref="letters" :class="{hidden: actions}">
-    <div class="keyboard-layout">
-      <% letters_layout.each do |keys| %>
+<div class="keyboard" x-data="keyboard">
+  <div class="keyboard-container">
+    <div class="keyboard-pane keyboard-pane--input" x-show="pane === 'input'">
+      <% input_keys.each do |keys| %>
         <div class="keyboard-row">
           <% keys.each do |key| %>
-            <% if key == "DEL" %>
-              <button class="keyboard-key keyboard-key-special keyboard-key-delete" @click.stop="$dispatch('keyboard:backspace')">
-                <span class="keyboard-key-label">
-                  <i data-lucide="delete"></i>
-                </span>
-              </button>
-            <% else %>
-              <button class="keyboard-key" @click.stop="keypress(<%= key.to_json %>)">
-                <span class="keyboard-key-label">
-                  <%= key %>
-                </span>
-              </button>
-            <% end %>
+            <%= button key,
+              class: "keyboard-key",
+              click: "keypress(#{key.to_json})" %>
           <% end %>
         </div>
       <% end %>
-      <button class="keyboard-key keyboard-key-special keyboard-key-display" @click.stop="toggleDisplay">
-        <span class="keyboard-key-label">
-          <i data-lucide="ellipsis"></i>
-        </span>
-      </button>
+      <div class="keyboard-special-keys">
+        <%= button :ellipsis,
+          alt: "view actions",
+          class: "keyboard-key",
+          click: "pane = 'actions'" %>
+        <%= button :delete,
+          alt: "delete",
+          class: "keyboard-key",
+          click: "$dispatch('keyboard:backspace')" %>
+      </div>
     </div>
-  </div>
-  <div class="keyboard-container keyboard-container-actions" :class="{hidden: letters}" :style="`height: ${height}px`" x-cloak>
-    <div class="keyboard-layout">
-      <div class="keyboard-row">
-        <%= render KeyboardActionComponent.new(
-          label: "Check word",
-          action: "check",
-          icon: :check
-        ) %>
-
-        <%= render KeyboardActionComponent.new(
-          label: "Check all",
-          action: "check-all",
-          icon: :check_check
-        ) %>
-      </div>
-      <div class="keyboard-row">
-        <%= render KeyboardActionComponent.new(
-          label: "Reveal letter",
-          action: "reveal-letter",
-          icon: :view
-        ) %>
-        <%= render KeyboardActionComponent.new(
-          label: "Reveal word",
-          action: "reveal",
-          icon: :eye
-        ) %>
-        <%= render KeyboardActionComponent.new(
-          label: "Reveal all",
-          action: "reveal-all",
-          icon: :zap,
-          confirm: "Sure?"
-        ) %>
-      </div>
-      <div class="keyboard-row">
-        <%= render KeyboardActionComponent.new(
-          label: "Clear all",
-          action: "clear-all",
-          icon: :trash_2,
-          confirm: "Sure?"
-        ) %>
-        <div x-show="puzzleTimer.stopped" x-cloak>
-          <%= render KeyboardActionComponent.new(
-            label: "Start timer",
-            action: "timer:start",
-            icon: :play
-          ) %>
+    <div class="keyboard-pane keyboard-pane--actions" x-show="pane === 'actions'" x-cloak>
+      <% actions.each do |items| %>
+        <div class="keyboard-row">
+          <% items.each do |action| %>
+            <%= button action.label,
+              class: "keyboard-key",
+              icon: action.icon,
+              confirm: action.confirm,
+              click: "$dispatch(#{action.event.to_json})",
+              **(action[:attrs] || {}) %>
+          <% end %>
         </div>
-        <div x-show="puzzleTimer.running">
-          <%= render KeyboardActionComponent.new(
-            label: "Stop timer",
-            action: "timer:stop",
-            icon: :pause
-          ) %>
-        </div>
+      <% end %>
+      <div class="keyboard-special-keys">
+        <%= button :case_upper,
+          alt: "view keyboard",
+          class: "keyboard-key",
+          click: "pane = 'input'" %>
+        <%= button :settings,
+          alt: "delete",
+          class: "keyboard-key",
+          click: "$app.screen = 'settings'" %>
       </div>
-      <button class="keyboard-key keyboard-key-special keyboard-key-display" @click="toggleDisplay">
-        <span class="keyboard-key-label">
-          <i data-lucide="case-upper"></i>
-        </span>
-      </button>
-      <button class="keyboard-key keyboard-key-special keyboard-key-settings" @click="$dispatch('settings:show')">
-        <span class="keyboard-key-label">
-          <i data-lucide="settings"></i>
-        </span>
-      </button>
     </div>
   </div>
 </div>

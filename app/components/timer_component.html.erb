@@ -1,13 +1,18 @@
 <div
   class="timer"
-  x-data="timer({id: <%= id.to_json %>})"
+  x-data="timer"
   @timer:toggle.document="toggle"
   @timer:stop.document="stop"
   @timer:start.document="start"
   @timer:reset.document="reset"
+  @crossword:complete.document="stop"
   :class="{running,started}">
   <span class="timer-display" x-text="formattedTimeElapsed">00:00:00</span>
-  <button class="timer-button" x-show="stopped && timeElapsed > 0" @click.stop="reset">
-    <i data-lucide="timer-reset"></i>
-  </button>
+  <%= button(
+    icon: :timer_reset,
+    class: "timer-button",
+    click: "$dispatch('timer:reset')",
+    "x-show": "stopped && timeElapsed > 0",
+    "x-cloak": true
+  ) %>
 </div>

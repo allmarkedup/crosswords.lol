@@ -1,7 +1,3 @@
-class CluebarComponent < ViewComponent::Base
-  attr_reader :entries
-
-  def initialize(entries:)
-    @entries = entries
-  end
+class CluebarComponent < BaseComponent
+  renders_many :clues, ClueComponent
 end

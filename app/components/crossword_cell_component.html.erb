@@ -1,13 +1,14 @@
 <g
   class="crossword-cell"
   id="<%= id %>"
-  x-data="crosswordCell({entryIds: <%= entries.to_json %>})"
-  :class="{active, highlighted}">
+  x-data="crosswordCell(<%= {parentEntryIds: parent_entry_ids}.to_json %>)"
+  :class="{active, highlighted}"
+  >
   <%= tag.rect(
     x: x,
     y: y,
-    width: cell_size,
-    height: cell_size,
+    width: size,
+    height: size,
     class: "crossword-cell-background",
     "@click": "active = true",
   ) %>

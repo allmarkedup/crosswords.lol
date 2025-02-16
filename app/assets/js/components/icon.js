@@ -64,3 +64,7 @@ createIcons({
     Zap,
   },
 });
+
+export default function Icon() {
+  return {};
+}

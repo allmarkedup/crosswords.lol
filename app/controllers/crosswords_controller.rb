@@ -9,7 +9,7 @@ class CrosswordsController < ApplicationController
   end
 
   def show
-    @next_number = @number + 1 unless @number == @latest_number
+    @next_number = (@number == @latest_number) ? @number : @number + 1
     @previous_number = @number - 1
   end
 
@@ -24,10 +24,10 @@ class CrosswordsController < ApplicationController
   end
 
   def assign_crossword
-    @crossword = Crossword.find_by!(number: @number)
+    @crossword = Crossword.find_by!(number: @number).decorate
   rescue ActiveRecord::RecordNotFound
     data = CrosswordScraper.fetch(@style, @number)
-    @crossword = Crossword.create(number: @number, style: @style, data:)
+    @crossword = Crossword.create(number: @number, style: @style, data:).decorate
   end
 
   def assign_latest_number

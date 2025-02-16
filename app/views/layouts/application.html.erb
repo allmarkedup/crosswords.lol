@@ -15,17 +15,13 @@
     <%= javascript_include_tag "application", defer: true %>
     <%= stylesheet_link_tag :application %>
   </head>
-
   <body>
-    <div
-      class="app"
-      x-data="app"
-      @settings:show="showSettings">
-      <div class="app-screen app-screen-puzzle" x-show="puzzleScreen">
+    <div class="app" x-data="app">
+      <div class="app-screen app-screen--puzzle" x-show="screen === 'puzzle'">
         <%= yield %>
       </div>
-      <div class="app-screen app-screen-settings" x-show="settingsScreen" x-cloak>
-        <%= render "settings" %>
+      <div class="app-screen app-screen--settings"  x-show="screen === 'settings'" x-cloak>
+        <%= render SettingsComponent.new %>
       </div>
     </div>
   </body>

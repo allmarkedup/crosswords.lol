@@ -1,26 +1,32 @@
-const app = function () {
-  return {
-    screen: "puzzle",
-    settings: this.$store.state.settings,
-
-    init() {},
-
-    showSettings() {
-      this.screen = "settings";
-    },
-
-    hideSettings() {
-      this.screen = "puzzle";
-    },
-
-    get puzzleScreen() {
-      return this.screen === "puzzle";
-    },
-
-    get settingsScreen() {
-      return this.screen === "settings";
-    },
-  };
+const settings = {
+  timer: false,
 };
 
-export { app };
+const state = {
+  crosswords: {},
+};
+
+let focusWatcher = null;
+
+export default function App() {
+  return {
+    $app: null,
+    $settings: Alpine.$persist(settings).as("settings"),
+    $state: Alpine.$persist(state).as("state"),
+
+    hasFocus: true,
+    screen: "puzzle",
+
+    init() {
+      this.$app = this;
+
+      focusWatcher = setInterval(() => {
+        this.hasFocus = document.hasFocus();
+      }, 200);
+    },
+
+    destroy() {
+      clearInterval(focusWatcher);
+    },
+  };
+}

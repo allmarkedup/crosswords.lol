@@ -1,19 +1,14 @@
-const timer = function (args) {
+export default function Timer() {
   let timerInterval = null;
 
   return {
-    state: null,
-
     init() {
-      const crosswordState = this.$store.state.getCrosswordState(args.id);
-      if (crosswordState.timer === null) {
-        crosswordState.timer = { running: false, seconds: 0, started: false };
+      if (this.$puzzle.state.timer === null) {
+        this.$puzzle.state.timer = { running: false, seconds: 0, started: false };
       }
-      this.state = crosswordState.timer;
-      this.puzzleTimer = this;
 
       timerInterval = setInterval(() => {
-        if (this.running && this.puzzleHasFocus && this.timeElapsed < 86400) {
+        if (this.running && this.$app.hasFocus && this.timeElapsed < 86400) {
           this.timeElapsed = this.timeElapsed + 1;
         }
       }, 1000);
@@ -21,7 +16,7 @@ const timer = function (args) {
 
     start() {
       this.running = true;
-      this.state.started = true;
+      this.$puzzle.state.timer.started = true;
     },
 
     stop() {
@@ -29,9 +24,7 @@ const timer = function (args) {
     },
 
     toggle() {
-      console.log(this.running);
       this.running ? this.stop() : this.start();
-      console.log(this.running);
     },
 
     reset() {
@@ -43,23 +36,23 @@ const timer = function (args) {
     },
 
     get timeElapsed() {
-      return this.state.seconds;
+      return this.$puzzle.state.timer.seconds;
     },
 
     set timeElapsed(value) {
-      this.state.seconds = value;
+      this.$puzzle.state.timer.seconds = value;
     },
 
     get running() {
-      return this.state.running;
+      return this.$puzzle.state.timer.running;
     },
 
     set running(value) {
-      this.state.running = value;
+      this.$puzzle.state.timer.running = value;
     },
 
     get started() {
-      return this.state.started;
+      return this.$puzzle.state.timer.started;
     },
 
     get stopped() {
@@ -70,7 +63,7 @@ const timer = function (args) {
       return timerText(this.timeElapsed);
     },
   };
-};
+}
 
 function timerText(seconds) {
   const elapsed = seconds * 1000;
@@ -100,5 +93,3 @@ function timerText(seconds) {
 function leftPad(val) {
   return val < 10 ? "0" + String(val) : val;
 }
-
-export { timer };

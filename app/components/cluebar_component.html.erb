@@ -1,31 +1,17 @@
-<div class="cluebar" x-data>
+<div class="cluebar">
   <div class="cluebar-container">
-    <button
-      class="cluebar-button cluebar-button-previous"
-      @click.stop="activeEntryId = previousEntry.id">
-      <i data-lucide="chevron-left"></i>
-    </button>
-
-    <ul class="cluebar-clues">
-      <% entries.each do |entry| %>
-        <li
-          class="cluebar-clue"
-          x-show="activeEntryId === <%= entry[:id].to_json %>"
-          x-cloak>
-          <strong class="cluebar-clue-number">
-            <%= entry[:number] %><%= entry[:direction].first %>
-          </strong>
-          <span class="cluebar-clue-text">
-            <%= entry[:clue] %>
-          </span>
+    <%= button :chevron_left,
+      class: "cluebar-previous",
+      click: "$dispatch('navigate:previous-entry')" %>
+    <ol class="cluebar-clues">
+      <% clues.each do |clue| %>
+        <li class="cluebar-clue" x-show="$puzzle.state.activeEntryId === <%= clue.id.to_json %>">
+          <%= clue %>
         </li>
       <% end %>
-    </ul>
-
-    <button
-      class="cluebar-button cluebar-button-next"
-      @click.stop="activeEntryId = nextEntry.id">
-      <i data-lucide="chevron-right"></i>
-    </button>
+    </ol>
+    <%= button :chevron_right,
+      class: "cluebar-next",
+      click: "$dispatch('navigate:next-entry')" %>
   </div>
 </div>

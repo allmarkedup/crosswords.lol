@@ -1,25 +1,26 @@
-<div class="crossword-wrapper">
+<div class="crossword" x-data="crossword">
   <%= tag.svg(
     "viewBox": view_box,
-    class: "crossword",
-    "x-data": "crossword({id: #{id.to_json}})",
-    "@keyup.document": "handleInput($event?.key, $event)",
-    "@keyboard:input.document": "handleInput($event.detail.key, $event)",
-    "@keyup.up.document": "handleNavigation",
-    "@keyup.left.document": "handleNavigation",
-    "@keyup.down.document": "handleNavigation",
-    "@keyup.right.document": "handleNavigation",
-    "@keyup.tab.document": "handleNavigation",
+    class: "crossword-board",
+    "x-trap": "true",
+    "@keyup.up.document": "handleCellNavigation",
+    "@keyup.left.document": "handleCellNavigation",
+    "@keyup.down.document": "handleCellNavigation",
+    "@keyup.right.document": "handleCellNavigation",
+    "@keyup.shift.tab.document": "goToPreviousEntry",
+    "@keyup.tab.document": "goToNextEntry",
+    "@navigate:next-entry.document": "goToNextEntry",
+    "@navigate:previous-entry.document": "goToPreviousEntry",
     "@keyup.backspace.document": "handleBackspace",
     "@keyboard:backspace.document": "handleBackspace",
-    "@check.document": "checkActiveEntry",
-    "@check-all.document": "checkAllEntries",
-    "@reveal.document": "revealActiveEntry",
-    "@reveal-all.document": "revealAllEntries",
-    "@reveal-letter.document": "revealActiveCell",
-    "@clear.document": "clearActiveEntry",
-    "@clear-all.document": "clearAllEntries",
-    "x-trap": "true"
+    "@keyup.document": "handleInput($event?.key, $event)",
+    "@keyboard:input.document": "handleInput($event.detail.key, $event)",
+    "@action:check-word.document": "checkActiveEntry",
+    "@action:check-all.document": "checkAllEntries",
+    "@action:reveal-letter.document": "revealActiveCell",
+    "@action:reveal-word.document": "revealActiveEntry",
+    "@action:reveal-all.document": "revealAllEntries",
+    "@action:clear-all.document": "clearAllEntries"
   ) do %>
     <%= tag.rect x: 0, y: 0, width: width, height: height, class: "crossword-background" %>
 

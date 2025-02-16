@@ -5,55 +5,27 @@
   <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.8.1/tsparticles.confetti.bundle.min.js"></script>
 <% end%>
 
+<%= render PuzzleComponent.new(id: @crossword.id, entries: @crossword.entries) do |puzzle| %>
+  <% puzzle.with_header do %>
+    <%= render HeaderComponent.new(number: @crossword.number, date: @crossword.date) do |header| %>
+      <% header.with_newer_link(href: crossword_path(@crossword.style, @next_number), disabled: @number == @latest_number) %>
+      <% header.with_older_link(href: crossword_path(@crossword.style, @previous_number)) %>
+    <% end %>
+  <% end %>
 
-<div
-  class="puzzle"
-  x-data="puzzle({entries: <%= @crossword.data[:entries].to_json %>})"
-  @complete="celebrate"
-  @visibilitychange.document="visibilityState = document.visibilityState"
-  >
-  <div class="puzzle-layout">    
-    <header class="puzzle-header">
-      <div class="puzzle-header-container">
-        <%= link_to crossword_path(@style, @next_number || @number), class: {"puzzle-header-button": true, "disabled": !@next_number} do %>
-          <i data-lucide="circle-arrow-left"></i>
-        <% end %>
+  <% puzzle.with_board do %>
+    <%= render CrosswordComponent.new(crossword: @crossword) %>
+  <% end %>
 
-        <div class="puzzle-header-main">
-          <span class="puzzle-number">
-            #<%= @crossword.number %>
-          </span>  
-          <%= link_to crossword_path(@style, @latest_number), class: "puzzle-logo" do %>
-            <%= image_tag "icon.svg" %>
-          <% end %>
-          <div>
-            <div class="puzzle-date" :hidden="settings.timer || puzzleTimer?.started" x-cloak>
-              <%= @crossword.date.strftime("%-d/%-m/%y") %>
-            </div>
-            <div class="puzzle-timer" :hidden="!settings.timer && !puzzleTimer?.started" x-cloak>
-              <%= render TimerComponent.new(id: @crossword.id) %>
-            </div>
-          </div>
-        </div>
+  <% puzzle.with_cluebar do %>
+    <%= render CluebarComponent.new do |cluebar| %>
+      <% @crossword.entries.each do |entry| %>
+        <% cluebar.with_clue(**entry.slice(:id, :clue, :number, :direction)) %>
+      <% end %> 
+    <% end %>
+  <% end %>
 
-        <%= link_to crossword_path(@style, @previous_number), class: "puzzle-header-button" do %>
-          <i data-lucide="circle-arrow-right"></i>
-        <% end %>
-      </div>
-    </header>
-    <div class="puzzle-board">
-      <div class="puzzle-board-container">
-        <%= render CrosswordComponent.new(crossword: @crossword) %>
-      </div>
-    </div>
-    <div class="puzzle-cluebar">
-      <%= render CluebarComponent.new(entries: @crossword.data[:entries]) %>
-    </div>
-    <div class="puzzle-keyboard">
-      <%= render KeyboardComponent.new %>
-    </div>
-    <div class="puzzle-cat" @click="vibing = false" x-show="vibing" x-transition.duration.500ms x-cloak>
-      <%= image_tag "vibing_cat.gif" %>
-    </div>
-  </div>
-</div>
+  <% puzzle.with_keyboard do %>
+    <%= render KeyboardComponent.new %>
+  <% end %>
+<% end %>

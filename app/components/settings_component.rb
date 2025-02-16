@@ -1,0 +1,2 @@
+class SettingsComponent < BaseComponent
+end

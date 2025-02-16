@@ -1,131 +1,41 @@
-const confettiCount = 200;
-const confettiDefaults = {
-  spread: 70,
-  angle: -90,
-  origin: { x: 0.5, y: -0.2 },
-  shapes: ["emoji", "image"],
-  shapeOptions: {
-    emoji: {
-      value: ["🦄", "🌈", "⭐️"],
-      particles: {
-        size: {
-          value: 8,
-        },
-      },
-    },
-    image: [
-      {
-        src: RAILS_ASSET_URL("icon.svg"),
-        width: 32,
-        height: 32,
-        particles: {
-          size: {
-            value: 10,
-          },
-        },
-      },
-    ],
-  },
-};
+import { fireConfetti } from "../helpers/confetti";
 
-function fireConfetti(particleRatio, opts) {
-  window.confetti(
-    Object.assign({}, confettiDefaults, opts, {
-      particleCount: Math.floor(confettiCount * particleRatio),
-    })
-  );
-}
+export default function Puzzle({ id, entries }) {
+  let vibeTimer = null;
 
-const puzzle = function (args) {
-  let focusWatcher = null;
   return {
-    entries: args.entries,
-    activeEntryId: args.entries[0].id,
+    entries: entries,
+    $puzzle: null,
+    state: null,
     vibing: false,
-    vibeTimer: null,
-    puzzleTimer: null,
-    puzzleHasFocus: true,
 
     init() {
-      focusWatcher = setInterval(() => {
-        this.puzzleHasFocus = document.hasFocus();
-      }, 300);
+      this.$puzzle = this;
+      this.state = this.getState(id);
+    },
+
+    getState(id) {
+      if (!this.$state.crosswords[id]?.values) {
+        this.$state.crosswords[id] = {
+          activeEntryId: this.entries[0].id,
+          activeCellId: null,
+          timer: null,
+          values: {},
+        };
+      }
+      return this.$state.crosswords[id];
     },
 
     celebrate() {
-      this.showConfetti();
-      this.startVibing();
-    },
-
-    startVibing() {
-      clearTimeout(this.vibeTimer);
+      fireConfetti();
       this.vibing = true;
-      this.vibeTimer = setTimeout(() => {
+      vibeTimer = setTimeout(() => {
         this.vibing = false;
-      }, 10000);
-    },
-
-    showConfetti() {
-      fireConfetti(0.25, {
-        spread: 26,
-        startVelocity: 55,
-      });
-
-      fireConfetti(0.2, {
-        spread: 60,
-      });
-
-      fireConfetti(0.35, {
-        spread: 100,
-        decay: 0.91,
-        scalar: 0.8,
-      });
-
-      fireConfetti(0.1, {
-        spread: 120,
-        startVelocity: 25,
-        decay: 0.92,
-        scalar: 1.2,
-      });
-
-      fireConfetti(0.1, {
-        spread: 120,
-        startVelocity: 45,
-      });
+      }, 5000);
     },
 
     destroy() {
-      clearInterval(focusWatcher);
-    },
-
-    get activeEntry() {
-      if (!this.activeEntryId) return null;
-
-      return this.entries.find((entry) => entry.id === this.activeEntryId);
-    },
-
-    get activeEntryIndex() {
-      return this.entries.findIndex((entry) => entry.id === this.activeEntryId);
-    },
-
-    get nextEntry() {
-      const index = this.activeEntryIndex;
-      if (index === this.entries.length - 1) {
-        return this.entries[0];
-      } else {
-        return this.entries[index + 1];
-      }
-    },
-
-    get previousEntry() {
-      const index = this.activeEntryIndex;
-      if (index === 0) {
-        return this.entries[this.entries.length - 1];
-      } else {
-        return this.entries[index - 1];
-      }
+      clearTimeout(vibeTimer);
     },
   };
-};
-
-export { puzzle };
+}

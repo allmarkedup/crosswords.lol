@@ -1,7 +1,2 @@
-class TimerComponent < ViewComponent::Base
-  attr_reader :id
-
-  def initialize(id:)
-    @id = id
-  end
+class TimerComponent < BaseComponent
 end

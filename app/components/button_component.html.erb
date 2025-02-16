@@ -1,0 +1,27 @@
+<%= tag.button(
+  "x-data": "button",
+  class: class_names,
+  aria: {label: alt},
+  type: "button",
+  "@click": ("handleClick($event, () => { #{click} })" if click),
+  "@click.outside": "reset",
+  ":class": "{confirming}",
+  **button_attrs) do %>
+  <div class="button-content">
+    <% if icon? %>
+      <div class="button-icon" x-show="ready">
+        <%= icon %>
+      </div>
+    <% end %>
+    <% if label %>
+      <span class="button-label" x-show="ready">
+        <%= label %>
+      </span>
+      <% if confirmable? %>
+        <span class="button-confirmation" x-ref="confirmation" x-show="confirming">
+          <%= confirm %>
+        </span>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

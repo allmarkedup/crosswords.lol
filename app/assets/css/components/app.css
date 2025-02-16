@@ -1,0 +1,19 @@
+.app {
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  color: var(--color-light-1);
+  background-color: var(--color-dark-2);
+  background-image: var(--app-bg-image);
+  background-repeat: repeat;
+  touch-action: none;
+  font-size: var(--font-size-0);
+  user-select: none;
+
+  .app-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,29 @@
+.timer {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  flex: none;
+
+  .timer-display {
+    display: block;
+    font-family: var(--font-mono);
+    user-select: none;
+    opacity: 0.6;
+    transition: all 0.1s ease-in-out;
+
+    .timer.running & {
+      opacity: 0.9;
+    }
+  }
+
+  .timer-button {
+    flex-shrink: 0;
+    color: var(--color-light-1);
+    padding: 4px;
+
+    .icon {
+      width: 0.9em;
+      height: 0.9em;
+    }
+  }
+}
