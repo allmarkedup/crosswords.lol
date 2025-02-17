@@ -54,6 +54,7 @@ export default function Crossword() {
     revealActiveCell() {
       const letters = this.activeEntry.solution.split("");
       this.activeCell.text = letters[this.activeCellEntryIndex];
+      this.goToNextCell();
     },
 
     revealEntry(entry) {
