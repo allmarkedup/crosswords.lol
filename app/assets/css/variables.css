@@ -33,7 +33,6 @@
   /* Components */
 
   --app-max-width: 680px;
-  --app-bg-image: url("bg.svg");
   --app-padding-inline: max(3vw, 12px);
 
   --puzzle-max-width: 600px;

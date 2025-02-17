@@ -4,7 +4,8 @@
   width: 100%;
   color: var(--color-light-1);
   background-color: var(--color-dark-2);
-  background-image: var(--app-bg-image);
+  background-image: url("bg.svg");
+  background-size: 50px 50px;
   background-repeat: repeat;
   touch-action: none;
   font-size: var(--font-size-0);
