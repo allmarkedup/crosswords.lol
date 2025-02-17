@@ -11,6 +11,7 @@ import Crossword from "./components/crossword";
 import CrosswordCell from "./components/crossword_cell";
 import Icon from "./components/icon";
 import Keyboard from "./components/keyboard";
+import LoadingBar from "./components/loading_bar";
 import Puzzle from "./components/puzzle";
 import Timer from "./components/timer";
 
@@ -24,6 +25,7 @@ Alpine.data("crossword", Crossword);
 Alpine.data("crosswordCell", CrosswordCell);
 Alpine.data("icon", Icon);
 Alpine.data("keyboard", Keyboard);
+Alpine.data("loadingBar", LoadingBar);
 Alpine.data("puzzle", Puzzle);
 Alpine.data("timer", Timer);
 

@@ -14,6 +14,8 @@ export default function App() {
     $app: null,
     $settings: Alpine.$persist(settings).as("settings"),
     $state: Alpine.$persist(state).as("state"),
+    loading: false,
+
     _focusWatcher: null,
     _morphRoot: null,
 
@@ -36,6 +38,7 @@ export default function App() {
     },
 
     async loadPage(url, updateHistory = false) {
+      this.loading = true;
       const { ok, doc } = await fetchHTML(url);
       if (ok) {
         this._morphRoot.innerHTML = doc.querySelector("[data-morph-root]").innerHTML;
@@ -46,6 +49,7 @@ export default function App() {
         console.error("Could not fetch page content", response);
         window.location = url;
       }
+      this.loading = false;
     },
 
     destroy() {

@@ -1,0 +1,23 @@
+.loading-bar {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+
+  .loading-bar-progress {
+    width: 0;
+    height: 2px;
+    background: var(--color-bg-loading-bar);
+    opacity: 0.8;
+  }
+
+  &.loading .loading-bar-progress {
+    transition: width 0.4s ease-in-out;
+  }
+
+  &.loaded .loading-bar-progress {
+    transition: width 0.2s ease-in-out;
+  }
+}

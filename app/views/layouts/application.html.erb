@@ -16,7 +16,11 @@
     <%= stylesheet_link_tag :application %>
   </head>
   <body>
-    <div class="app" x-data="app" @popstate.window="loadPage(location)">
+    <div
+      class="app"
+      x-data="app"
+      @popstate.window="loadPage(location)">
+      <%= render LoadingBarComponent.new %>
       <div class="app-screen" x-show="screen === 'puzzle'">
         <div data-morph-root>
           <%= yield %>

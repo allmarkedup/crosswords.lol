@@ -8,6 +8,7 @@
 @import "components/header.css";
 @import "components/icon.css";
 @import "components/keyboard.css";
+@import "components/loading_bar.css";
 @import "components/puzzle.css";
 @import "components/settings.css";
 @import "components/timer.css";
