@@ -21,9 +21,17 @@ export default function Puzzle({ id, entries }) {
           activeCellId: null,
           timer: null,
           values: {},
+          events: [],
         };
       }
       return this.$state.crosswords[id];
+    },
+
+    record(name, detail = {}) {
+      if (!Array.isArray(this.state.events)) {
+        this.state.events = [];
+      }
+      this.state.events.push({ name, detail });
     },
 
     celebrate() {

@@ -1,7 +1,13 @@
 <div
   class="puzzle"
   x-data="puzzle(<%= {id:, entries:}.to_json %>)"
-  @crossword:complete="celebrate">
+  @crossword:complete="celebrate"
+  @action:check-word.document="record('check-word')"
+  @action:check-all.document="record('check-all')"
+  @action:reveal-letter.document="record('reveal-letter')"
+  @action:reveal-word.document="record('reveal-word')"
+  @action:reveal-all.document="record('reveal-all')"
+  @action:reset.document="$state.events = []">
   <div class="puzzle-header" role="banner">
     <%= header %>
   </div>
