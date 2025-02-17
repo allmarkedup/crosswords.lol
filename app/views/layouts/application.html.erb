@@ -16,9 +16,11 @@
     <%= stylesheet_link_tag :application %>
   </head>
   <body>
-    <div class="app" x-data="app">
-      <div class="app-screen app-screen--puzzle" x-show="screen === 'puzzle'">
-        <%= yield %>
+    <div class="app" x-data="app" @popstate.window="loadPage(location)">
+      <div class="app-screen" x-show="screen === 'puzzle'">
+        <div data-morph-root>
+          <%= yield %>
+        </div>
       </div>
       <div class="app-screen app-screen--settings"  x-show="screen === 'settings'" x-cloak>
         <%= render SettingsComponent.new %>

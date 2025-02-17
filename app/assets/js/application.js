@@ -3,7 +3,7 @@ import "container-query-polyfill";
 import Alpine from "alpinejs";
 import focus from "@alpinejs/focus";
 import persist from "@alpinejs/persist";
-import resize from "@alpinejs/resize";
+import morph from "@alpinejs/morph";
 
 import App from "./components/app";
 import Button from "./components/button";
@@ -16,7 +16,7 @@ import Timer from "./components/timer";
 
 Alpine.plugin(focus);
 Alpine.plugin(persist);
-Alpine.plugin(resize);
+Alpine.plugin(morph);
 
 Alpine.data("app", App);
 Alpine.data("button", Button);

@@ -1,12 +1,12 @@
 class HeaderComponent < BaseComponent
   renders_one :newer_link, ->(href:, disabled: false) do
-    helpers.link_to href, class: ["header-nav-link header-nav-link-newer", {disabled:}] do
+    helpers.link_to href, class: ["header-nav-link header-nav-link-newer", {disabled:}], "@click.prevent": "hijax" do
       icon :circle_arrow_left
     end
   end
 
   renders_one :older_link, ->(href:, disabled: false) do
-    helpers.link_to href, class: ["header-nav-link header-nav-link-older", {disabled:}] do
+    helpers.link_to href, class: ["header-nav-link header-nav-link-older", {disabled:}], "@click.prevent": "hijax" do
       icon :circle_arrow_right
     end
   end

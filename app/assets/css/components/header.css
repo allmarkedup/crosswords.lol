@@ -25,6 +25,8 @@
 
     .icon {
       width: 0.9em;
+      aspect-ratio: 1 / 1;
+      flex: none;
       justify-self: center;
     }
 
