@@ -5,7 +5,10 @@
       click: "$dispatch('navigate:previous-entry')" %>
     <ol class="cluebar-clues">
       <% clues.each do |clue| %>
-        <li class="cluebar-clue" x-show="$puzzle.state.activeEntryId === <%= clue.id.to_json %>">
+        <li
+          class="cluebar-clue"
+          x-show="$puzzle.state.activeEntryId === <%= clue.id.to_json %>"
+          x-cloak>
           <%= clue %>
         </li>
       <% end %>

@@ -29,7 +29,7 @@
               class: "keyboard-key",
               icon: action.icon,
               confirm: action.confirm,
-              click: "$dispatch(#{action.event.to_json})",
+              click: "$dispatch(#{action.event.to_json}); pane = 'input'",
               **(action[:attrs] || {}) %>
           <% end %>
         </div>
