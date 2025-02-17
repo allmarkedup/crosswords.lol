@@ -54,7 +54,7 @@
     font-size: var(--font-size-0);
 
     > * {
-      font-size: 0.9em;
+      font-size: 0.88em;
     }
   }
 
@@ -64,6 +64,8 @@
   }
 
   .header-number {
+    font-size: 0.9em;
     justify-self: end;
+    letter-spacing: 0.5px;
   }
 }
