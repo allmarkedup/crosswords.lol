@@ -48,8 +48,8 @@ class KeyboardComponent < BaseComponent
       ],
       [
         {
-          event: "action:clear-all",
-          label: "Clear all",
+          event: "action:reset",
+          label: "Reset",
           icon: :trash_2,
           confirm: "Sure?"
         },

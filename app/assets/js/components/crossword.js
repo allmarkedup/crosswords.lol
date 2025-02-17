@@ -84,6 +84,13 @@ export default function Crossword() {
       this.entries.forEach((entry) => this.clearEntry(entry));
     },
 
+    reset() {
+      this.clearAllEntries();
+      this.$puzzle.state.activeEntryId = this.entries[0].id;
+      this.$puzzle.state.activeCellId = this.entries[0].cells[0].id;
+      this.$dispatch("timer:reset");
+    },
+
     checkCompleteness() {
       for (let i = 0; i < this.entries.length; i++) {
         const entry = this.entries[i];

@@ -28,6 +28,8 @@ export default function Timer() {
     },
 
     reset() {
+      this.stop();
+      this.$puzzle.state.timer.started = false;
       this.timeElapsed = 0;
     },
 
