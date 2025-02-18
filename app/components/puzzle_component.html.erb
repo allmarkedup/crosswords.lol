@@ -2,9 +2,9 @@
   class="puzzle"
   x-data="puzzle(<%= {id:, entries:}.to_json %>)"
   @crossword:complete="markComplete"
-  @event:check-word.document="record('check-word')"
-  @event:reveal-letter.document="record('reveal-letter')"
-  @event:reveal-word.document="record('reveal-word')"
+  @event:check-word.document="record('cw')"
+  @event:reveal-letter.document="record('rl')"
+  @event:reveal-word.document="record('rw')"
   @action:reset.document="reset">
   <div class="puzzle-header" role="banner">
     <%= header %>

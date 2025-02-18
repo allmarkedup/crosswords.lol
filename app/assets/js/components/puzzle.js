@@ -29,7 +29,6 @@ export default function Puzzle({ id, entries }) {
     },
 
     markComplete({ detail }) {
-      console.log(detail.initial);
       if (detail.initial) {
         this.finished = true;
       } else {

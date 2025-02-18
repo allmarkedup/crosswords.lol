@@ -15,15 +15,15 @@ export default function Stats() {
     },
 
     get wordChecks() {
-      return this.getEvents("check-word").length;
+      return this.getEvents("cw").length;
     },
 
     get letterReveals() {
-      return this.getEvents("reveal-letter").length;
+      return this.getEvents("rl").length;
     },
 
     get wordReveals() {
-      return this.getEvents("reveal-word").length;
+      return this.getEvents("rw").length;
     },
   };
 }
