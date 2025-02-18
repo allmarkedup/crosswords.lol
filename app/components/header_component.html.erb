@@ -1,6 +1,6 @@
 <header class="header">
   <div class="header-container">
-    <%= newer_link %>
+    <%= older_link %>
     <div class="header-main">
       <span class="header-number">#<%= number %></span>
       <%= link_to root_path, class: "header-logo", "@click.prevent": "hijax" do %>
@@ -11,6 +11,6 @@
         <%= render TimerComponent.new %>
       </div>
     </div>
-    <%= older_link %>
+    <%= newer_link %>
   </div>
 </header>
