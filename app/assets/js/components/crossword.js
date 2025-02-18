@@ -16,6 +16,11 @@ export default function Crossword() {
         }
 
         Alpine.effect(() => this.checkCompleteness());
+        if (this.complete) this.$dispatch("crossword:complete", { initial: true });
+
+        this.$watch("complete", (complete) => {
+          if (complete) this.$dispatch("crossword:complete");
+        });
       });
 
       this.$watch("activeCellId", () => {
@@ -26,10 +31,6 @@ export default function Crossword() {
         if (!this.activeCell.parentEntryIds.includes(this.activeEntryId)) {
           this.$puzzle.state.activeCellId = this.activeEntry.cells[0].id;
         }
-      });
-
-      this.$watch("complete", (complete) => {
-        if (complete) this.$dispatch("crossword:complete");
       });
     },
 

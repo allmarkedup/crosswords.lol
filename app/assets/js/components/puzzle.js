@@ -28,6 +28,15 @@ export default function Puzzle({ id, entries }) {
       return this.$state.crosswords[id];
     },
 
+    markComplete({ detail }) {
+      console.log(detail.initial);
+      if (detail.initial) {
+        this.finished = true;
+      } else {
+        this.celebrate();
+      }
+    },
+
     record(name, detail = {}) {
       if (!Array.isArray(this.state.events)) {
         this.state.events = [];

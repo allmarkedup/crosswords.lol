@@ -1,7 +1,7 @@
 <div
   class="puzzle"
   x-data="puzzle(<%= {id:, entries:}.to_json %>)"
-  @crossword:complete="celebrate"
+  @crossword:complete="markComplete"
   @event:check-word.document="record('check-word')"
   @event:reveal-letter.document="record('reveal-letter')"
   @event:reveal-word.document="record('reveal-word')"
@@ -13,7 +13,7 @@
     <div class="puzzle-board-container">
       <%= crossword %>
     </div>
-    <div x-show="finished">
+    <div x-show="finished" x-cloak>
       <%= coda %>
     </div>
   </div>

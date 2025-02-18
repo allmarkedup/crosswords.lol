@@ -21,7 +21,7 @@ export default function App() {
     _morphRoot: null,
 
     hasFocus: true,
-    screen: "settings",
+    screen: "puzzle",
 
     init() {
       this.$app = this;
