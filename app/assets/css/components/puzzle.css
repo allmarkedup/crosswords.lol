@@ -18,14 +18,6 @@
     aspect-ratio: 1 / 1;
     margin: 0 auto;
   }
-
-  .puzzle-cat {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: min(20vw, 200px);
-    z-index: 10;
-  }
 }
 
 #confetti {

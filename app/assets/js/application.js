@@ -13,6 +13,7 @@ import Icon from "./components/icon";
 import Keyboard from "./components/keyboard";
 import LoadingBar from "./components/loading_bar";
 import Puzzle from "./components/puzzle";
+import Stats from "./components/stats";
 import Timer from "./components/timer";
 
 Alpine.plugin(focus);
@@ -27,6 +28,7 @@ Alpine.data("icon", Icon);
 Alpine.data("keyboard", Keyboard);
 Alpine.data("loadingBar", LoadingBar);
 Alpine.data("puzzle", Puzzle);
+Alpine.data("stats", Stats);
 Alpine.data("timer", Timer);
 
 window.Alpine = Alpine;

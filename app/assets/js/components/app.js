@@ -3,6 +3,7 @@ import { loadIcons } from "../helpers/icons";
 
 const settings = {
   timer: false,
+  stats: false,
 };
 
 const state = {
@@ -20,7 +21,7 @@ export default function App() {
     _morphRoot: null,
 
     hasFocus: true,
-    screen: "puzzle",
+    screen: "settings",
 
     init() {
       this.$app = this;

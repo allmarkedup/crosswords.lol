@@ -12,11 +12,11 @@ export default function CrosswordCell(args) {
     },
 
     get text() {
-      return this.$puzzle.state.values[this.id] || "";
+      return (this.$puzzle.state.values[this.id] || "").toUpperCase();
     },
 
     set text(str) {
-      this.$puzzle.state.values[this.id] = str;
+      this.$puzzle.state.values[this.id] = str.toUpperCase();
     },
 
     get active() {

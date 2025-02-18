@@ -34,6 +34,10 @@ export default function Crossword() {
     },
 
     checkEntry(entry) {
+      if (entry.cells.find((cell) => cell.filled)) {
+        this.$dispatch("event:check-word");
+      }
+
       const letters = entry.solution.split("");
       for (let i = 0; i < entry.length; i++) {
         const cell = entry.cells[i];
@@ -52,12 +56,19 @@ export default function Crossword() {
     },
 
     revealActiveCell() {
+      if (this.activeCell.empty) {
+        this.$dispatch("event:reveal-letter");
+      }
       const letters = this.activeEntry.solution.split("");
       this.activeCell.text = letters[this.activeCellEntryIndex];
       this.goToNextCell();
     },
 
     revealEntry(entry) {
+      if (!this.checkEntryCorrect(entry)) {
+        this.$dispatch("event:reveal-word");
+      }
+
       const letters = entry.solution.split("");
       for (let i = 0; i < entry.length; i++) {
         entry.cells[i].text = letters[i];
@@ -93,17 +104,23 @@ export default function Crossword() {
 
     checkCompleteness() {
       for (let i = 0; i < this.entries.length; i++) {
-        const entry = this.entries[i];
-        const letters = entry.solution.split("");
-        for (let j = 0; j < entry.length; j++) {
-          const cell = entry.cells[j];
-          if (cell.text !== letters[j]) {
-            this.complete = false;
-            return;
-          }
+        if (!this.checkEntryCorrect(this.entries[i])) {
+          this.complete = false;
+          return;
         }
-        this.complete = true;
       }
+      this.complete = true;
+    },
+
+    checkEntryCorrect(entry) {
+      const letters = entry.solution.split("");
+      for (let j = 0; j < entry.length; j++) {
+        const cell = entry.cells[j];
+        if (cell.text !== letters[j]) {
+          return false;
+        }
+      }
+      return true;
     },
 
     handleInput(key, event) {

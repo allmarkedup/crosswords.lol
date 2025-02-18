@@ -1,0 +1,131 @@
+.coda {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset: 0;
+  padding: 1em 2em;
+  backdrop-filter: blur(1px);
+  background-color: rgba(26, 39, 64, 0.6);
+  display: flex;
+  align-items: center;
+
+  .coda-container {
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--color-dark-2);
+    border: 0.5em solid var(--color-dark-1);
+    color: var(--color-light-2);
+    padding: 1.3em 1.5em 1.5em 1.5em;
+    width: 100%;
+    transform: translateY(-5vh);
+  }
+
+  .coda-close {
+    position: absolute;
+    top: 0.7em;
+    right: 0.7em;
+    opacity: 0.5;
+  }
+
+  .coda-title {
+    color: var(--color-light-1);
+    font-size: var(--font-size-1);
+    font-weight: 600;
+    margin-bottom: 1.5em;
+    display: flex;
+    items: center;
+    column-gap: 0.4em;
+
+    .icon {
+      color: var(--color-bg-highlight);
+      font-size: 1.1em;
+      margin-left: -0.4em;
+    }
+  }
+
+  .coda-content {
+    font-size: 0.9em;
+
+    p + p {
+      margin-top: 0.6em;
+    }
+  }
+
+  .coda-section-title {
+    color: var(--color-light-3);
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 0.7em;
+  }
+
+  .coda-section {
+    a {
+      color: var(--color-light-3);
+    }
+
+    .button .icon {
+      font-size: 0.8em;
+    }
+  }
+
+  .coda-section:not([style*="display: none"]) + .coda-section {
+    margin-top: 1.5em;
+    padding-top: 1.5em;
+    border-top: 2px dotted rgba(144, 165, 207, 0.4);
+  }
+
+  .coda-section--reset {
+    font-size: 0.9em;
+
+    .button {
+      font-size: 1em;
+      text-decoration: underline;
+      color: var(--color-light-3);
+    }
+  }
+
+  .coda-webring {
+    display: flex;
+    align-items: center;
+    column-gap: 0.4em;
+    padding-bottom: 0.7em;
+
+    span {
+      font-size: 0.6em;
+      position: relative;
+      line-height: 0;
+      color: var(--color-light-3);
+      opacity: 0.5;
+    }
+  }
+
+  .coda-cat {
+    width: min(20vw, 200px);
+    position: relative;
+    top: 1.5em;
+    left: -1.5em;
+  }
+
+  .coda-stats {
+    margin-top: 0.6em;
+    padding: 0;
+    list-style: none;
+  }
+
+  .coda-stat {
+    font-size: 0.9em;
+    font-family: var(--font-mono);
+
+    &:not(:first-child) {
+      margin-top: 0.3em;
+    }
+
+    .coda-stat-value {
+      color: var(--color-light-1);
+
+      &.zero {
+        color: var(--color-bg-positive);
+      }
+    }
+  }
+}

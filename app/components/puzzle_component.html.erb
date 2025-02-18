@@ -2,32 +2,25 @@
   class="puzzle"
   x-data="puzzle(<%= {id:, entries:}.to_json %>)"
   @crossword:complete="celebrate"
-  @action:check-word.document="record('check-word')"
-  @action:check-all.document="record('check-all')"
-  @action:reveal-letter.document="record('reveal-letter')"
-  @action:reveal-word.document="record('reveal-word')"
-  @action:reveal-all.document="record('reveal-all')"
-  @action:reset.document="$state.events = []">
+  @event:check-word.document="record('check-word')"
+  @event:reveal-letter.document="record('reveal-letter')"
+  @event:reveal-word.document="record('reveal-word')"
+  @action:reset.document="reset">
   <div class="puzzle-header" role="banner">
     <%= header %>
   </div>
   <div class="puzzle-board">
     <div class="puzzle-board-container">
-      <%= board %>
+      <%= crossword %>
+    </div>
+    <div x-show="finished">
+      <%= coda %>
     </div>
   </div>
-  <div class="puzzle-cluebar">
+  <div class="puzzle-cluebar" x-show="!finished">
     <%= cluebar %>
   </div>
-  <div class="puzzle-keyboard">
+  <div class="puzzle-keyboard" x-show="!finished">
     <%= keyboard %>
-  </div>
-  <div
-    class="puzzle-cat"
-    @click="vibing = false"
-    x-show="vibing"
-    x-transition.duration.500ms
-    x-cloak>
-    <%= image_tag "vibing_cat.gif" %>
   </div>
 </div>

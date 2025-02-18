@@ -6,26 +6,24 @@
 <% end%>
 
 <%= render PuzzleComponent.new(id: @crossword.id, entries: @crossword.entries) do |puzzle| %>
-  <% puzzle.with_header do %>
-    <%= render HeaderComponent.new(number: @crossword.number, date: @crossword.date) do |header| %>
-      <% header.with_newer_link(href: crossword_path(@crossword.style, @next_number), disabled: @number == @latest_number) %>
-      <% header.with_older_link(href: crossword_path(@crossword.style, @previous_number)) %>
-    <% end %>
+  <% puzzle.with_header(number: @crossword.number, date: @crossword.date) do |header| %>
+    <% header.with_newer_link(href: crossword_path(@crossword.style, @next_number), disabled: @number == @latest_number) %>
+    <% header.with_older_link(href: crossword_path(@crossword.style, @previous_number)) %>
   <% end %>
 
-  <% puzzle.with_board do %>
-    <%= render CrosswordComponent.new(crossword: @crossword) %>
+  <% puzzle.with_crossword(crossword: @crossword) %>
+
+  <% puzzle.with_coda do |coda| %>
+    <% coda.with_next_link(href: crossword_path(@crossword.style, @next_number), disabled: @number == @latest_number) %>
+    <% coda.with_previous_link(href: crossword_path(@crossword.style, @previous_number)) %>
+    <% coda.with_random_link(href: crossword_path(@crossword.style, rand(10000..@latest_number))) %>
   <% end %>
 
-  <% puzzle.with_cluebar do %>
-    <%= render CluebarComponent.new do |cluebar| %>
-      <% @crossword.entries.each do |entry| %>
-        <% cluebar.with_clue(**entry.slice(:id, :clue, :number, :direction)) %>
-      <% end %> 
-    <% end %>
+  <% puzzle.with_cluebar do |cluebar| %>
+    <% @crossword.entries.each do |entry| %>
+      <% cluebar.with_clue(**entry.slice(:id, :clue, :number, :direction)) %>
+    <% end %> 
   <% end %>
 
-  <% puzzle.with_keyboard do %>
-    <%= render KeyboardComponent.new %>
-  <% end %>
+  <% puzzle.with_keyboard %>
 <% end %>

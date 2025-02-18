@@ -2,27 +2,42 @@
   <div class="settings-container">
     <header class="settings-header">
       <span class="settings-title">Settings</span>
-      <button class="settings-close" @click="$app.screen = 'puzzle'">
-        <i data-lucide="x"></i>
-      </button>
+      <%= button :x, class: "settings-close", "@click": "$app.screen = 'puzzle'" %>
     </header>
     <div class="settings-options">
-      <div class="settings-option-label">
-        Always show timer
+      <div class="settings-option">
+        <div class="settings-option-label">
+          Always show timer
+        </div>
+        <div class="settings-option-control">
+          <div class="settings-option-toggle">
+            <button @click="$settings.timer = true" :class="{enabled: $settings.timer}">
+              Yes
+            </button>
+            <button @click="$settings.timer = false" :class="{enabled: !$settings.timer}">
+              No
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="settings-option-control">
-        <div class="settings-option-toggle">
-          <button @click="$settings.timer = true" :class="{enabled: $settings.timer}">
-            Yes
-          </button>
-          <button @click="$settings.timer = false" :class="{enabled: !$settings.timer}">
-            No
-          </button>
+      <div class="settings-option">
+        <div class="settings-option-label">
+          Show stats when finished
+        </div>
+        <div class="settings-option-control">
+          <div class="settings-option-toggle">
+            <button @click="$settings.stats = true" :class="{enabled: $settings.stats}">
+              Yes
+            </button>
+            <button @click="$settings.stats = false" :class="{enabled: !$settings.stats}">
+              No
+            </button>
+          </div>
         </div>
       </div>
     </div>
     <footer class="settings-footer">
-      <button @click="$app.screen = 'puzzle'">Back to crosswords</button>
+      <button @click="$app.screen = 'puzzle'">Back to crossword</button>
     </footer>
   </div>
 </div>

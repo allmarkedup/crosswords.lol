@@ -5,9 +5,10 @@ export default function Puzzle({ id, entries }) {
 
   return {
     entries: entries,
-    $puzzle: null,
     state: null,
     vibing: false,
+    finished: false,
+    $puzzle: null,
 
     init() {
       this.$puzzle = this;
@@ -34,7 +35,13 @@ export default function Puzzle({ id, entries }) {
       this.state.events.push({ name, detail });
     },
 
+    reset() {
+      this.$puzzle.state.events = [];
+      this.finished = false;
+    },
+
     celebrate() {
+      this.finished = true;
       fireConfetti();
       this.vibing = true;
       vibeTimer = setTimeout(() => {

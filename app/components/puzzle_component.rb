@@ -1,8 +1,9 @@
 class PuzzleComponent < BaseComponent
-  renders_one :header
-  renders_one :board
-  renders_one :cluebar
-  renders_one :keyboard
+  renders_one :header, "HeaderComponent"
+  renders_one :crossword, "CrosswordComponent"
+  renders_one :cluebar, "CluebarComponent"
+  renders_one :keyboard, "KeyboardComponent"
+  renders_one :coda, "CodaComponent"
 
   attr_reader :id, :entries
 
