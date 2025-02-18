@@ -35,10 +35,6 @@ export default function Crossword() {
     },
 
     checkEntry(entry) {
-      if (entry.cells.find((cell) => cell.filled)) {
-        this.$dispatch("event:check-word");
-      }
-
       const letters = entry.solution.split("");
       for (let i = 0; i < entry.length; i++) {
         const cell = entry.cells[i];
@@ -49,10 +45,12 @@ export default function Crossword() {
     },
 
     checkActiveEntry() {
+      this.$dispatch("event:check-word");
       this.checkEntry(this.activeEntry);
     },
 
     checkAllEntries() {
+      this.$dispatch("event:check-all");
       this.entries.forEach((entry) => this.checkEntry(entry));
     },
 

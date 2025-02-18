@@ -18,6 +18,10 @@ export default function Stats() {
       return this.getEvents("cw").length;
     },
 
+    get checkAlls() {
+      return this.getEvents("ca").length;
+    },
+
     get letterReveals() {
       return this.getEvents("rl").length;
     },
