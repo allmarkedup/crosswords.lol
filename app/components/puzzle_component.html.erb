@@ -13,14 +13,14 @@
     <div class="puzzle-board-container">
       <%= crossword %>
     </div>
-    <div x-show="finished" x-cloak>
-      <%= coda %>
-    </div>
   </div>
   <div class="puzzle-cluebar" x-show="!finished">
     <%= cluebar %>
   </div>
   <div class="puzzle-keyboard" x-show="!finished">
     <%= keyboard %>
+  </div>
+  <div x-show="finished" x-cloak>
+    <%= coda %>
   </div>
 </div>

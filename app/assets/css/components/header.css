@@ -3,6 +3,8 @@
   font-size: var(--font-size-1);
 
   .header-container {
+    position: relative;
+    z-index: 2;
     max-width: var(--app-max-width);
     margin: 0 auto;
     display: grid;

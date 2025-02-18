@@ -8,6 +8,7 @@
   background-color: rgba(26, 39, 64, 0.6);
   display: flex;
   align-items: center;
+  z-index: 1;
 
   .coda-container {
     max-width: calc(var(--puzzle-max-width) - 4em);
