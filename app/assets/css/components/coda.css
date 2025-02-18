@@ -15,7 +15,7 @@
     background-color: var(--color-dark-2);
     border: 0.5em solid var(--color-dark-1);
     color: var(--color-light-2);
-    padding: 1.3em 1.5em 1.5em 1.5em;
+    padding: 1.1em 1.5em 1.5em 1.5em;
     width: 100%;
     transform: translateY(-5vh);
   }
