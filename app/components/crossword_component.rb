@@ -65,7 +65,7 @@ class CrosswordComponent < BaseComponent
           cell[:parent_entries] << entry.id
           cell[:number] = number if cell[:number].blank?
         else
-          data.push({id:, number:, x:, y:, parent_entries: [entry.id]})
+          data.push({id:, number:, x:, y:, parent_entries: [entry.id], solution: entry.solution[i]})
         end
       end
     end

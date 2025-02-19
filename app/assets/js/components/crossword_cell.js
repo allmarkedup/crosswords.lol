@@ -2,6 +2,8 @@ export default function CrosswordCell(args) {
   return {
     id: null,
     parentEntryIds: args.parentEntryIds || [],
+    solution: args.solution.toUpperCase(),
+    flashing: null,
 
     init() {
       this.id = this.$el.id;
@@ -9,6 +11,14 @@ export default function CrosswordCell(args) {
 
     clear() {
       this.text = "";
+    },
+
+    get correct() {
+      return this.text === this.solution;
+    },
+
+    get incorrect() {
+      return !this.empty && !this.correct;
     },
 
     get text() {

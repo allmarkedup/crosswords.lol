@@ -1,13 +1,14 @@
 class CrosswordCellComponent < BaseComponent
-  attr_reader :id, :x, :y, :number, :parent_entry_ids, :size
+  attr_reader :id, :x, :y, :number, :parent_entry_ids, :size, :solution
 
-  def initialize(id:, x:, y:, parent_entries:, size:, number: nil)
+  def initialize(id:, x:, y:, parent_entries:, size:, solution:, number: nil)
     @id = id
     @x = x
     @y = y
     @number = number
     @parent_entry_ids = parent_entries
     @size = size
+    @solution = solution
   end
 
   def number_text_height = 9

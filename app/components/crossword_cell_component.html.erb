@@ -1,8 +1,8 @@
 <g
   class="crossword-cell"
   id="<%= id %>"
-  x-data="crosswordCell(<%= {parentEntryIds: parent_entry_ids}.to_json %>)"
-  :class="{active, highlighted}"
+  x-data="crosswordCell(<%= {parentEntryIds: parent_entry_ids, solution:}.to_json %>)"
+  :class="{active, highlighted, correct, incorrect}"
   >
   <%= tag.rect(
     x: x,

@@ -2,6 +2,7 @@ export default function Crossword() {
   return {
     cells: [],
     complete: false,
+    checking: false,
 
     init() {
       this.$nextTick(() => {
@@ -35,23 +36,28 @@ export default function Crossword() {
     },
 
     checkEntry(entry) {
-      const letters = entry.solution.split("");
-      for (let i = 0; i < entry.length; i++) {
-        const cell = entry.cells[i];
-        if (cell.text !== letters[i]) {
-          cell.clear();
-        }
-      }
+      const incorrectCells = entry.cells.filter((cell) => cell.incorrect);
+      setTimeout(() => {
+        incorrectCells.forEach((cell) => cell.clear());
+      }, 300);
     },
 
     checkActiveEntry() {
+      this.checking = true;
       this.$dispatch("event:check-word");
       this.checkEntry(this.activeEntry);
+      setTimeout(() => {
+        this.checking = false;
+      }, 500);
     },
 
     checkAllEntries() {
+      this.checking = true;
       this.$dispatch("event:check-all");
       this.entries.forEach((entry) => this.checkEntry(entry));
+      setTimeout(() => {
+        this.checking = false;
+      }, 500);
     },
 
     revealActiveCell() {
@@ -112,14 +118,7 @@ export default function Crossword() {
     },
 
     checkEntryCorrect(entry) {
-      const letters = entry.solution.split("");
-      for (let j = 0; j < entry.length; j++) {
-        const cell = entry.cells[j];
-        if (cell.text !== letters[j]) {
-          return false;
-        }
-      }
-      return true;
+      return entry.cells.filter((cell) => cell.correct).length === entry.cells.length;
     },
 
     handleInput(key, event) {
