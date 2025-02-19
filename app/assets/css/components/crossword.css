@@ -9,10 +9,6 @@
     fill: transparent;
   }
 
-  .crossword-cell {
-    display: contents;
-  }
-
   .crossword-cell-background {
     fill: var(--color-light-1);
     stroke: var(--color-dark-2);
