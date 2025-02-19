@@ -1,4 +1,4 @@
-<div class="keyboard" x-data="keyboard">
+<div class="keyboard" x-data="keyboard" @keyboard:reset.document="pane = 'input'">
   <div class="keyboard-container">
     <div class="keyboard-pane keyboard-pane--input" x-show="pane === 'input'">
       <% input_keys.each do |keys| %>

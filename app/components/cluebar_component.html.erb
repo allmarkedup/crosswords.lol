@@ -2,7 +2,7 @@
   <div class="cluebar-container">
     <%= button :chevron_left,
       class: "cluebar-previous",
-      click: "$dispatch('navigate:previous-entry')" %>
+      click: "$dispatch('navigate:previous-entry'); $dispatch('keyboard:reset')" %>
     <ol class="cluebar-clues">
       <% clues.each do |clue| %>
         <li
@@ -15,6 +15,6 @@
     </ol>
     <%= button :chevron_right,
       class: "cluebar-next",
-      click: "$dispatch('navigate:next-entry')" %>
+      click: "$dispatch('navigate:next-entry'); $dispatch('keyboard:reset')" %>
   </div>
 </div>
