@@ -37,11 +37,12 @@ export default function Crossword() {
 
     checkEntry(entry) {
       const incorrectCells = entry.cells.filter((cell) => cell.incorrect);
-      const newActiveCell = incorrectCells[0]?.highlighted ? incorrectCells[0] : null;
-      setTimeout(() => {
-        incorrectCells.forEach((cell) => cell.clear());
-        if (newActiveCell) this.$puzzle.state.activeCellId = newActiveCell.id;
-      }, 300);
+      incorrectCells.forEach((cell) => cell.clear());
+      // const newActiveCell = incorrectCells[0]?.highlighted ? incorrectCells[0] : null;
+      // setTimeout(() => {
+      //   incorrectCells.forEach((cell) => cell.clear());
+      //   if (newActiveCell) this.$puzzle.state.activeCellId = newActiveCell.id;
+      // }, 300);
     },
 
     checkActiveEntry() {
