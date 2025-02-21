@@ -3,7 +3,7 @@ export default function CrosswordCell(args) {
     id: null,
     parentEntryIds: args.parentEntryIds || [],
     solution: args.solution.toUpperCase(),
-    flashing: null,
+    checking: false,
 
     init() {
       this.id = this.$el.id;
@@ -11,6 +11,14 @@ export default function CrosswordCell(args) {
 
     clear() {
       this.text = "";
+    },
+
+    check() {
+      this.checking = true;
+      setTimeout(() => {
+        if (this.incorrect) this.clear();
+        this.checking = false;
+      }, 500);
     },
 
     get correct() {

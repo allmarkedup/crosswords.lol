@@ -36,4 +36,7 @@
   --app-padding-inline: max(3vw, 12px);
 
   --puzzle-max-width: 600px;
+
+  --crossword-cell-error-bg: #ffc2c2;
+  --crossword-cell-error-text: #991b1b;
 }

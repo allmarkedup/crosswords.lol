@@ -2,7 +2,7 @@
   class="crossword-cell"
   id="<%= id %>"
   x-data="crosswordCell(<%= {parentEntryIds: parent_entry_ids, solution:}.to_json %>)"
-  :class="{active, highlighted, correct, incorrect}"
+  :class="{active, highlighted, correct, incorrect, checking}"
   >
   <%= tag.rect(
     x: x,
