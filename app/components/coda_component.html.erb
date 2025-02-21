@@ -1,5 +1,5 @@
-<div class="coda">
-  <div class="coda-container">
+<div class="coda" x-show="$puzzle.finished" x-transition:enter.opacity.1000ms>
+  <div class="coda-container" x-show="$puzzle.finished" x-transition:enter.delay.500ms.opacity.500ms x-cloak>
     <%= button :x, class: "coda-close", "@click": "$puzzle.finished = false" %>
     <h2 class="coda-title">
       <%= icon :person_standing %>

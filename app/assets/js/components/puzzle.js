@@ -29,11 +29,10 @@ export default function Puzzle({ id, entries }) {
     },
 
     markComplete({ detail }) {
-      if (detail.initial) {
-        this.finished = true;
-      } else {
+      if (!detail.initial) {
         this.celebrate();
       }
+      this.finished = true;
     },
 
     record(name, detail = {}) {
@@ -49,12 +48,12 @@ export default function Puzzle({ id, entries }) {
     },
 
     celebrate() {
-      this.finished = true;
       fireConfetti();
+
       this.vibing = true;
       vibeTimer = setTimeout(() => {
         this.vibing = false;
-      }, 5000);
+      }, 7000);
     },
 
     destroy() {
