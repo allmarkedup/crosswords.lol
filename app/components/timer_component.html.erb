@@ -7,7 +7,7 @@
   @timer:reset.document="reset"
   @crossword:complete.document="stop"
   :class="{running,started}">
-  <span class="timer-display" x-text="formattedTimeElapsed">00:00:00</span>
+  <span class="timer-display" x-text="formattedTimeElapsed" @click.stop="toggle">00:00:00</span>
   <%= button(
     icon: :timer_reset,
     class: "timer-button",
