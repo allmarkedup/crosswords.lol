@@ -40,11 +40,11 @@
   }
 
   .header-nav-link-newer {
-    transform: translateX(-0.4em);
+    transform: translateX(0.4em);
   }
 
   .header-nav-link-older {
-    transform: translateX(0.4em);
+    transform: translateX(-0.4em);
   }
 
   .header-main {
