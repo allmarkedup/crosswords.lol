@@ -15,6 +15,7 @@
   --font-size-4: clamp(2.0736rem, 1.3931rem + 3.4023vw, 3.0518rem);
   --font-size-5: clamp(2.4883rem, 1.5656rem + 4.6135vw, 3.8147rem);
 
+  --color-dark-0: #0d1424;
   --color-dark-1: #141e33;
   --color-dark-2: #1a2740;
   --color-dark-3: #1d2c49;

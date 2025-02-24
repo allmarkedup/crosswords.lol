@@ -8,11 +8,14 @@ export default function Puzzle({ id, entries }) {
     state: null,
     vibing: false,
     finished: false,
+    summary: false,
     $puzzle: null,
 
     init() {
       this.$puzzle = this;
       this.state = this.getState(id);
+
+      this.$app.modal = this.finished ? "summary" : null;
     },
 
     getState(id) {
@@ -33,6 +36,12 @@ export default function Puzzle({ id, entries }) {
         this.celebrate();
       }
       this.finished = true;
+      this.$app.modal = "summary";
+    },
+
+    markIncomplete() {
+      this.finished = false;
+      this.$app.modal = null;
     },
 
     record(name, detail = {}) {
@@ -43,8 +52,9 @@ export default function Puzzle({ id, entries }) {
     },
 
     reset() {
-      this.$puzzle.state.events = [];
+      this.state.events = [];
       this.finished = false;
+      this.$app.modal = null;
     },
 
     celebrate() {

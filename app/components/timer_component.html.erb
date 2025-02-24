@@ -12,7 +12,7 @@
     icon: :timer_reset,
     class: "timer-button",
     click: "$dispatch('timer:reset')",
-    "x-show": "stopped && timeElapsed > 0",
+    "x-show": "stopped && timeElapsed > 0 && !$puzzle.finished",
     "x-cloak": true
   ) %>
 </div>

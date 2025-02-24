@@ -3,7 +3,7 @@ import { loadIcons } from "../helpers/icons";
 
 const settings = {
   timer: false,
-  stats: false,
+  stats: true,
 };
 
 const state = {
@@ -16,12 +16,12 @@ export default function App() {
     $settings: Alpine.$persist(settings).as("settings"),
     $state: Alpine.$persist(state).as("state"),
     loading: false,
+    hasFocus: true,
+    modal: null,
 
     _focusWatcher: null,
     _morphRoot: null,
-
-    hasFocus: true,
-    screen: "puzzle",
+    _lastModal: null,
 
     init() {
       this.$app = this;
@@ -31,6 +31,12 @@ export default function App() {
       }, 200);
 
       loadIcons();
+    },
+
+    toggleSettings() {
+      const modal = this.$app.modal;
+      this.$app.modal = modal == "settings" ? this._lastModal : "settings";
+      this.$app._lastModal = modal;
     },
 
     async hijax({ target }) {

@@ -19,7 +19,7 @@ export default function Crossword() {
         if (this.complete) this.$dispatch("crossword:complete", { initial: true });
 
         this.$watch("complete", (complete) => {
-          if (complete) this.$dispatch("crossword:complete");
+          this.$dispatch(complete ? "crossword:complete" : "crossword:incomplete");
         });
       });
 

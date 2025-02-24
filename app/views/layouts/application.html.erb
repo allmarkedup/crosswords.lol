@@ -21,12 +21,21 @@
       x-data="app"
       @popstate.window="loadPage(location)">
       <%= render LoadingBarComponent.new %>
-      <div class="app-screen" x-show="screen === 'puzzle'">
+      <header class="app-header">
+        <div class="app-header-container">
+          <%= link_to root_path, class: "app-header-branding", "@click.prevent": "hijax" do %>
+            <%= image_tag "icon.svg", class: "app-header-logo", alt: "Logo for Crosswords.lol" %>
+            <span class="app-header-name">crosswords.lol</span>
+          <% end %>
+          <div class="app-header-nav">
+            <%= button :settings, "@click": "toggleSettings" %>
+          </div>
+        </div>
+      </header>
+      <div class="app-screen">
         <div data-morph-root>
           <%= yield %>
         </div>
-      </div>
-      <div class="app-screen app-screen--settings"  x-show="screen === 'settings'" x-cloak>
         <%= render SettingsComponent.new %>
       </div>
     </div>

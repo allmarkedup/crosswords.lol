@@ -1,4 +1,4 @@
-class CodaComponent < BaseComponent
+class SummaryComponent < BaseComponent
   renders_one :next_link, ->(href:, disabled: false) do
     helpers.link_to "Next", href, class: ["coda-link coda-link-next", {disabled:}], "@click.prevent": "hijax"
   end

@@ -10,6 +10,68 @@
   touch-action: none;
   font-size: var(--font-size-0);
   user-select: none;
+  display: grid;
+  grid-template-rows: min-content 1fr;
+
+  .app-header {
+    padding-inline: var(--app-padding-inline);
+    font-size: var(--font-size-1);
+    background-color: var(--color-dark-0);
+    font-family: var(--font-mono);
+
+    .app-header-container {
+      position: relative;
+      z-index: 10;
+      max-width: var(--app-max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding-top: 0.45em;
+      padding-bottom: 0.5em;
+    }
+
+    .app-header-branding {
+      display: flex;
+      align-items: center;
+      column-gap: 0.4em;
+      width: 1em;
+      text-decoration: none;
+    }
+
+    .app-header-name {
+      color: var(--color-light-2);
+      opacity: 0.9;
+      font-size: max(0.6em, 13px);
+      font-family: var(--font-mono);
+    }
+
+    .app-header-nav {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      column-gap: 0.4em;
+      transform: translateX(0.2em);
+    }
+
+    .button {
+      color: var(--color-light-2);
+      opacity: 0.8;
+      font-size: 1.1em;
+
+      .icon {
+        width: 1em;
+        height: 1em;
+      }
+
+      svg {
+        stroke-width: 1;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
 
   .app-screen {
     position: relative;

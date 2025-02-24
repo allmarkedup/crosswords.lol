@@ -1,58 +1,21 @@
 .settings {
-  position: absolute;
-  inset: 1em;
-  z-index: 100;
-  height: calc(100% - 2em);
-  width: calc(100% - 2em);
-
-  .settings-container {
-    border-radius: 8px;
-    background-color: var(--color-dark-2);
-    display: grid;
-    grid-template-rows: min-content 1fr min-content;
-    height: 100%;
-    margin: 0 auto;
-    max-width: var(--puzzle-max-width);
-  }
-
-  .settings-header {
-    padding-inline: 1em;
-    padding-block: 1em;
-    display: flex;
-    align-items: center;
-  }
-
-  .settings-title {
-    text-transform: uppercase;
-    color: var(--color-light-1);
-    letter-spacing: 1px;
-    font-family: var(--font-mono);
-  }
-
-  .settings-close {
-    position: absolute;
-    top: 0.8em;
-    right: 0.8em;
-    opacity: 0.5;
-  }
-
   .settings-options {
-    margin-top: 20px;
+    margin-bottom: 1.75em;
     display: grid;
     grid-template-rows: min-content;
     grid-template-columns: 1fr min-content;
-    padding-inline: 1em;
     align-items: center;
     height: min-content;
   }
 
   .settings-option {
     display: contents;
+    font-family: var(--font-mono);
   }
 
   .settings-option-label {
     color: var(--color-light-2);
-    font-size: 0.95em;
+    font-size: 0.8em;
   }
 
   .settings-option-label,
@@ -64,13 +27,13 @@
 
   .settings-option-label,
   .settings-option-control {
-    border-bottom: 1px solid rgba(144, 165, 207, 0.3);
+    border-bottom: 2px dotted rgba(144, 165, 207, 0.4);
   }
 
   .settings-option:first-child {
     .settings-option-label,
     .settings-option-control {
-      border-top: 1px solid rgba(144, 165, 207, 0.3);
+      border-top: 2px dotted rgba(144, 165, 207, 0.4);
     }
   }
 
@@ -80,7 +43,7 @@
     padding: 4px;
     background-color: var(--color-dark-1);
     border-radius: 6px;
-    font-size: 0.9em;
+    font-size: 0.8em;
 
     button {
       border-radius: 6px;
@@ -97,9 +60,8 @@
   .settings-footer {
     display: flex;
     justify-content: center;
-    padding-block: 12px;
 
-    button {
+    .button {
       margin: 0 auto;
       font-size: 14px;
       background-color: var(--color-dark-1);

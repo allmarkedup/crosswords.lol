@@ -1,0 +1,59 @@
+<%= render ModalComponent.new(
+  id: "summary",
+  title: "Nice work!",
+  show: "$app.modal == id",
+  close: "$puzzle.summary = false",
+  class: "summary"
+) do %>
+  <section class="modal-section summary-stats" x-show="$settings?.stats" x-cloak>
+    <ul class="summary-stats" x-data="stats">
+      <li class="summary-stat" x-show="timeTaken !== null" x-cloak>
+        <span class="summary-stat-label">Time taken:</span>
+        <strong class="summary-stat-value" x-text="timeTaken"></strong>
+      </li>
+      <li class="summary-stat">
+        <span class="summary-stat-label">Word checks:</span>
+        <strong class="summary-stat-value" x-text="wordChecks" :class="{zero: wordChecks === 0}"></strong>
+      </li>
+      <li class="summary-stat">
+        <span class="summary-stat-label">Check alls:</span>
+        <strong class="summary-stat-value" x-text="checkAlls" :class="{zero: checkAlls === 0}"></strong>
+      </li>
+      <li class="summary-stat">
+        <span class="summary-stat-label">Letter reveals:</span>
+        <strong class="summary-stat-value" x-text="letterReveals" :class="{zero: letterReveals === 0}"></strong>
+      </li>
+      <li class="summary-stat">
+        <span class="summary-stat-label">Word reveals:</span>
+        <strong class="summary-stat-value" x-text="wordReveals" :class="{zero: wordReveals === 0}"></strong>
+      </li>
+    </ul>
+  </section>
+  <section class="modal-section">
+    <p>Why not try another?</p>
+    <p class="summary-links">
+      <% if next_link %>
+        <%= next_link %>
+        <%= icon :dot, class: "separator" %>
+      <% end %>
+      <%= previous_link %>
+      <%= icon :dot, class: "separator" %>
+      <%= random_link %>
+    </p>
+  </section>
+  <section
+    class="modal-section summary-reset"
+    x-show="!$puzzle.vibing"
+    x-transition:enter.duration.500ms
+    x-cloak>
+    <%= button "Reset and start again", icon: :trash_2, "@click": "$dispatch('action:reset')" %>
+  </section>
+  <div
+    class="summary-cat"
+    @click.stop="vibing = false"
+    x-show="vibing"
+    x-transition:enter.duration.500ms
+    x-cloak>
+    <%= image_tag "vibing_cat.gif" %>
+  </div>
+<% end %>

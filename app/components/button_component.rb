@@ -1,17 +1,18 @@
 class ButtonComponent < BaseComponent
-  attr_reader :label, :alt, :confirm, :click, :button_attrs
+  attr_reader :label, :alt, :confirm, :click, :href, :html_attrs
 
   renders_one :icon, "IconComponent"
 
-  def initialize(label: nil, alt: nil, icon: nil, confirm: false, theme: nil, click: nil, **button_attrs)
+  def initialize(label: nil, alt: nil, icon: nil, confirm: false, theme: nil, click: nil, href: nil, **html_attrs)
     @label = label
     @alt = alt
     @icon_name = icon
     @theme = theme
     @confirm = confirm
-    @class_names = button_attrs[:class]
     @click = click
-    @button_attrs = button_attrs.except(:class)
+    @href = href
+    @class_names = html_attrs[:class]
+    @html_attrs = html_attrs.except(:class)
   end
 
   def before_render
@@ -30,5 +31,9 @@ class ButtonComponent < BaseComponent
 
   def confirmable?
     !!@confirm
+  end
+
+  def button_tag
+    @href ? :a : :button
   end
 end

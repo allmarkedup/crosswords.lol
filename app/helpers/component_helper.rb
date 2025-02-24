@@ -1,6 +1,6 @@
 module ComponentHelper
-  def icon(name)
-    render IconComponent.new(name: name)
+  def icon(name, **)
+    render IconComponent.new(name: name, **)
   end
 
   def button(*args, **)

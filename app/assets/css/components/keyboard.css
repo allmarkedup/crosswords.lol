@@ -16,7 +16,7 @@
   container: keyboard / size;
   font-size: var(--font-size-1);
   background-color: var(--color-dark-1);
-  height: 30dvh;
+  height: 26dvh;
   min-height: 140px;
   max-height: 300px;
   padding-inline: 6px;
@@ -25,6 +25,7 @@
     height: 100%;
     max-width: var(--app-max-width);
     margin: 0 auto;
+    /* padding-top: calc((var(--row-gap) / 3) * 2); */
     padding-bottom: var(--row-gap);
   }
 
@@ -45,6 +46,7 @@
   .keyboard-key {
     border-radius: 0.5rem;
     background-color: var(--color-dark-4);
+    transition: all 0.05s !important;
   }
 
   .keyboard-pane--input {
@@ -71,6 +73,10 @@
       font-size: var(--font-size--1);
       font-weight: normal;
       width: var(--action-width);
+
+      .button-content {
+        column-gap: 0.6em;
+      }
 
       &.confirming {
         background-color: #ea580c;

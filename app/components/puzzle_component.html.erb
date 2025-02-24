@@ -1,15 +1,40 @@
 <div
   class="puzzle"
+  :class="{finished}"
   x-data="puzzle(<%= {id:, entries:}.to_json %>)"
   @crossword:complete="markComplete"
+  @crossword:incomplete="markIncomplete"
   @event:check-word.document="record('cw')"
   @event:reveal-letter.document="record('rl')"
   @event:reveal-word.document="record('rw')"
   @event:check-all.document="record('ca')"
   @action:reset="reset">
-  <div class="puzzle-header" role="banner">
-    <%= header %>
-  </div>
+  <header class="puzzle-header">
+    <div class="puzzle-header-container">
+      <%= button(
+        icon: :circle_arrow_left,
+        class: "puzzle-header-link puzzle-header-link-older",
+        "@click.prevent": "hijax",
+        **older_link.html_attrs
+      ) %>
+      <div class="puzzle-header-main">
+        <%= icon :check, class: "puzzle-complete-icon", "x-show": "finished", "x-cloak": true %>
+        <span class="puzzle-header-number">&nbsp;#<%= number %></span>
+        <%= icon :dot, class: "puzzle-header-separator" %>
+        <span class="puzzle-header-date"><%= date %></span>
+        <%= icon :dot, class: "puzzle-header-separator", ":hidden": "!$settings.timer && !$puzzle.state?.timer?.started", "x-cloak": true %>
+        <div class="puzzle-header-timer" :hidden="!$settings.timer && !$puzzle.state?.timer?.started" x-cloak>
+          <%= render TimerComponent.new %>
+        </div>
+      </div>
+      <%= button(
+        icon: :circle_arrow_right,
+        class: "puzzle-header-link puzzle-header-link-newer",
+        "@click.prevent": "hijax",
+        **newer_link.html_attrs
+      ) %>
+    </div>
+  </header>
   <div class="puzzle-board">
     <div class="puzzle-board-container">
       <%= crossword %>
@@ -21,7 +46,13 @@
   <div class="puzzle-keyboard">
     <%= keyboard %>
   </div>
-  <div x-show="finished" x-cloak>
-    <%= coda %>
+  <div x-show="$app.modal == 'summary'" x-cloak>
+    <%=
+      render SummaryComponent.new do |summary|
+        summary.with_next_link(**newer_link.html_attrs) unless newer_link.html_attrs[:disabled] == true
+        summary.with_previous_link(**older_link.html_attrs) 
+        summary.with_random_link(**random_link.html_attrs)
+      end
+    %>
   </div>
 </div>

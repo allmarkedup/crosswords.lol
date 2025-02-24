@@ -1,0 +1,91 @@
+.modal {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset: 0;
+  padding: 1em 1.5em;
+  backdrop-filter: blur(1px);
+  background-color: color-mix(in srgb, var(--color-dark-1) 70%, transparent);
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  font-size: 0.9em;
+
+  &.blocking {
+    backdrop-filter: blur(2px);
+    background-color: color-mix(in srgb, var(--color-dark-0) 90%, transparent);
+  }
+
+  .modal-container {
+    max-width: calc(var(--puzzle-max-width) - 4em);
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--color-dark-2);
+    border: 0.5em solid var(--color-dark-0);
+    color: var(--color-light-2);
+    width: 100%;
+    transform: translateY(-5vh);
+  }
+
+  .modal-header {
+    font-size: var(--font-size-0);
+    position: relative;
+    display: flex;
+    align-items: center;
+    column-gap: 0.5em;
+    color: var(--color-light-1);
+    padding: 1em 1.5em 0.4em 1.5em;
+
+    .modal-title {
+      font-size: 1.2em;
+      opacity: 0.8;
+      font-weight: 600;
+    }
+
+    .modal-icon {
+      width: 1.5em;
+      height: 1.5em;
+      opacity: 0.3;
+
+      svg {
+        stroke-width: 1.5px;
+      }
+    }
+  }
+
+  .modal-close {
+    border-radius: 100%;
+    background-color: var(--color-dark-0);
+    padding: 0.4em;
+    font-size: 0.9em;
+    position: absolute;
+    top: 0.6em;
+    right: 0.6em;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .modal-content {
+    font-size: var(--font-size-0);
+    padding: 1.1em 1.5em 0.5em 1.5em;
+
+    a,
+    .button {
+      color: var(--color-light-3);
+
+      &:hover {
+        color: var(--color-light-2);
+      }
+    }
+  }
+
+  .modal-section:not([style*="display: none"]) + .modal-section {
+    margin-top: 1.5em;
+    padding-top: 1.5em;
+    border-top: 1px solid rgba(144, 165, 207, 0.2);
+  }
+}
