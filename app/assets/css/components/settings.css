@@ -27,13 +27,13 @@
 
   .settings-option-label,
   .settings-option-control {
-    border-bottom: 2px dotted rgba(144, 165, 207, 0.4);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-light-3) 20%, transparent);
   }
 
   .settings-option:first-child {
     .settings-option-label,
     .settings-option-control {
-      border-top: 2px dotted rgba(144, 165, 207, 0.4);
+      border-top: 1px solid color-mix(in srgb, var(--color-light-3) 20%, transparent);
     }
   }
 

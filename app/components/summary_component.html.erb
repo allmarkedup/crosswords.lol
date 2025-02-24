@@ -1,8 +1,6 @@
 <%= render ModalComponent.new(
   id: "summary",
   title: "Nice work!",
-  show: "$app.modal == id",
-  close: "$puzzle.summary = false",
   class: "summary"
 ) do %>
   <section class="modal-section summary-stats" x-show="$settings?.stats" x-cloak>

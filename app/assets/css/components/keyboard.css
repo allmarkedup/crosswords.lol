@@ -85,6 +85,10 @@
       &:active:not(.keyboard-special-keys .keyboard-key) {
         background-color: var(--color-dark-3);
       }
+
+      &[disabled] {
+        color: var(--color-light-3);
+      }
     }
   }
 

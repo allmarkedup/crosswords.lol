@@ -75,10 +75,11 @@
       cursor: auto;
     }
 
-    .puzzle-complete-icon {
+    .puzzle-complete-marker .icon {
       color: var(--color-bg-positive);
       width: 1em;
       height: 1em;
+      margin-left: 0.4em;
     }
   }
 

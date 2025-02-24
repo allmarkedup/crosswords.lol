@@ -7,6 +7,7 @@ export default function Modal() {
     },
 
     show() {
+      console.log("show", this.id, this.$app.modal);
       this.$app.modal = this.id;
     },
 

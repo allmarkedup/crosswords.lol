@@ -59,7 +59,8 @@ class KeyboardComponent < BaseComponent
           icon: :play,
           confirm: false,
           attrs: {
-            "x-show": "!$puzzle.state.timer?.running"
+            "x-show": "!$puzzle.state.timer?.running",
+            ":disabled": "$puzzle.finished"
           }
         },
         {
@@ -69,6 +70,7 @@ class KeyboardComponent < BaseComponent
           confirm: false,
           attrs: {
             "x-show": "$puzzle.state.timer?.running",
+            ":disabled": "$puzzle.finished",
             "x-cloak": true
           }
         }

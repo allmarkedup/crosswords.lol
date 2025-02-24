@@ -18,7 +18,6 @@
         **older_link.html_attrs
       ) %>
       <div class="puzzle-header-main">
-        <%= icon :check, class: "puzzle-complete-icon", "x-show": "finished", "x-cloak": true %>
         <span class="puzzle-header-number">&nbsp;#<%= number %></span>
         <%= icon :dot, class: "puzzle-header-separator" %>
         <span class="puzzle-header-date"><%= date %></span>
@@ -26,6 +25,7 @@
         <div class="puzzle-header-timer" :hidden="!$settings.timer && !$puzzle.state?.timer?.started" x-cloak>
           <%= render TimerComponent.new %>
         </div>
+        <%= button :circle_check, class: "puzzle-complete-marker", "@click": "$app.modal = 'summary'", "x-show": "finished", "x-cloak": true %>
       </div>
       <%= button(
         icon: :circle_arrow_right,

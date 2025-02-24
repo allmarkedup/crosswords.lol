@@ -1,11 +1,9 @@
 class ModalComponent < BaseComponent
-  attr_reader :id, :title, :blocking, :show, :close, :html_attrs
+  attr_reader :id, :title, :blocking, :html_attrs
 
-  def initialize(id:, title:, show:, close:, blocking: false, **html_attrs)
+  def initialize(id:, title:, blocking: false, **html_attrs)
     @id = id
     @title = title
-    @show = show
-    @close = close
     @blocking = blocking
     @class_names = html_attrs[:class]
     @html_attrs = html_attrs.except(:class)

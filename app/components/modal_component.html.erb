@@ -1,4 +1,10 @@
-<%= tag.div id:, class: class_names, **html_attrs,"x-data": "modal", "x-show": show, "x-transition:enter.opacity.1000ms": true do %>
+<%= tag.div id:,
+  class: class_names,
+  **html_attrs,
+  "x-data": "modal",
+  "x-show": "$app.modal == id",
+  "x-transition:enter.opacity.1000ms": true,
+  "x-cloak": true do %>
   <div class="modal-container" x-transition:enter.delay.500ms.opacity.500ms x-cloak>
     <div class="modal-header">
       <h2 class="modal-title"><%= title %></h2>
