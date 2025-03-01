@@ -30,12 +30,12 @@
   <section class="modal-section">
     <p>Why not try another?</p>
     <p class="summary-links">
+      <%= previous_link %>
+      <%= icon :dot, class: "separator" %>
       <% if next_link %>
         <%= next_link %>
         <%= icon :dot, class: "separator" %>
       <% end %>
-      <%= previous_link %>
-      <%= icon :dot, class: "separator" %>
       <%= random_link %>
     </p>
   </section>

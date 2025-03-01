@@ -45,11 +45,11 @@
     <%= keyboard %>
   </div>
   <div x-show="$app.modal == 'summary'" x-cloak>
-    <%#=
+    <%=
       render SummaryComponent.new do |summary|
-        summary.with_next_link(**newer_link.html_attrs) unless newer_link.html_attrs[:disabled] == true
-        summary.with_previous_link(**older_link.html_attrs) 
-        summary.with_random_link(**random_link.html_attrs)
+        summary.with_next_link(**newer_link.html_attrs) unless !newer_link || newer_link.html_attrs[:disabled] == true
+        summary.with_previous_link(**older_link.html_attrs) if older_link
+        summary.with_random_link(**random_link.html_attrs) if random_link
       end
     %>
   </div>
