@@ -1,3 +1,3 @@
 class Crossword < ApplicationRecord
-  serialize :data, coder: JsonCoder
+  serialize :entries, coder: JsonCoder
 end

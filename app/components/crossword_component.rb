@@ -7,7 +7,7 @@ class CrosswordComponent < BaseComponent
     tag.rect(**kwargs, class: "crossword-separator")
   end
 
-  delegate :id, :entries, to: :@crossword
+  delegate :id, :entries, :column_count, :row_count, to: :@crossword
 
   attr_reader :cell_size
 
@@ -26,14 +26,6 @@ class CrosswordComponent < BaseComponent
 
   def height
     (cell_size * row_count) + 2
-  end
-
-  def column_count
-    @crossword.data.dig(:dimensions, :cols)
-  end
-
-  def row_count
-    @crossword.data.dig(:dimensions, :rows)
   end
 
   private

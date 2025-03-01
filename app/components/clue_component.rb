@@ -4,11 +4,11 @@ class ClueComponent < BaseComponent
   def initialize(id:, clue:, number:, direction:)
     @id = id
     @clue = clue
-    @number = number
+    @current_id = number
     @direction = direction
   end
 
   def reference
-    "#{@number}#{@direction.first.downcase}"
+    "#{@current_id}#{@direction.first.downcase}"
   end
 end

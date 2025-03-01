@@ -1,22 +1,24 @@
 
-<% content_for(:title) { "##{@crossword.number}" } %>
+<% content_for(:title) { "##{@crossword.id}" } %>
 
 <% content_for :head do %>
   <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.8.1/tsparticles.confetti.bundle.min.js"></script>
-<% end%>
-
-<%= render PuzzleComponent.new(id: @crossword.id, number: @crossword.number, date: @crossword.date, entries: @crossword.entries) do |puzzle| %>
-  <% puzzle.with_newer_link(href: crossword_path(@crossword.style, @next_number), disabled: @number == @latest_number) %>
-  <% puzzle.with_older_link(href: crossword_path(@crossword.style, @previous_number)) %>
-  <% puzzle.with_random_link(href: crossword_path(@crossword.style, rand(10000..@latest_number))) %>
-
-  <% puzzle.with_crossword(crossword: @crossword) %>
-
-  <% puzzle.with_cluebar do |cluebar| %>
-    <% @crossword.entries.each do |entry| %>
-      <% cluebar.with_clue(**entry.slice(:id, :clue, :number, :direction)) %>
-    <% end %> 
-  <% end %>
-
-  <% puzzle.with_keyboard %>
 <% end %>
+
+<%=
+  render PuzzleComponent.new(id: @crossword.id, entries: @crossword.entries) do |puzzle|
+    puzzle.with_newer_link(href: crossword_path(@style, @next_id), disabled: @current_id == @latest_id)
+    puzzle.with_older_link(href: crossword_path(@style, @previous_id))
+    puzzle.with_random_link(href: crossword_path(@style, rand(0..@latest_id)))
+
+    puzzle.with_crossword(crossword: @crossword)
+
+    puzzle.with_cluebar do |cluebar|
+      @crossword.entries.each do |entry|
+        cluebar.with_clue(**entry.slice(:id, :clue, :number, :direction))
+      end
+    end
+
+    puzzle.with_keyboard
+  end
+%>

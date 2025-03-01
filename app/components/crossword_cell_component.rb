@@ -5,7 +5,7 @@ class CrosswordCellComponent < BaseComponent
     @id = id
     @x = x
     @y = y
-    @number = number
+    @current_id = number
     @parent_entry_ids = parent_entries
     @size = size
     @solution = solution

@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   root "crosswords#index"
 
   get ":style", to: "crosswords#index", constraints: {style: /quick/}, as: :crosswords
-  get ":style/:number", to: "crosswords#show", constraints: {number: /\d.+/, style: /quick/}, as: :crossword
+  get ":style/:id", to: "crosswords#show", constraints: {style: /quick/}, as: :crossword
 end

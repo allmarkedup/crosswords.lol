@@ -23,7 +23,7 @@
       <%= render LoadingBarComponent.new %>
       <header class="app-header">
         <div class="app-header-container">
-          <%= link_to root_path, class: "app-header-branding", "@click.prevent": "hijax" do %>
+          <%= link_to root_path, class: "app-header-branding" do %>
             <%= image_tag "icon.svg", class: "app-header-logo", alt: "Logo for Crosswords.lol" %>
             <span class="app-header-name">crosswords.lol</span>
           <% end %>

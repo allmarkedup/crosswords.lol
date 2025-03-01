@@ -16,11 +16,9 @@
         class: "puzzle-header-link puzzle-header-link-older",
         "@click.prevent": "hijax",
         **older_link.html_attrs
-      ) %>
+      ) if older_link %>
       <div class="puzzle-header-main">
-        <span class="puzzle-header-number">&nbsp;#<%= number %></span>
-        <%= icon :dot, class: "puzzle-header-separator" %>
-        <span class="puzzle-header-date"><%= date %></span>
+        <span class="puzzle-header-number">&nbsp;#<%= id %></span>
         <%= icon :dot, class: "puzzle-header-separator", ":hidden": "!$settings.timer && !$puzzle.state?.timer?.started", "x-cloak": true %>
         <div class="puzzle-header-timer" :hidden="!$settings.timer && !$puzzle.state?.timer?.started" x-cloak>
           <%= render TimerComponent.new %>
@@ -32,7 +30,7 @@
         class: "puzzle-header-link puzzle-header-link-newer",
         "@click.prevent": "hijax",
         **newer_link.html_attrs
-      ) %>
+      ) if newer_link %>
     </div>
   </header>
   <div class="puzzle-board">
@@ -47,7 +45,7 @@
     <%= keyboard %>
   </div>
   <div x-show="$app.modal == 'summary'" x-cloak>
-    <%=
+    <%#=
       render SummaryComponent.new do |summary|
         summary.with_next_link(**newer_link.html_attrs) unless newer_link.html_attrs[:disabled] == true
         summary.with_previous_link(**older_link.html_attrs) 

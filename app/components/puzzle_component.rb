@@ -7,12 +7,10 @@ class PuzzleComponent < BaseComponent
   renders_one :newer_link, "LinkComponent"
   renders_one :random_link, "LinkComponent"
 
-  attr_reader :id, :number, :entries
+  attr_reader :id, :entries
 
-  def initialize(id:, date:, number:, entries:)
+  def initialize(id:, entries:)
     @id = id
-    @number = number
-    @date = date
     @entries = entries
   end
 

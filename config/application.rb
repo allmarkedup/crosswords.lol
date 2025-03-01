@@ -3,7 +3,7 @@ require_relative "boot"
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
-# require "active_job/railtie"
+require "active_job/railtie"
 require "active_record/railtie"
 # require "active_storage/engine"
 require "action_controller/railtie"
@@ -40,5 +40,9 @@ module Crisscross
     config.generators.system_tests = nil
 
     config.hosts << "crosswords.ngrok.dev"
+    config.hosts << "crosswords.lol"
+
+    # config.logger = Logger.new($stdout)
+    # Rails.logger.level = Logger::INFO
   end
 end

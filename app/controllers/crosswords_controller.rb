@@ -1,16 +1,16 @@
 class CrosswordsController < ApplicationController
   before_action :assign_style
-  before_action :assign_number
-  before_action :assign_latest_number
   before_action :assign_crossword, only: [:show]
+  before_action :assign_latest_id
+  before_action :assign_current_id
 
   def index
-    redirect_to crossword_path(@style, @latest_number)
+    redirect_to crossword_path(@style, @latest_id)
   end
 
   def show
-    @next_number = (@number == @latest_number) ? @number : @number + 1
-    @previous_number = @number - 1
+    @next_id = (@current_id == @latest_id) ? @current_id : @current_id + 1
+    @previous_id = @current_id - 1
   end
 
   private
@@ -19,24 +19,15 @@ class CrosswordsController < ApplicationController
     @style = params[:style] || "quick"
   end
 
-  def assign_number
-    @number = params[:number].to_i
-  end
-
   def assign_crossword
-    @crossword = Crossword.find_by!(number: @number).decorate
-  rescue ActiveRecord::RecordNotFound
-    data = CrosswordScraper.fetch(@style, @number)
-    @crossword = Crossword.create(number: @number, style: @style, data:).decorate
+    @crossword = Crossword.find(params[:id]).decorate
   end
 
-  def assign_latest_number
-    cookie_name = :"#{@style}_latest_number"
-    if cookies[cookie_name]
-      @latest_number = cookies[cookie_name].to_i
-    else
-      @latest_number = CrosswordScraper.latest_number(@style)
-      cookies[cookie_name] = {value: @latest_number, expires: Date.current.end_of_day}
-    end
+  def assign_latest_id
+    @latest_id = Crossword.last.id
+  end
+
+  def assign_current_id
+    @current_id = @crossword&.id
   end
 end

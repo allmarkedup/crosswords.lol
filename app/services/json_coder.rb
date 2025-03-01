@@ -1,6 +1,11 @@
 class JsonCoder
   def self.load(str)
-    str.nil? ? nil : JSON.parse(str).with_indifferent_access
+    data = str.nil? ? nil : JSON.parse(str)
+    if data.is_a?(Array)
+      data.map { _1.with_indifferent_access }
+    elsif data
+      data.with_indifferent_access
+    end
   end
 
   def self.dump(data)
