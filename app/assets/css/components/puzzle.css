@@ -10,8 +10,6 @@
     font-size: var(--font-size-1);
 
     .puzzle-header-container {
-      position: relative;
-      z-index: 10;
       max-width: var(--puzzle-max-width);
       margin: 0 auto;
       display: grid;
@@ -22,6 +20,8 @@
     }
 
     .puzzle-header-link {
+      position: relative;
+      z-index: 10;
       display: block;
       color: var(--color-light-3);
       line-height: 0;
@@ -55,6 +55,14 @@
       font-size: var(--font-size-0);
       color: var(--color-light-3);
       margin: 0 auto;
+
+      > div {
+        display: flex;
+        align-items: center;
+        font-family: var(--font-mono);
+        font-size: var(--font-size-0);
+        font-size: 0.8em;
+      }
     }
 
     .puzzle-header-separator {
@@ -64,22 +72,24 @@
       top: -0.05em;
     }
 
-    .puzzle-header-number,
-    .puzzle-header-date,
-    .timer {
-      font-size: 0.8em;
+    .puzzle-header-complete {
+      cursor: pointer;
+
+      span {
+        color: var(--color-bg-positive);
+      }
+
+      .puzzle-complete-marker .icon {
+        color: var(--color-bg-positive);
+        margin-right: 0.4em;
+        width: 1.1em;
+        height: 1.1em;
+      }
     }
 
     .puzzle.finished & .timer-display {
       pointer-events: none;
       cursor: auto;
-    }
-
-    .puzzle-complete-marker .icon {
-      color: var(--color-bg-positive);
-      width: 1em;
-      height: 1em;
-      margin-left: 0.4em;
     }
   }
 

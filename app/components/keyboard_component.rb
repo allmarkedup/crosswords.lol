@@ -17,13 +17,15 @@ class KeyboardComponent < BaseComponent
           event: "action:check-word",
           label: "Check",
           icon: :check,
-          confirm: false
+          confirm: false,
+          attrs: {":disabled": "$puzzle.finished"}
         },
         {
           event: "action:check-all",
           label: "Check all",
           icon: :check_check,
-          confirm: false
+          confirm: false,
+          attrs: {":disabled": "$puzzle.finished"}
         }
       ],
       [
@@ -31,19 +33,22 @@ class KeyboardComponent < BaseComponent
           event: "action:reveal-letter",
           label: "Reveal letter",
           icon: :view,
-          confirm: false
+          confirm: false,
+          attrs: {":disabled": "$puzzle.finished"}
         },
         {
           event: "action:reveal-word",
           label: "Reveal word",
           icon: :eye,
-          confirm: "Sure?"
+          confirm: "Sure?",
+          attrs: {":disabled": "$puzzle.finished"}
         },
         {
           event: "action:reveal-all",
           label: "Reveal all",
           icon: :zap,
-          confirm: "Sure?"
+          confirm: "Sure?",
+          attrs: {":disabled": "$puzzle.finished"}
         }
       ],
       [

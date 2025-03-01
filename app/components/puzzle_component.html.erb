@@ -18,12 +18,18 @@
         **older_link.html_attrs
       ) if older_link %>
       <div class="puzzle-header-main">
-        <span class="puzzle-header-number">&nbsp;#<%= id %></span>
-        <%= icon :dot, class: "puzzle-header-separator", ":hidden": "!$settings.timer && !$puzzle.state?.timer?.started", "x-cloak": true %>
-        <div class="puzzle-header-timer" :hidden="!$settings.timer && !$puzzle.state?.timer?.started" x-cloak>
+        <div class="puzzle-header-number">
+          <span>&nbsp;#<%= id %></span>
+        </div>
+        <div class="puzzle-header-complete" @click="$app.modal = 'summary'" x-show="finished" x-cloak>
+          <%= icon :dot, class: "puzzle-header-separator" %>
+          <%= button :circle_check, class: "puzzle-complete-marker" %>
+          <span>Complete</span>
+        </div>
+        <div class="puzzle-header-timer" x-show="($settings.timer && !$puzzle.finished) || $puzzle.state?.timer?.started" x-cloak>
+          <%= icon :dot, class: "puzzle-header-separator" %>
           <%= render TimerComponent.new %>
         </div>
-        <%= button :circle_check, class: "puzzle-complete-marker", "@click": "$app.modal = 'summary'", "x-show": "finished", "x-cloak": true %>
       </div>
       <%= button(
         icon: :circle_arrow_right,

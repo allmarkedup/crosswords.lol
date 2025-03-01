@@ -40,9 +40,14 @@
 
     .app-header-name {
       color: var(--color-light-2);
-      opacity: 0.9;
+      opacity: 0.6;
       font-size: max(0.6em, 13px);
       font-family: var(--font-mono);
+      transition: opacity 0.2s ease-in-out;
+
+      &:hover {
+        opacity: 0.9;
+      }
     }
 
     .app-header-nav {
