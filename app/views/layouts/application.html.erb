@@ -36,7 +36,7 @@
         <div data-morph-root>
           <%= yield %>
         </div>
-        <%= render SettingsComponent.new %>
+        <%= render SettingsComponent.new(back: ("Back to crossword" if @crossword)) %>
       </div>
     </div>
   </body>

@@ -21,6 +21,8 @@ class CrosswordsController < ApplicationController
 
   def assign_crossword
     @crossword = Crossword.find(params[:id]).decorate
+  rescue ActiveRecord::RecordNotFound
+    raise ActionController::RoutingError.new "Crossword ##{params[:id]} not found"
   end
 
   def assign_latest_id

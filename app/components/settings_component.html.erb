@@ -36,7 +36,9 @@
       </div>
     </div>
   </div>
-  <footer class="settings-footer">
-    <%= button "Back to crossword", "@click": "hide" %>
-  </footer>
+  <% if back %>
+    <footer class="settings-footer">
+      <%= button "Back to crossword", "@click": "hide" %>
+    </footer>
+  <% end %>
 <% end %>
