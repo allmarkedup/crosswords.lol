@@ -1,0 +1,2 @@
+class CrosswordProviderError < StandardError
+end
