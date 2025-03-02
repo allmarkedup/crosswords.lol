@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem "cssbundling-rails", "~> 1.4"
 gem "draper"
+gem "faker"
 gem "hash_dot"
 gem "httparty"
 gem "jsbundling-rails", "~> 1.3"

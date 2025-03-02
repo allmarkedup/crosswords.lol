@@ -7,9 +7,9 @@
 
 <%=
   render PuzzleComponent.new(id: @crossword.id, entries: @crossword.entries) do |puzzle|
-    puzzle.with_newer_link(href: crossword_path(@style, @next_id), disabled: @current_id == @latest_id)
-    puzzle.with_older_link(href: crossword_path(@style, @previous_id))
-    puzzle.with_random_link(href: crossword_path(@style, rand(0..@latest_id)))
+    puzzle.with_newer_link(href: crossword_path(@style, @next), disabled: @crossword == @latest)
+    puzzle.with_older_link(href: crossword_path(@style, @previous))
+    puzzle.with_random_link(href: crossword_path(@style, @random))
 
     puzzle.with_crossword(crossword: @crossword)
 

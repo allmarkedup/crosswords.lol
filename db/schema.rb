@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_24_170500) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_02_214302) do
   create_table "crosswords", force: :cascade do |t|
     t.string "crossword_type", default: "quick"
     t.integer "column_count", null: false
@@ -21,5 +21,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_24_170500) do
     t.datetime "provider_published_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
   end
 end
