@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   root "crosswords#index"
 
+  get "debug", to: "debug#index", as: :debug
+
   get ":style", to: "crosswords#index", constraints: {style: /quick/}, as: :crosswords
   get ":style/:slug", to: "crosswords#show", constraints: {style: /quick/}, as: :crossword
 
