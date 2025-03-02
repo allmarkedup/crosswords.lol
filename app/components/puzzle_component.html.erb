@@ -18,8 +18,8 @@
         **older_link.html_attrs
       ) if older_link %>
       <div class="puzzle-header-main">
-        <div class="puzzle-header-number">
-          <span>&nbsp;#<%= id %></span>
+        <div class="puzzle-header-date">
+          <span><%= date %></span>
         </div>
         <div class="puzzle-header-complete" @click="$app.modal = 'summary'" x-show="finished" x-cloak>
           <%= icon :dot, class: "puzzle-header-separator" %>

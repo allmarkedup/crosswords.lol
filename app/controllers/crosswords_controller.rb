@@ -28,8 +28,8 @@ class CrosswordsController < ApplicationController
   end
 
   def assign_related
-    @next = (@crossword.id == @latest.id) ? @crossword : Crossword.find(@crossword.id + 1)
-    @previous = (@crossword.id == Crossword.first) ? @crossword : Crossword.find(@crossword.id - 1)
-    @random = Crossword.find(rand(Crossword.first.id..@latest.id))
+    @next = @crossword.next || @crossword
+    @previous = @crossword.previous || @crossword
+    @random = Crossword.random
   end
 end

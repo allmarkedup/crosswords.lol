@@ -9,8 +9,9 @@ class PuzzleComponent < BaseComponent
 
   attr_reader :id, :entries
 
-  def initialize(id:, entries:)
+  def initialize(id:, date:, entries:)
     @id = id
+    @date = date
     @entries = entries
   end
 
