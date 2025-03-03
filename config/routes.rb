@@ -3,12 +3,15 @@ Rails.application.routes.draw do
 
   mount MissionControl::Jobs::Engine, at: "/jobs"
 
-  root "crosswords#index"
+  root "quick_crosswords#index"
+
+  resources :quick,
+    only: [:index, :show],
+    controller: :quick_crosswords,
+    as: :quick_crosswords,
+    param: :slug
 
   get "debug", to: "debug#index", as: :debug
-
-  get ":style", to: "crosswords#index", constraints: {style: /quick/}, as: :crosswords
-  get ":style/:slug", to: "crosswords#show", constraints: {style: /quick/}, as: :crossword
 
   match "*unmatched", to: "application#not_found", via: :all
 end
