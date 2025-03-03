@@ -18,5 +18,9 @@ class Crossword < ApplicationRecord
     def random
       order("RANDOM()").first
     end
+
+    def latest
+      order(provider_published_on: :asc).last
+    end
   end
 end

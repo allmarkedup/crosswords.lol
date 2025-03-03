@@ -24,7 +24,7 @@ class CrosswordsController < ApplicationController
   end
 
   def assign_latest
-    @latest = Crossword.last
+    @latest = Crossword.latest
   end
 
   def assign_related
