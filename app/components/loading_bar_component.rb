@@ -1,2 +1,0 @@
-class LoadingBarComponent < BaseComponent
-end

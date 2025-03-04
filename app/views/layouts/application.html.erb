@@ -20,7 +20,12 @@
       class="app"
       x-data="app"
       @popstate.window="loadPage(location)">
-      <%= render LoadingBarComponent.new %>
+      <div
+        class="loading-bar"
+        x-data="loadingBar"
+        :class="{loading: state === 'loading', loaded: state === 'complete'}">
+        <div class="loading-bar-progress" :style="`width: ${progress}%`"></div>
+      </div>
       <header class="app-header">
         <div class="app-header-container">
           <%= link_to root_path, class: "app-header-branding" do %>
@@ -32,12 +37,10 @@
           </div>
         </div>
       </header>
-      <div class="app-screen">
-        <div data-morph-root>
-          <%= yield %>
-        </div>
-        <%= render SettingsComponent.new(back: ("Back to crossword" if @crossword)) %>
+      <div data-morph-root>
+        <%= yield %>
       </div>
+      <%= render "settings", back: ("Back to crossword" if @crossword) %>
     </div>
   </body>
 </html>
