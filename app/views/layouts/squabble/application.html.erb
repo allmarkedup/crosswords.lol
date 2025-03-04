@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Squabble</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <%#= javascript_include_tag "application", defer: true %>
+    <%#= stylesheet_link_tag :application %>
+  </head>
+  <body class="text-gray-900">
+    <div id="squabble" class="h-screen w-full grid grid-rows-[min-content_1fr]">
+      <header class="px-6 py-4 border-b border-gray-300">
+        <%= link_to "Squabble", squabble_path, class: "font-mono uppercase" %>
+      </header>
+      <div class="grid grid-cols-[min-content_1fr]">
+        <div class="px-6 py-6 border-r border-gray-300 min-w-[240px]">
+          <h3 class="font-bold mb-2">Tables</h3>
+          <ul>
+            <% @table_names.each do |table_name| %>
+              <li>
+                <%= link_to table_name, squabble_table_path(table_name), class: "text-fuchsia-600" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <main>
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

@@ -41,3 +41,5 @@
 # Ignore default Litestack SQLite databases.
 /db/**/*.sqlite3
 /db/**/*.sqlite3-*
+
+/config/credentials/development.key

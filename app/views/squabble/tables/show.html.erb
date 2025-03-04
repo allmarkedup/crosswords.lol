@@ -1,0 +1,28 @@
+<div class="grid grid-rows-[min-content_1fr]">
+  <header class="px-6 py-5 border-b border-gray-300">
+    <h2 class="text-xl">
+      <span class="font-semibold"><%= @model.table_name %></span>
+      <em class="text-sm text-gray-400">(<%= @model.count %> rows)</em>
+    </h2>
+  </header>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <% @model.column_names.each do |column_name| %>
+            <th><%= column_name %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <% @records.each do |record| %>
+        <tr>
+          <% @model.column_names.each do |column_name| %>
+            <td>
+              <%= record.public_send(column_name.to_sym) %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

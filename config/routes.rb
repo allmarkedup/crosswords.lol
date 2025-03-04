@@ -5,13 +5,16 @@ Rails.application.routes.draw do
 
   root "quick_crosswords#index"
 
+  get "squabble", to: "squabble#index"
+  namespace :squabble do
+    resources :tables, only: [:index, :show], param: :table_name
+  end
+
   resources :quick,
     only: [:index, :show],
     controller: :quick_crosswords,
     as: :quick_crosswords,
     param: :slug
-
-  get "debug", to: "debug#index", as: :debug
 
   match "*unmatched", to: "application#not_found", via: :all
 end
