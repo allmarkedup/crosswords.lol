@@ -1,9 +1,14 @@
-export default function Crossword() {
+export default function Crossword(opts) {
   return {
     cells: [],
     complete: false,
 
     init() {
+      if (opts.activeEntry) {
+        this.$puzzle.state.activeEntryId = opts.activeEntry;
+        this.$puzzle.state.activeCellId = null;
+      }
+
       this.$nextTick(() => {
         const cellEls = Array.from(this.$el.querySelectorAll("[x-data^='crosswordCell']"));
         this.cells = cellEls.map((cell) => Alpine.$data(cell));

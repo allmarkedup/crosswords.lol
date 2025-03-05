@@ -9,11 +9,12 @@ class CrosswordComponent < BaseComponent
 
   delegate :id, :entries, :column_count, :row_count, to: :@crossword
 
-  attr_reader :cell_size
+  attr_reader :cell_size, :active_entry
 
-  def initialize(crossword:)
+  def initialize(crossword:, active_entry: nil)
     @crossword = crossword
     @cell_size = 30
+    @active_entry = active_entry
   end
 
   def view_box

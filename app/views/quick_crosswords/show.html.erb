@@ -11,7 +11,7 @@
     puzzle.with_older_link(href: quick_crossword_path(@previous))
     puzzle.with_random_link(href: quick_crossword_path(@random))
 
-    puzzle.with_crossword(crossword: @crossword)
+    puzzle.with_crossword(crossword: @crossword, active_entry: params[:entry])
 
     puzzle.with_cluebar do |cluebar|
       @crossword.entries.each do |entry|

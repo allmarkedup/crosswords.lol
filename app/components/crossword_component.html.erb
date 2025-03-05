@@ -1,6 +1,6 @@
 <%= tag.div(
   class: "crossword",
-  "x-data": "crossword",
+  "x-data": "crossword(#{{activeEntry: active_entry}.to_json})",
   "x-trap": "true",
   "@keyup.up.document": "handleCellNavigation",
   "@keyup.left.document": "handleCellNavigation",
