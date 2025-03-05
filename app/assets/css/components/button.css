@@ -11,11 +11,15 @@
     column-gap: 0.4em;
     flex: none;
     line-height: 0;
+    height: 100%;
+  }
+
+  .button-icon {
+    display: contents;
   }
 
   .icon {
-    width: 1.25em;
-    height: 1.25em;
+    height: 100%;
   }
 
   .button-label {
@@ -27,5 +31,10 @@
     pointer-events: none;
     opacity: 0.7;
     cursor: auto;
+  }
+
+  &.with-icon-only {
+    width: 1em;
+    aspect-ratio: 1 / 1;
   }
 }

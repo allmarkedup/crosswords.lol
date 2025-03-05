@@ -22,9 +22,11 @@ class ButtonComponent < BaseComponent
   def class_names
     helpers.class_names([
       "button",
-      ("button--with-icon" if @icon_name),
-      ("button--with-label" if @label),
-      ("button--#{@theme}" if @theme),
+      ("with-icon" if icon.present?),
+      ("with-label" if @label),
+      ("with-icon-only" if icon.present? && !@label),
+      ("theme-#{@theme}" if @theme),
+
       @class_names
     ])
   end

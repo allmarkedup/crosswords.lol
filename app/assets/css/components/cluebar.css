@@ -9,20 +9,28 @@
     grid-template-columns: min-content 1fr min-content;
     align-items: center;
     column-gap: 1em;
-    padding: 0.5em 0;
+    padding: 0.2em 0 0.3em 0;
   }
 
   .button {
-    font-size: var(--font-size-1);
+    width: 1.9em;
+    height: 1.9em;
+    padding: 0.2em;
     color: var(--color-light-3);
   }
 
   .cluebar-clues {
+    display: flex;
+    width: 100%;
+    align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
   }
 
+  .cluebar-clue {
+    width: 100%;
+  }
   .clue {
     font-size: 0.9em;
     line-height: 1.1;

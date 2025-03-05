@@ -54,6 +54,10 @@
       font-size: var(--font-size-1);
       font-weight: 600;
       width: var(--key-width);
+      .icon {
+        max-height: 1.2em;
+        max-width: 1.2em;
+      }
 
       &:active:not(.keyboard-special-keys .keyboard-key) {
         box-shadow: 0px -1px 0px 2px rgba(20, 30, 51, 0.6);
@@ -73,6 +77,10 @@
       font-size: var(--font-size--1);
       font-weight: normal;
       width: var(--action-width);
+      .icon {
+        max-height: 1.4em;
+        max-width: 1.4em;
+      }
 
       .button-content {
         column-gap: 0.6em;

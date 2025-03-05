@@ -52,13 +52,17 @@
 
     .button {
       text-decoration: underline;
+      .icon {
+        height: 1em;
+      }
     }
   }
 
   .summary-cat {
     width: min(20vw, 200px);
     position: relative;
-    top: 0.5em;
+    top: 1.5em;
+    margin-top: -1em;
     left: -1.5em;
   }
 }

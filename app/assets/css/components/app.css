@@ -26,8 +26,8 @@
       margin: 0 auto;
       display: flex;
       align-items: center;
-      padding-top: 0.45em;
-      padding-bottom: 0.5em;
+      padding-top: 0.15em;
+      padding-bottom: 0.2em;
     }
 
     .app-header-branding {
@@ -38,10 +38,15 @@
       text-decoration: none;
     }
 
+    .app-header-logo {
+      position: relative;
+      top: -0.03em;
+    }
+
     .app-header-name {
       color: var(--color-light-2);
       opacity: 0.6;
-      font-size: max(0.6em, 13px);
+      font-size: max(0.6em, 14px);
       font-family: var(--font-mono);
       transition: opacity 0.2s ease-in-out;
 
@@ -54,26 +59,23 @@
       display: flex;
       align-items: center;
       margin-left: auto;
-      column-gap: 0.4em;
+      column-gap: 0.2em;
       transform: translateX(0.2em);
-    }
 
-    .button {
-      color: var(--color-light-2);
-      opacity: 0.8;
-      font-size: 1.1em;
+      .button {
+        color: var(--color-light-2);
+        opacity: 0.8;
+        padding: 0.2em;
+        width: 1.5em;
+        height: 1.5em;
 
-      .icon {
-        width: 1em;
-        height: 1em;
-      }
+        svg {
+          stroke-width: 1;
+        }
 
-      svg {
-        stroke-width: 1;
-      }
-
-      &:hover {
-        opacity: 1;
+        &:hover {
+          opacity: 1;
+        }
       }
     }
   }
