@@ -1,13 +1,14 @@
 export default function Modal() {
   return {
     id: null,
+    ready: false,
 
     init() {
       this.id = this.$el.id;
+      this.ready = true;
     },
 
     show() {
-      console.log("show", this.id, this.$app.modal);
       this.$app.modal = this.id;
     },
 
