@@ -1,5 +1,0 @@
-production:
-  import_latest_guardian_quick_crosswords:
-    class: ImportLatestGuardianQuickCrosswordsJob
-    queue: default
-    schedule: at 1am every day

@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :import_latest
   before_action :set_account
   before_action :set_challenge
 
@@ -21,6 +22,18 @@ class ApplicationController < ActionController::Base
   def logged_out? = !logged_in?
 
   def devmode? = session[:devmode] == true
+
+  def import_latest
+    @last_import ||= Import.latest
+
+    if @last_import
+      last_import_hours_ago = (@last_import.created_at.to_time - Time.zone.now) / 1.hour
+      return if last_import_hours_ago <= 24
+    end
+
+    @last_import = nil
+    ImportLatestGuardianQuickCrosswordsJob.perform_now
+  end
 
   def ensure_devmode
     redirect_to root_path unless devmode?
