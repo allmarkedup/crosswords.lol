@@ -23,6 +23,7 @@ class AccountsController < ApplicationController
   end
 
   def show
+    @account = Current.account
   end
 
   private

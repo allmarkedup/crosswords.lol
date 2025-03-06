@@ -86,11 +86,9 @@
         color: var(--color-bg-positive);
       }
 
-      .puzzle-complete-marker .icon {
+      .puzzle-complete-marker {
         color: var(--color-bg-positive);
         margin-right: 0.4em;
-        width: 1.1em;
-        height: 1.1em;
       }
     }
 

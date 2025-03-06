@@ -7,7 +7,7 @@ class DevmodeController < ApplicationController
 
   def show
     session[:devmode] = true
-    redirect_to root_path
+    redirect_to root_path, status: :see_other
   end
 
   def destroy
