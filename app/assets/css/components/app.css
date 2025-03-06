@@ -9,11 +9,11 @@
   background-repeat: repeat;
   touch-action: none;
   font-size: var(--font-size-0);
-  user-select: none;
   display: grid;
   grid-template-rows: min-content 1fr;
 
   .app-header {
+    user-select: none;
     padding-inline: var(--app-padding-inline);
     font-size: var(--font-size-1);
     background-color: var(--color-dark-0);
@@ -34,7 +34,7 @@
       display: flex;
       align-items: center;
       column-gap: 0.4em;
-      width: 1em;
+      width: 1.1em;
       text-decoration: none;
     }
 
@@ -66,8 +66,8 @@
         color: var(--color-light-2);
         opacity: 0.8;
         padding: 0.2em;
-        width: 1.5em;
-        height: 1.5em;
+        height: min(38px, 1.5em);
+        width: min(38px, 1.5em);
 
         svg {
           stroke-width: 1;

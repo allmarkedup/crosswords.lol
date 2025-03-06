@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   root "quick_crosswords#index"
 
+  resource :account, only: [:new, :create, :show]
+  resource :session, only: [:new, :create, :destroy]
+
   resources :quick,
     only: [:index, :show],
     controller: :quick_crosswords,

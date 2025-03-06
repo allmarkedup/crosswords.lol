@@ -4,6 +4,7 @@
   column-gap: 4px;
   flex: none;
   color: var(--color-light-3);
+  user-select: none;
 
   &.running {
     color: var(--color-light-1);

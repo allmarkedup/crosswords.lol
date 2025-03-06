@@ -33,12 +33,13 @@
             <span class="app-header-name">crosswords.lol</span>
           <% end %>
           <div class="app-header-nav">
-            <%= button :settings, "@click": "toggleSettings" %>
+            <%= button :circle_user_round, href: params[:challenge] == "true" ? new_account_path(solution: true) : account_path, alt: "Account" %>
+            <%= button :settings, "@click": "toggleSettings", alt: "Settings" %>
           </div>
         </div>
       </header>
       <div data-morph-root>
-        <%= yield %>
+        <%= content_for?(:main) ? yield(:main) : yield %>
       </div>
       <%= render "settings", back: ("Back to crossword" if @crossword) %>
     </div>

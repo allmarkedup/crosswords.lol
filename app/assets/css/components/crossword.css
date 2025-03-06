@@ -1,4 +1,5 @@
 .crossword {
+  user-select: none;
   aspect-ratio: 1 / 1;
 
   .crossword-board {

@@ -1,0 +1,23 @@
+<% 
+page_id = url_for.delete_prefix("/").tr("/", "-")
+%>
+
+<% content_for :main do %>
+  <div class="page" data-page-id="<%= page_id %>">
+    <div class="page-container">
+      <div class="page-body">
+        <div class="page-bg"></div>
+        <% if @page_title %>
+          <header class="page-header">
+            <h2 class="page-title"><%= @page_title %></h2>
+          </header>
+        <% end %>
+        <div class="page-content">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render template: "layouts/application" %>

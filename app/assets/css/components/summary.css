@@ -41,6 +41,7 @@
     align-items: center;
     column-gap: 0.4em;
     padding-bottom: 0.7em;
+    user-select: none;
 
     .separator {
       opacity: 0.5;

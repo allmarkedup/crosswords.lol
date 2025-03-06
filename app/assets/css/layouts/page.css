@@ -1,0 +1,67 @@
+.page {
+  padding-inline: var(--app-padding-inline);
+  height: 100%;
+  overflow: auto;
+
+  .page-container {
+    width: 100%;
+    max-width: var(--app-max-width);
+    margin: 1em auto;
+    font-size: var(--font-size-0);
+  }
+
+  .notifications {
+    margin-bottom: 1em;
+  }
+
+  .page-body {
+    position: relative;
+    width: 100%;
+    padding: 1.5em 1.5em 2em 1.5em;
+  }
+
+  .page-header {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 1.2em;
+    font-size: var(--font-size-1);
+  }
+
+  .page-title {
+    font-size: 0.95em;
+    color: var(--color-light-1);
+    font-weight: 700;
+  }
+
+  .page-body {
+    > *:not(.page-bg) {
+      position: relative;
+    }
+  }
+
+  .page-content {
+    section + section,
+    section + footer {
+      margin-top: 1.5em;
+      padding-top: 1.5em;
+      border-top: 1px solid color-mix(in srgb, var(--color-light-3) 20%, transparent);
+    }
+
+    section .prose + * {
+      margin-top: 1em;
+    }
+
+    footer {
+    }
+  }
+
+  .page-bg {
+    border-radius: 8px;
+    background-color: var(--color-dark-2);
+    border: 0.5em solid var(--color-dark-0);
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+  }
+}

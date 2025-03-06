@@ -1,7 +1,8 @@
 .button {
   color: currentColor;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  user-select: none;
 
   .button-content {
     white-space: nowrap;
@@ -36,5 +37,44 @@
   &.with-icon-only {
     width: 1em;
     aspect-ratio: 1 / 1;
+  }
+
+  &.theme-primary,
+  &.theme-secondary {
+    transition: outline 0.1s ease-in-out;
+    font-size: var(--font-size-0);
+    display: block;
+    padding: 0.8em 1.2em;
+    border-radius: 0.5em;
+    font-weight: 500;
+    width: fit-content;
+    text-decoration: none;
+
+    .button-content {
+      font-size: min(0.9em, 17px);
+    }
+  }
+
+  &.theme-primary {
+    font-weight: 700;
+    background-color: var(--color-bg-highlight);
+    color: var(--color-dark-1);
+    outline: 6px solid transparent;
+
+    &:hover {
+      color: var(--color-dark-1);
+      outline-color: var(--color-dark-0);
+    }
+  }
+
+  &.theme-secondary {
+    padding-bottom: 0.9em;
+    background-color: var(--color-dark-1);
+    color: var(--color-light-2);
+    outline: 3px solid transparent;
+
+    &:hover {
+      outline-color: var(--color-dark-4);
+    }
   }
 }

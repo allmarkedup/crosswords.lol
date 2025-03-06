@@ -4,6 +4,7 @@
   overflow: hidden;
   display: grid;
   grid-template-rows: min-content 1fr min-content;
+  user-select: none;
 
   .puzzle-header {
     padding-inline: var(--app-padding-inline);

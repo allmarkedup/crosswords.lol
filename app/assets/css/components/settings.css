@@ -6,6 +6,7 @@
     grid-template-columns: 1fr min-content;
     align-items: center;
     height: min-content;
+    user-select: none;
   }
 
   .settings-option {

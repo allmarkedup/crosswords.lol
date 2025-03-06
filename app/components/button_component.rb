@@ -1,5 +1,5 @@
 class ButtonComponent < BaseComponent
-  attr_reader :label, :alt, :confirm, :click, :href, :html_attrs
+  attr_reader :alt, :confirm, :click, :href, :html_attrs
 
   renders_one :icon, "IconComponent"
 
@@ -37,5 +37,13 @@ class ButtonComponent < BaseComponent
 
   def button_tag
     @href ? :a : :button
+  end
+
+  def label
+    @label || content
+  end
+
+  def label?
+    label.present?
   end
 end

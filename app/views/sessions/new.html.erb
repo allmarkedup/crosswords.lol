@@ -1,0 +1,28 @@
+<% 
+@page_title = "Account login"
+%>
+
+<section>
+  <div class="prose">
+    <p>Log in to your account to sync your progress across devices.</p>
+  </div>
+  <%= form_with model: @account, url: session_path, method: :post, class: "form" do |form| %>
+    <%= form_errors(@account.errors) %>
+    
+    <div class="form-field">
+      <%= form.label :key do %>
+        Enter your account key:
+      <% end %>
+      <%= form.text_field :key, placeholder: "I.e. curious-german-jellyfish-farmer" %>
+    </div>
+    
+    <div class="form-actions">
+      <%= button "Log in to your account", type: :submit, theme: :primary %>
+    </div>
+  <% end %>
+</section>
+
+<footer class="prose">
+  <p><em>No account? <%= link_to tag.strong("Create one now!"), new_account_path %></em></p>
+  <p style="opacity: 0.7">&larr;  <%= link_to "Back to the crosswords", root_path %></p>
+</footer>

@@ -2,9 +2,9 @@ class JsonCoder
   def self.load(str)
     data = str.nil? ? nil : JSON.parse(str)
     if data.is_a?(Array)
-      data.map { _1.with_indifferent_access }
+      data.map { _1.to_dot }
     elsif data
-      data.with_indifferent_access
+      data.to_dot
     end
   end
 

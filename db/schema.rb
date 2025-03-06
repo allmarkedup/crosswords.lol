@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_02_214302) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_04_231443) do
+  create_table "accounts", force: :cascade do |t|
+    t.string "key", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "crosswords", force: :cascade do |t|
     t.string "crossword_type", default: "quick"
     t.integer "column_count", null: false

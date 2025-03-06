@@ -31,6 +31,8 @@
   --color-bg-highlight-muted: #fff7b2;
   --color-bg-loading-bar: #2299dd;
 
+  --color-prose: color-mix(in srgb, var(--color-light-1) 70%, transparent);
+
   /* Components */
 
   --app-max-width: 680px;

@@ -5,11 +5,16 @@
 @import "components/button.css";
 @import "components/cluebar.css";
 @import "components/crossword.css";
-@import "components/summary.css";
+@import "components/form.css";
 @import "components/icon.css";
 @import "components/keyboard.css";
 @import "components/loading_bar.css";
 @import "components/modal.css";
+@import "components/notifications.css";
+@import "components/prose.css";
 @import "components/puzzle.css";
 @import "components/settings.css";
+@import "components/summary.css";
 @import "components/timer.css";
+
+@import "layouts/page.css";

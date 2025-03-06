@@ -1,0 +1,79 @@
+.prose {
+  font-size: var(--font-size-0);
+  color: var(--color-prose);
+  line-height: 1.6;
+
+  p,
+  .p {
+    font-size: 0.9em;
+
+    em,
+    strong {
+      color: var(--color-light-1);
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      color: var(--color-light-2);
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 0.8em;
+    }
+  }
+
+  > .button {
+    margin-top: 1.2em;
+    margin-bottom: 0.9em;
+  }
+
+  a,
+  .button_to button {
+    color: color-mix(in srgb, var(--color-light-1) 80%, transparent);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--color-light-1);
+    }
+  }
+
+  .button_to {
+    display: inline;
+  }
+
+  h2,
+  h3 {
+    font-weight: 600;
+    margin-bottom: 0.9em;
+    color: var(--color-light-1);
+    opacity: 0.95;
+
+    &:not(:first-child) {
+      margin-top: 1.4em;
+    }
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  h3 {
+    font-size: 0.95em;
+  }
+
+  .emoji {
+    color: var(--color-light-1);
+  }
+
+  .account-key {
+    background-color: var(--color-dark-4);
+    padding: 0.6em 1em;
+    font-family: var(--font-mono);
+    color: var(--color-light-1);
+    text-align: center;
+    margin-block: 1em;
+    border-radius: 0.4em;
+    font-size: 0.9em;
+  }
+}
