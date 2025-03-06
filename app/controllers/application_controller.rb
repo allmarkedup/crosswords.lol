@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
 
   def devmode? = session[:devmode] == true
 
+  def ensure_devmode
+    redirect_to root_path unless devmode?
+  end
+
   def redirect_if_logged_in(path = root_path)
     redirect_to path if logged_in?
   end
