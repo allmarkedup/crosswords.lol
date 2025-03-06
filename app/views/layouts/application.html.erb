@@ -33,7 +33,10 @@
             <span class="app-header-name">crosswords.lol</span>
           <% end %>
           <div class="app-header-nav">
-            <%= button :circle_user_round, href: params[:challenge] == "true" ? new_account_path(solution: true) : account_path, alt: "Account" %>
+            <%= button_to devmode_path, method: :delete do %>
+              <%= button :bug_off, tag: :span, alt: "Log out" if devmode? %>
+            <% end %>
+            <%= button :circle_user_round, href: params[:challenge] == "true" ? new_account_path(solution: true) : account_path, alt: "Account" if devmode? %>
             <%= button :settings, "@click": "toggleSettings", alt: "Settings" %>
           </div>
         </div>

@@ -62,6 +62,11 @@
       column-gap: 0.2em;
       transform: translateX(0.2em);
 
+      .button_to,
+      .button_to > button[type="submit"] {
+        display: contents;
+      }
+
       .button {
         color: var(--color-light-2);
         opacity: 0.8;

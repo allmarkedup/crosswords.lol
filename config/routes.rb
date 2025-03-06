@@ -7,14 +7,13 @@ Rails.application.routes.draw do
 
   resource :account, only: [:new, :create, :show]
   resource :session, only: [:new, :create, :destroy]
+  resource :devmode, only: [:show, :destroy], controller: :devmode
 
   resources :quick,
     only: [:index, :show],
     controller: :quick_crosswords,
     as: :quick_crosswords,
     param: :slug
-
-  get "debug", to: "debug#index", as: :debug
 
   match "*unmatched", to: "application#not_found", via: :all
 end

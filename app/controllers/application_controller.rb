@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :logged_in?
   helper_method :logged_out?
+  helper_method :devmode?
 
   rescue_from ActionController::RoutingError do
     not_found
@@ -18,6 +19,8 @@ class ApplicationController < ActionController::Base
   def logged_in? = Current.account.present?
 
   def logged_out? = !logged_in?
+
+  def devmode? = session[:devmode] == true
 
   def redirect_if_logged_in(path = root_path)
     redirect_to path if logged_in?

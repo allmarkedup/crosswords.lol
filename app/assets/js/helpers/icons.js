@@ -1,5 +1,6 @@
 import {
   createIcons,
+  BugOff,
   CaseUpper,
   CandyCane,
   Check,
@@ -39,6 +40,7 @@ import {
 export function loadIcons() {
   createIcons({
     icons: {
+      BugOff,
       CaseUpper,
       CandyCane,
       Check,

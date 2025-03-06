@@ -3,7 +3,7 @@ class ButtonComponent < BaseComponent
 
   renders_one :icon, "IconComponent"
 
-  def initialize(label: nil, alt: nil, icon: nil, confirm: false, theme: nil, click: nil, href: nil, **html_attrs)
+  def initialize(label: nil, alt: nil, icon: nil, confirm: false, theme: nil, click: nil, href: nil, tag: nil, **html_attrs)
     @label = label
     @alt = alt
     @icon_name = icon
@@ -11,6 +11,7 @@ class ButtonComponent < BaseComponent
     @confirm = confirm
     @click = click
     @href = href
+    @tag = tag&.to_sym
     @class_names = html_attrs[:class]
     @html_attrs = html_attrs.except(:class)
   end
@@ -36,7 +37,7 @@ class ButtonComponent < BaseComponent
   end
 
   def button_tag
-    @href ? :a : :button
+    @tag || (@href ? :a : :button)
   end
 
   def label
