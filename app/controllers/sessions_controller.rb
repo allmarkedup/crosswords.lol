@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  rate_limit to: 3, within: 1.minute, only: [:create]
+
   before_action :ensure_devmode
   before_action :redirect_if_logged_in, only: [:new, :create]
 
@@ -16,7 +18,7 @@ class SessionsController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     @account = Account.new
     @account.errors.add(:base, "Account not found")
-    render :new
+    render :new, status: :unprocessable_entity
   end
 
   def destroy

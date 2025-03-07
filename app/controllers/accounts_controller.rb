@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  rate_limit to: 6, within: 1.minute, only: [:create]
+
   before_action :ensure_devmode
   before_action :redirect_if_logged_in, only: [:new, :create]
   before_action -> { redirect_if_logged_out(new_session_path) }, only: [:show]
