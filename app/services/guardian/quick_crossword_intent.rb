@@ -6,13 +6,12 @@ module Guardian
 
     base_uri "www.theguardian.com"
 
-    def hydrate
+    def fetch_data
       html = get_html(path)
       json_data = html.css("[data-crossword-data]")&.first&.attribute("data-crossword-data")&.value&.strip
       if json_data.present?
         raw_data = parse_json(json_data)
-        @data = normalize_data(raw_data)
-        @data
+        normalize_data(raw_data)
       else
         raise CrosswordProviderError, "Failed to extract crossword data"
       end

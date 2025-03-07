@@ -1,9 +1,9 @@
 class CrosswordImporter
   class << self
-    def import(crossword_intent)
+    def import(data)
       Crossword
-        .create_with(**crossword_intent.data.slice(:crossword_type, :column_count, :row_count, :provider_published_on, :entries))
-        .find_or_create_by(**crossword_intent.data.slice(:provider_name, :provider_reference))
+        .create_with(**data.slice(:crossword_type, :column_count, :row_count, :provider_published_on, :entries))
+        .find_or_create_by(**data.slice(:provider_name, :provider_reference))
     end
   end
 end

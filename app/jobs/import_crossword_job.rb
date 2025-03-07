@@ -3,8 +3,7 @@ class ImportCrosswordJob < ApplicationJob
   retry_on CrosswordProviderError, attempts: 5
 
   def perform(crossword_intent, **params)
-    crossword_intent.hydrate
-    crossword = CrosswordImporter.import(crossword_intent)
+    crossword = CrosswordImporter.import(crossword_intent.data)
     logger.info "Imported crossword ##{crossword.id}"
   end
 end

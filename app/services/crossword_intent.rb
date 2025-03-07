@@ -8,7 +8,7 @@ class CrosswordIntent
   end
 
   def data
-    @data || hydrate
+    @data ||= fetch_data
   end
 
   def identifier
