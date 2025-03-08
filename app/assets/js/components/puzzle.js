@@ -16,6 +16,10 @@ export default function Puzzle({ id, entries }) {
       this.state = this.getState(id);
 
       this.$app.modal = this.finished ? "summary" : null;
+
+      this.$watch("state.values", () => {
+        this.state.updated_at = Date.now();
+      });
     },
 
     getState(id) {
@@ -26,6 +30,7 @@ export default function Puzzle({ id, entries }) {
           timer: null,
           values: {},
           events: [],
+          updated_at: Date.now(),
         };
       }
       return this.$state.crosswords[id];

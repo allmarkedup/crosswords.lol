@@ -1,8 +1,12 @@
 class Crossword < ApplicationRecord
+  has_many :answers
+
   serialize :entries, coder: JsonCoder
   attribute :slug, :string, default: -> { SlugGenerator.generate }
 
   scope :quick, -> { where(crossword_type: "quick") }
+
+  alias_attribute :date, :provider_published_on
 
   def next
     self.class

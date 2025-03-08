@@ -7,15 +7,16 @@ class PuzzleComponent < BaseComponent
   renders_one :newer_link, "LinkComponent"
   renders_one :random_link, "LinkComponent"
 
-  attr_reader :id, :entries
+  attr_reader :answer
 
-  def initialize(id:, date:, entries:)
-    @id = id
-    @date = date
-    @entries = entries
+  delegate :id, :entries, to: :@crossword
+
+  def initialize(crossword:, answer: nil)
+    @crossword = crossword
+    @answer = answer
   end
 
   def date
-    @date.strftime("%-d/%-m/%y")
+    @crossword.date.strftime("%-d/%-m/%y")
   end
 end

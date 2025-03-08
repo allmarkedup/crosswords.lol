@@ -5,6 +5,7 @@ import focus from "@alpinejs/focus";
 import persist from "@alpinejs/persist";
 import morph from "@alpinejs/morph";
 
+import AnswerData from "./components/answer_data";
 import App from "./components/app";
 import Button from "./components/button";
 import Crossword from "./components/crossword";
@@ -20,6 +21,7 @@ Alpine.plugin(focus);
 Alpine.plugin(persist);
 Alpine.plugin(morph);
 
+Alpine.data("answerData", AnswerData);
 Alpine.data("app", App);
 Alpine.data("button", Button);
 Alpine.data("crossword", Crossword);

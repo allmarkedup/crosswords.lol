@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    account = Account.find_by!(key: account_params[:key])
+    account = Account.find_by!(key: account_params[:key].downcase)
     session[:current_account_id] = account.id
 
     redirect_to account_path, notice: "Logged in successfully"

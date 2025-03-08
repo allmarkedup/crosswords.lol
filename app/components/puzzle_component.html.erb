@@ -59,4 +59,11 @@
       end
     %>
   </div>
+  <% if answer %>
+    <div x-data="answerData(<%= answer.to_json %>)" hidden>
+      <%= form_with model: answer, html: {"x-ref": "answerForm"} do |f| %>
+        <%= f.text_area :values, "x-model": "answerDataJSON", readonly: true %>
+      <% end %>
+    </div>
+  <% end %>
 </div>

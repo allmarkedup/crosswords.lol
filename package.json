@@ -13,6 +13,7 @@
     "@alpinejs/focus": "^3.14.8",
     "@alpinejs/morph": "^3.14.8",
     "@alpinejs/persist": "^3.14.8",
+    "@rails/request.js": "^0.0.11",
     "alpinejs": "^3.14.8",
     "autoprefixer": "^10.4.20",
     "container-query-polyfill": "^1.0.2",

@@ -15,5 +15,7 @@ Rails.application.routes.draw do
     as: :quick_crosswords,
     param: :slug
 
+  resources :answers, only: [:update]
+
   match "*unmatched", to: "application#not_found", via: :all
 end

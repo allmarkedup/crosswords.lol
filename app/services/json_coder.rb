@@ -9,6 +9,6 @@ class JsonCoder
   end
 
   def self.dump(data)
-    data.nil? ? "{}" : JSON.generate(data)
+    JSON.generate(data || "{}")
   end
 end

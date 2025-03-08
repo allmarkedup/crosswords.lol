@@ -26,3 +26,11 @@ export function timerText(seconds) {
 function leftPad(val) {
   return val < 10 ? "0" + String(val) : val;
 }
+
+export function getFormData(form) {
+  const formData = new FormData(form);
+  const formDataObject = {};
+  formData.forEach((value, key) => (formDataObject[key] = value));
+
+  return formDataObject;
+}

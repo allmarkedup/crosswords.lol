@@ -6,7 +6,7 @@
 <% end %>
 
 <%=
-  render PuzzleComponent.new(id: @crossword.id, date: @crossword.provider_published_on, entries: @crossword.entries) do |puzzle|
+  render PuzzleComponent.new(crossword: @crossword, answer: @answer) do |puzzle|
     puzzle.with_newer_link(href: quick_crossword_path(@next), disabled: @crossword == @latest)
     puzzle.with_older_link(href: quick_crossword_path(@previous))
     puzzle.with_random_link(href: quick_crossword_path(@random))

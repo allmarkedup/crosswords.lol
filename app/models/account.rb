@@ -1,4 +1,6 @@
 class Account < ApplicationRecord
+  has_many :answers
+
   before_validation :assign_key
 
   private

@@ -23,6 +23,6 @@ module Crisscross
     config.hosts << "crosswords.lol"
 
     # config.logger = Logger.new($stdout)
-    # Rails.logger.level = Logger::INFO
+    # config.logger.level = Logger::DEBUG
   end
 end

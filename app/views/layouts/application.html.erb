@@ -15,7 +15,7 @@
     <%= javascript_include_tag "application", defer: true %>
     <%= stylesheet_link_tag :application %>
   </head>
-  <body>
+  <body<%= " data-logged-in" if Current.account.present? %>>
     <div
       class="app"
       x-data="app"
@@ -34,16 +34,19 @@
           <% end %>
           <div class="app-header-nav">
             <% if devmode? %>
-              <%= button_to devmode_path, method: :delete, class: "app-header-devmode-off" do %>
+              <%= button_to devmode_path, method: :delete, id: "app-header-devmode-off" do %>
                 <%= button :bug_off, tag: :span, alt: "Devmode off" %>
               <% end %>
               <% if @account %>
-                <%= button :home, href: root_path, alt: "Home" %>
+                <%= button :home, href: root_path, alt: "Home", id: "app-header-home-link" %>
               <% else %>
-                <%= button :circle_user_round, href: params[:challenge] == "true" ? new_account_path(solution: true) : account_path, alt: "Account" %>
+                <%= button :circle_user_round,
+                  href: logged_in? ? account_path : new_account_path(solution: params[:challenge]),
+                  alt: "Account",
+                  id: "app-header-account-link" %>
               <% end %>
             <% end %>
-            <%= button :settings, "@click": "toggleSettings", alt: "Settings" %>
+            <%= button :settings, "@click": "toggleSettings", alt: "Settings", id: "app-header-settings-link" %>
           </div>
         </div>
       </header>
