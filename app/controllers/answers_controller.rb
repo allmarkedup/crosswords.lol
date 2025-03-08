@@ -5,6 +5,8 @@ class AnswersController < ApplicationController
     @answer = Current.account.answers.find(params[:id])
     @answer.update(values: JSON.parse(permitted_params[:values]))
 
+    AnswersChannel.broadcast_to(@answer, {initiator_id: params[:client_id], answer: @answer})
+
     respond_to do |format|
       format.html do
         redirect_to quick_crossword_path(@answer.crossword)

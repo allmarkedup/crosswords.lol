@@ -47,11 +47,13 @@ export default function Crossword(opts) {
     checkActiveEntry() {
       this.$dispatch("event:check-word");
       this.checkEntry(this.activeEntry);
+      this.$dispatch("crossword:change");
     },
 
     checkAllEntries() {
       this.$dispatch("event:check-all");
       this.entries.forEach((entry) => this.checkEntry(entry));
+      this.$dispatch("crossword:change");
     },
 
     revealActiveCell() {
@@ -61,6 +63,7 @@ export default function Crossword(opts) {
       const letters = this.activeEntry.solution.split("");
       this.activeCell.text = letters[this.activeCellEntryIndex];
       this.goToNextCell();
+      this.$dispatch("crossword:change");
     },
 
     revealEntry(entry) {
@@ -76,10 +79,12 @@ export default function Crossword(opts) {
 
     revealActiveEntry() {
       this.revealEntry(this.activeEntry);
+      this.$dispatch("crossword:change");
     },
 
     revealAllEntries() {
       this.entries.forEach((entry) => this.revealEntry(entry));
+      this.$dispatch("crossword:change");
     },
 
     clearEntry(entry) {
@@ -88,10 +93,12 @@ export default function Crossword(opts) {
 
     clearActiveEntry() {
       this.clearEntry(this.activeEntry);
+      this.$dispatch("crossword:change");
     },
 
     clearAllEntries() {
       this.entries.forEach((entry) => this.clearEntry(entry));
+      this.$dispatch("crossword:change");
     },
 
     reset() {
@@ -122,6 +129,7 @@ export default function Crossword(opts) {
         this.$nextTick(() => {
           this.activeCell.text = key;
           this.goToNextCell();
+          this.$dispatch("crossword:change");
         });
       }
     },
