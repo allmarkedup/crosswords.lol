@@ -3,7 +3,7 @@ class SyncController < ApplicationController
 
   before_action :ensure_devmode
   before_action :redirect_if_syncing, only: [:new, :create]
-  before_action -> { redirect_if_not_syncing(new_sync_path) }, only: [:show]
+  before_action -> { redirect_if_not_syncing(new_sync_device_path) }, only: [:show]
 
   layout "page"
 
@@ -14,7 +14,7 @@ class SyncController < ApplicationController
   def create
     if Current.challenge.validate(challenge_params[:challenge_solution])
       @account = Account.create
-      session[:current_account_id] = @account.id
+      self.current_account = @account.id
 
       redirect_to sync_path, notice: "Sync key generated"
     else

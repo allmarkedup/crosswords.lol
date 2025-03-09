@@ -10,12 +10,12 @@
   </section>
   <section>
 
-  <%= form_with model: @account, url: sync_link_path, method: :post, class: "form" do |form| %>
+  <%= form_with model: @account, url: sync_device_path, method: :post, class: "form" do |form| %>
     <%= form_errors(@account.errors) %>
     
     <div class="form-field">
       <%= form.label :key do %>
-        Your sync key:
+        Your sync key
       <% end %>
       <%= form.text_field :key, placeholder: "I.e. curious-german-jellyfish-farmer" %>
     </div>

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :import_latest
-  before_action :set_account
+  before_action :load_account
   before_action :set_challenge
 
   helper_method :syncing?
@@ -47,8 +47,17 @@ class ApplicationController < ActionController::Base
     redirect_to path if not_syncing?
   end
 
-  def set_account
-    Current.account = Account.find(session[:current_account_id]) if session[:current_account_id]
+  def current_account
+    Current.account
+  end
+
+  def current_account=(id)
+    cookies.permanent.encrypted[:current_account_id] = id
+    load_account
+  end
+
+  def load_account
+    Current.account = Account.find(cookies.encrypted[:current_account_id]) if cookies.encrypted[:current_account_id]
   end
 
   def set_challenge

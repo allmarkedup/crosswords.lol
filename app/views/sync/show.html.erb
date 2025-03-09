@@ -1,24 +1,32 @@
 <%
-@page_title = "✅ Syncing enabled"
+@page_title = "✅ &nbsp; Syncing enabled".html_safe
 %>
 
 <section class="prose">
   <p>
-    Your crossword answers will be automatically synced across any devices connected using the key below.
+    Your crossword answers will be <strong>automatically synced across all devices</strong> that have been connected using the key below.
   </p>
 </section>
 
 <section class="prose">
-  <h3>Your sync key:</h3>
+  <h3>Your sync key</h3>
 
   <div class="account-key">
     <%= Current.account.key %>
   </div>
 
-  <p>Keep a note of this key somewhere safe!</p>
+  <p><small><em style="color: var(--color-light-3)">Keep a note of this key somewhere safe!</em></small></p>
+</section>
+
+<section class="prose">
+  <h3>To link another device:</h3>
+  <ol>
+    <li>Visit <%= link_to "crosswords.lol/sync/link", sync_device_url %> on the other device and enter the key above.</li>
+    <li><strong>That's it!</strong> Your crossword data will now be automagically synced between your devices.</li>
+  </ol>
 </section>
 
 <footer class="prose centered">
-  <div class="p">To disable syncing on this device <em><%= button_to tag.strong("click here"), sync_link_path, method: :delete %></em>.</div>
+  <div class="p">To disable syncing on this device <em><%= button_to tag.strong("click here"), sync_device_path, method: :delete %></em>.</div>
   <p style="opacity: 0.7">&larr;  <%= link_to "Back to the crosswords", root_path %></p>
 </footer>

@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   root "quick_crosswords#index"
 
   resource :sync, only: [:new, :create, :show], controller: :sync do
-    resource :link, only: [:new, :create, :destroy], controller: "sync/link"
+    resource :device, only: [:create, :destroy], controller: "sync/device"
   end
+  get "/sync/device", to: "sync/device#new", as: :new_sync_device
 
   resource :devmode, only: [:show, :destroy], controller: :devmode
 

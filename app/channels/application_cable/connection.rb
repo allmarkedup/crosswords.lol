@@ -3,7 +3,7 @@ module ApplicationCable
     identified_by :current_account
 
     def connect
-      self.current_account = Account.find(cookies.encrypted["_crisscross_session"]["current_account_id"])
+      self.current_account = Account.find(cookies.encrypted[:current_account_id])
 
       reject_unauthorized_connection unless current_account
     end

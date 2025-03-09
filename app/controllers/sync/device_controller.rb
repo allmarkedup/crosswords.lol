@@ -1,5 +1,5 @@
 module Sync
-  class LinkController < ApplicationController
+  class DeviceController < ApplicationController
     rate_limit to: 3, within: 1.minute, only: [:create]
 
     before_action :ensure_devmode
@@ -13,7 +13,7 @@ module Sync
 
     def create
       account = Account.find_by!(key: account_params[:key].downcase)
-      session[:current_account_id] = account.id
+      self.current_account = account.id
 
       redirect_to sync_path, notice: "Syncing enabled"
     rescue ActiveRecord::RecordNotFound
@@ -23,7 +23,7 @@ module Sync
     end
 
     def destroy
-      session.delete(:current_account_id)
+      cookies.delete(:current_account_id)
       Current.account = nil
 
       redirect_to new_sync_path, notice: "Syncing disabled", status: :see_other
