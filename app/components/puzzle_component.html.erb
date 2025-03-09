@@ -60,11 +60,6 @@
     %>
   </div>
   <% if answer %>
-    <div x-data="answerData(<%= answer.to_json %>)" @crossword:change.document="setTimeout(() => save())" hidden>
-      <%= form_with model: answer, html: {"x-ref": "answerForm"} do |f| %>
-        <%= f.text_field :client_id, name: "client_id", ":value": "clientId" %>
-        <%= f.text_area :values, "x-model": "answerDataJSON", readonly: true %>
-      <% end %>
-    </div>
+    <div x-data="answerData(<%= answer.to_json %>)" @crossword:change.document="setTimeout(() => save())"></div>
   <% end %>
 </div>

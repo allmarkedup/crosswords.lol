@@ -7,10 +7,14 @@ class Answer < ApplicationRecord
   before_save :set_synced_at
 
   def as_json(options = {})
-    super.except("account_id", "created_at", "updated_at").merge({"synced_at" => synced_at_timestamp})
+    super
+      .except("account_id", "created_at", "updated_at")
+      .merge({"synced_at" => synced_at_timestamp, "completed_at" => completed_at_timestamp})
   end
 
   def synced? = synced_at.present?
+
+  def completed? = completed_at.present?
 
   private
 
@@ -22,5 +26,9 @@ class Answer < ApplicationRecord
 
   def synced_at_timestamp
     (attributes["synced_at"].to_f * 1000).to_i if attributes["synced_at"]
+  end
+
+  def completed_at_timestamp
+    (attributes["completed_at"].to_f * 1000).to_i if attributes["completed_at"]
   end
 end

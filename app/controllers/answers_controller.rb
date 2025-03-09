@@ -3,13 +3,13 @@ class AnswersController < ApplicationController
 
   def update
     @answer = Current.account.answers.find(params[:id])
-    @answer.update(values: JSON.parse(permitted_params[:values]))
+    @answer.update(permitted_params)
 
     AnswersChannel.broadcast_to(@answer, {initiator_id: params[:client_id], answer: @answer})
 
     respond_to do |format|
       format.html do
-        redirect_to quick_crossword_path(@answer.crossword)
+        redirect_to quick_crossword_path(@answer.crossword), status: :see_other
       end
       format.json do
         render json: @answer
@@ -20,6 +20,6 @@ class AnswersController < ApplicationController
   private
 
   def permitted_params
-    params.require(:answer).permit(:values)
+    params[:answer].permit!
   end
 end

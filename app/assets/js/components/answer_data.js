@@ -5,8 +5,9 @@ import isEqual from "lodash.isequal";
 export default function AnswerData(answer) {
   return {
     consumer: null,
+    answerId: answer.id,
     clientId: Math.floor(Math.random() * 1000000),
-    updating: false,
+    completedAt: answer.completed_at ? new Date(answer.completed_at) : null,
     _lastSaved: answer.values,
 
     init() {
@@ -35,8 +36,7 @@ export default function AnswerData(answer) {
     updateDataReceived(data) {
       if (
         parseInt(data.initiator_id) !== this.clientId &&
-        isDifferent(this.$puzzle.state.values, data.answer.values) &&
-        !this.updating
+        isDifferent(this.$puzzle.state.values, data.answer.values)
       ) {
         this.$puzzle.state.values = data.answer.values;
       }
@@ -44,15 +44,28 @@ export default function AnswerData(answer) {
 
     async save() {
       if (isDifferent(this.$puzzle.state.values, this._lastSaved)) {
-        console.log("save");
+        if (!this.completedAt && this.$puzzle.finished) {
+          this.completedAt = new Date();
+        } else if (!this.$puzzle.finished) {
+          this.completedAt = null;
+        }
+
+        const values = Object.assign({}, Alpine.raw(this.$puzzle.state.values));
+
         try {
-          const request = new FetchRequest(this.form.method, `${this.form.action}.json`, {
-            body: new FormData(this.form),
+          const request = new FetchRequest("put", `/answers/${this.answerId}.json`, {
+            body: {
+              client_id: this.clientId,
+              answer: {
+                completed_at: this.completedAt,
+                values: values,
+              },
+            },
           });
 
           const response = await request.perform();
           if (response.ok) {
-            this._lastSaved = Object.assign({}, Alpine.raw(this.$puzzle.state.values));
+            this._lastSaved = values;
           } else {
             console.error("Error saving answers", response);
           }
@@ -61,20 +74,19 @@ export default function AnswerData(answer) {
         }
       }
     },
-
-    get form() {
-      return this.$refs.answerForm;
-    },
-
-    get answerDataJSON() {
-      const values = Object.fromEntries(
-        Object.entries(this.$puzzle.state.values).filter(([_, v]) => v !== "")
-      );
-      return JSON.stringify(values);
-    },
   };
 }
 
 function isDifferent(obj1, obj2) {
   return !isEqual(Alpine.raw(obj1), Alpine.raw(obj2));
+}
+
+function convertToDateTimeLocalString(date) {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
 }

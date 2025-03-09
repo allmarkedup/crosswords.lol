@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_07_225054) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_08_234120) do
   create_table "accounts", force: :cascade do |t|
     t.string "key", null: false
     t.datetime "created_at", null: false
@@ -24,6 +24,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_07_225054) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "synced_at"
+    t.datetime "completed_at"
     t.index ["account_id"], name: "index_answers_on_account_id"
     t.index ["crossword_id"], name: "index_answers_on_crossword_id"
   end
