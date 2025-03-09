@@ -9,34 +9,44 @@
   @event:reveal-word.document="record('rw')"
   @event:check-all.document="record('ca')"
   @action:reset="reset">
-  <header class="puzzle-header">
+  <header class="puzzle-header<%= " sync-challenge" if params[:challenge] == "true" %>">
     <div class="puzzle-header-container">
-      <%= button(
-        icon: :circle_arrow_left,
-        class: "puzzle-header-link puzzle-header-link-older",
-        "@click.prevent": "hijax",
-        **older_link.html_attrs
-      ) if older_link %>
-      <div class="puzzle-header-main">
-        <div class="puzzle-header-date">
-          <span><%= date %></span>
+      <% if params[:challenge] == "true" %>
+        <div class="puzzle-challenge-back">
+          <%= link_to new_sync_path(challenge: true), class: "puzzle-challenge-back-link" do %>
+            <%= icon :arrow_big_left %>
+            <span>Back to sync key generator</span>
+          <% end %>
+          <%= link_to "(hide this)", url_for, class: "puzzle-challenge-back-hide", "@click.prevent": "hijax" %>
         </div>
-        <div class="puzzle-header-complete" @click="$app.modal = 'summary'" x-show="finished" x-cloak>
-          <%= icon :dot, class: "puzzle-header-separator" %>
-          <%= button :circle_check, class: "puzzle-complete-marker" %>
-          <span>Complete</span>
+      <% else %>
+        <%= button(
+          icon: :circle_arrow_left,
+          class: "puzzle-header-link puzzle-header-link-older",
+          "@click.prevent": "hijax",
+          **older_link.html_attrs
+        ) if older_link %>
+        <div class="puzzle-header-main">
+          <div class="puzzle-header-date">
+            <span><%= date %></span>
+          </div>
+          <div class="puzzle-header-complete" @click="$app.modal = 'summary'" x-show="finished" x-cloak>
+            <%= icon :dot, class: "puzzle-header-separator" %>
+            <%= button :circle_check, class: "puzzle-complete-marker" %>
+            <span>Complete</span>
+          </div>
+          <div class="puzzle-header-timer" x-show="($settings.timer && !$puzzle.finished) || $puzzle.state?.timer?.started" x-cloak>
+            <%= icon :dot, class: "puzzle-header-separator" %>
+            <%= render TimerComponent.new %>
+          </div>
         </div>
-        <div class="puzzle-header-timer" x-show="($settings.timer && !$puzzle.finished) || $puzzle.state?.timer?.started" x-cloak>
-          <%= icon :dot, class: "puzzle-header-separator" %>
-          <%= render TimerComponent.new %>
-        </div>
-      </div>
-      <%= button(
-        icon: :circle_arrow_right,
-        class: "puzzle-header-link puzzle-header-link-newer",
-        "@click.prevent": "hijax",
-        **newer_link.html_attrs
-      ) if newer_link %>
+        <%= button(
+          icon: :circle_arrow_right,
+          class: "puzzle-header-link puzzle-header-link-newer",
+          "@click.prevent": "hijax",
+          **newer_link.html_attrs
+        ) if newer_link %>
+      <% end %>
     </div>
   </header>
   <div class="puzzle-board">
@@ -45,6 +55,16 @@
     </div>
   </div>
   <div class="puzzle-cluebar">
+    <% if false && params[:challenge] == "true" %>
+      <div class="puzzle-challenge-back">
+        <div class="puzzle-challenge-back-container">
+          <%= button "Back to sync key generator", icon: :arrow_big_left, theme: :primary %>
+          <%= link_to url_for, class: "puzzle-challenge-back-close" do %>
+            <%= icon :x %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
     <%= cluebar %>
   </div>
   <div class="puzzle-keyboard">

@@ -5,8 +5,10 @@ Rails.application.routes.draw do
 
   root "quick_crosswords#index"
 
-  resource :account, only: [:new, :create, :show]
-  resource :session, only: [:new, :create, :destroy]
+  resource :sync, only: [:new, :create, :show], controller: :sync do
+    resource :link, only: [:new, :create, :destroy], controller: "sync/link"
+  end
+
   resource :devmode, only: [:show, :destroy], controller: :devmode
 
   resources :quick,

@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_action :redirect_if_logged_out
+  before_action :redirect_if_not_syncing
 
   def update
     @answer = Current.account.answers.find(params[:id])

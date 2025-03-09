@@ -94,7 +94,7 @@
     }
   }
 
-  [data-logged-in] & #app-header-account-link svg {
+  [data-logged-in] & #app-header-sync-link svg {
     color: var(--color-bg-positive);
   }
 

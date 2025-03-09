@@ -1,0 +1,58 @@
+<%
+@page_title = "Get in sync! ✨"
+%>
+
+<% unless params[:challenge] == "true" %>
+  <section class="prose">
+    <p>It's easy to set up crossword answer syncing between your devices:</p>
+    <ol>
+      <li>Ganerate a <strong>unique sync key</strong> using the form below.</li>
+      <li>Visit <%= link_to "crosswords.lol/sync/link", sync_link_url %> on another device and enter the key you just generated.</li>
+      <li><strong>That's it!</strong> Your crossword data will be automagically synced between your devices.</li>
+    </ol>
+
+    <p class="highlight"><span><span class="emoji">🔑</span> <em>Already got a sync key? <%= link_to tag.strong("Link your device here"), new_sync_link_path %></em>.</span></p>
+  </section>
+<% end %>
+
+<section>
+  <div class="prose">
+    <% unless params[:challenge] == "true" %>
+      <h3><strong>Generate a sync key</strong></h3>
+    <% end %>
+    <p>To help us keep the pesky robots <span class="emoji">🤖</span> out you will need to <span style="color: var(--color-light-1)">find the solution to the crossword clue below</span> before we can generate a key for you.</p>
+    
+    
+    <div class="challenge-clue">
+      <h4>Your clue:</h4>
+      <div class="challenge-clue-info">
+        <label><%= Current.challenge.clue %></label>
+        <%= button href: quick_crossword_path(Current.challenge.crossword, entry: Current.challenge.entry.id, challenge: true), theme: :secondary do %>
+          See it in the crossword (<%= Current.challenge.crossword_name %>) &nbsp;<strong>&rarr;</strong>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%= form_with model: @account, url: sync_path(challenge: params[:challenge]), method: :post, class: "form" do |form| %>    
+    <%= form_errors(@account.errors) %>
+
+    <div class="form-field">
+      <%= form.label :challenge_solution do %>
+        <strong>Your solution</strong>:
+      <% end %>
+      <%= form.text_field :challenge_solution, placeholder: "Enter solution here", data: {"1p_ignore": true, lpignore: true, protonpass_ignore: true} %>
+    </div>
+
+    <div class="form-actions">
+      <%= button "Generate sync key", icon: :key_round, type: :submit, theme: :primary %>
+    </div>
+  <% end %>  
+</section>
+
+
+<footer class="prose centered">
+  <p><em>Already got a sync key? <%= link_to "Link your device here", new_sync_link_path %></em>.</p>
+  <p style="opacity: 0.7">&larr;  <%= link_to "Back to the crosswords", root_path %></p>
+</footer>
+

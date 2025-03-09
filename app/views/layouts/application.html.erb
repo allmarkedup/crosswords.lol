@@ -37,14 +37,12 @@
               <%= button_to devmode_path, method: :delete, id: "app-header-devmode-off" do %>
                 <%= button :bug_off, tag: :span, alt: "Devmode off" %>
               <% end %>
-              <% if @account %>
-                <%= button :home, href: root_path, alt: "Home", id: "app-header-home-link" %>
-              <% else %>
-                <%= button :circle_user_round,
-                  href: logged_in? ? account_path : new_account_path(solution: params[:challenge]),
-                  alt: "Account",
-                  id: "app-header-account-link" %>
-              <% end %>
+              
+                <%= button :arrow_down_up,
+                  href: syncing? ? sync_path : new_sync_path(challenge: params[:challenge]),
+                  alt: "Sync",
+                  id: "app-header-sync-link" %>
+              
             <% end %>
             <%= button :settings, "@click": "toggleSettings", alt: "Settings", id: "app-header-settings-link" %>
           </div>

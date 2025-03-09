@@ -1,6 +1,7 @@
 import {
   createIcons,
   ArrowBigLeft,
+  ArrowDownUp,
   BugOff,
   CaseUpper,
   CandyCane,
@@ -19,6 +20,7 @@ import {
   Eye,
   Hand,
   Home,
+  KeyRound,
   LifeBuoy,
   Map,
   Pause,
@@ -43,6 +45,7 @@ export function loadIcons() {
   createIcons({
     icons: {
       ArrowBigLeft,
+      ArrowDownUp,
       BugOff,
       CaseUpper,
       CandyCane,
@@ -61,6 +64,7 @@ export function loadIcons() {
       Eye,
       Hand,
       Home,
+      KeyRound,
       LifeBuoy,
       Map,
       Pause,

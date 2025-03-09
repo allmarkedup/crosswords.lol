@@ -59,7 +59,18 @@
     font-weight: 700;
     background-color: var(--color-bg-highlight);
     color: var(--color-dark-1);
-    outline: 6px solid transparent;
+    outline: 6px solid var(--color-dark-0);
+
+    .icon {
+      width: 1.4em;
+      height: 1.4em;
+      color: currentColor;
+      margin-left: -0.2em;
+    }
+
+    &[type="submit"] {
+      outline-color: transparent;
+    }
 
     &:hover {
       color: var(--color-dark-1);
@@ -72,6 +83,13 @@
     background-color: var(--color-dark-1);
     color: var(--color-light-2);
     outline: 3px solid transparent;
+
+    .icon {
+      width: 1.4em;
+      height: 1.4em;
+      color: currentColor;
+      margin-left: -0.2em;
+    }
 
     &:hover {
       outline-color: var(--color-dark-4);

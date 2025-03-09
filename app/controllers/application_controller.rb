@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   before_action :set_account
   before_action :set_challenge
 
-  helper_method :logged_in?
-  helper_method :logged_out?
+  helper_method :syncing?
+  helper_method :not_syncing?
   helper_method :devmode?
 
   rescue_from ActionController::RoutingError do
@@ -17,9 +17,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def logged_in? = Current.account.present?
+  def syncing? = Current.account.present?
 
-  def logged_out? = !logged_in?
+  def not_syncing? = !syncing?
 
   def devmode? = session[:devmode] == true
 
@@ -39,12 +39,12 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless devmode?
   end
 
-  def redirect_if_logged_in(path = root_path)
-    redirect_to path if logged_in?
+  def redirect_if_syncing(path = root_path)
+    redirect_to path if syncing?
   end
 
-  def redirect_if_logged_out(path = root_path)
-    redirect_to path if logged_out?
+  def redirect_if_not_syncing(path = root_path)
+    redirect_to path if not_syncing?
   end
 
   def set_account
@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_challenge
-    if logged_out?
+    if not_syncing?
       if cookies[:account_challenge].present?
         Current.challenge = AccountChallenge.from_cookie(cookies[:account_challenge])
       else

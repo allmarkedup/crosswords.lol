@@ -1,0 +1,24 @@
+<%
+@page_title = "✅ Syncing enabled"
+%>
+
+<section class="prose">
+  <p>
+    Your crossword answers will be automatically synced across any devices connected using the key below.
+  </p>
+</section>
+
+<section class="prose">
+  <h3>Your sync key:</h3>
+
+  <div class="account-key">
+    <%= Current.account.key %>
+  </div>
+
+  <p>Keep a note of this key somewhere safe!</p>
+</section>
+
+<footer class="prose centered">
+  <div class="p">To disable syncing on this device <em><%= button_to tag.strong("click here"), sync_link_path, method: :delete %></em>.</div>
+  <p style="opacity: 0.7">&larr;  <%= link_to "Back to the crosswords", root_path %></p>
+</footer>
