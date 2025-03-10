@@ -8,7 +8,7 @@ export default function AnswerData(answer) {
     answerId: answer.id,
     clientId: Math.floor(Math.random() * 1000000),
     completedAt: answer.completed_at ? new Date(answer.completed_at) : null,
-    _lastSaved: answer.values,
+    _lastSaved: {},
 
     init() {
       this.updateDataReceived = this.updateDataReceived.bind(this);
@@ -26,7 +26,7 @@ export default function AnswerData(answer) {
         this.$puzzle.state.events = Alpine.raw(answer.events);
       }
 
-      if (answer.timer && answer.timer.seconds > this.$puzzle.state.timer.seconds) {
+      if (answer.timer && answer.timer.seconds >= this.$puzzle.state.timer.seconds) {
         this.$puzzle.state.timer = Alpine.raw(answer.timer);
       }
 
@@ -59,25 +59,18 @@ export default function AnswerData(answer) {
         this.completedAt = null;
       }
 
-      const answerState = {
-        completed_at: this.completedAt,
-        events: [...Alpine.raw(this.$puzzle.state.events)],
-        values: Object.assign({}, Alpine.raw(this.$puzzle.state.values)),
-        timer: Object.assign({}, Alpine.raw(this.$puzzle.state.timer)),
-      };
-
-      if (isDifferent(answerState, this._lastSaved)) {
+      if (isDifferent(this.answerState, this._lastSaved)) {
         try {
           const request = new FetchRequest("put", `/answers/${this.answerId}.json`, {
             body: {
               client_id: this.clientId,
-              answer: answerState,
+              answer: this.answerState,
             },
           });
 
           const response = await request.perform();
           if (response.ok) {
-            this._lastSaved = answerState;
+            this._lastSaved = this.answerState;
           } else {
             console.error("Error saving answers", response);
           }
@@ -85,6 +78,15 @@ export default function AnswerData(answer) {
           console.error(e);
         }
       }
+    },
+
+    get answerState() {
+      return {
+        completed_at: this.completedAt,
+        events: [...Alpine.raw(this.$puzzle.state.events)],
+        values: Object.assign({}, Alpine.raw(this.$puzzle.state.values)),
+        timer: Object.assign({}, Alpine.raw(this.$puzzle.state.timer)),
+      };
     },
 
     destroy() {
