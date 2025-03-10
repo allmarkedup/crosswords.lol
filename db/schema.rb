@@ -46,14 +46,4 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_234120) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "solutions", force: :cascade do |t|
-    t.integer "account_id"
-    t.integer "crossword_id"
-    t.text "values", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_solutions_on_account_id"
-    t.index ["crossword_id"], name: "index_solutions_on_crossword_id"
-  end
 end
