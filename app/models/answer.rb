@@ -3,6 +3,8 @@ class Answer < ApplicationRecord
   belongs_to :crossword
 
   serialize :values, coder: JsonCoder, default: -> { {} }
+  serialize :events, coder: JsonCoder, default: -> { [] }
+  serialize :timer, coder: JsonCoder, default: -> {}
 
   before_save :set_synced_at
 

@@ -3,7 +3,17 @@ import { timerText } from "../helpers/misc";
 export default function Stats() {
   return {
     getEvents(name) {
-      return this.$puzzle.state.events.filter((event) => event.name === name);
+      return this.events.filter((event) => event.name === name);
+    },
+
+    hasEvent(name) {
+      return !!this.events.find((event) => event.name === name);
+    },
+
+    get events() {
+      return this.$puzzle.state.events.map((evt) => {
+        return typeof evt === "string" ? { name: evt } : evt;
+      });
     },
 
     get timeTaken() {
@@ -28,6 +38,10 @@ export default function Stats() {
 
     get wordReveals() {
       return this.getEvents("rw").length;
+    },
+
+    get revealedAll() {
+      return this.hasEvent("ra");
     },
   };
 }

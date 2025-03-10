@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_08_234120) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_10_135459) do
   create_table "accounts", force: :cascade do |t|
     t.string "key", null: false
     t.datetime "created_at", null: false
@@ -25,6 +25,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_234120) do
     t.datetime "updated_at", null: false
     t.datetime "synced_at"
     t.datetime "completed_at"
+    t.text "events"
+    t.text "timer"
     t.index ["account_id"], name: "index_answers_on_account_id"
     t.index ["crossword_id"], name: "index_answers_on_crossword_id"
   end
@@ -42,8 +44,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_234120) do
     t.string "slug"
   end
 
+# Could not dump table "data" because of following StandardError
+#   Unknown type 'ANY' for column 'value'
+
+
   create_table "imports", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "solutions", force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "crossword_id"
+    t.text "values", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_solutions_on_account_id"
+    t.index ["crossword_id"], name: "index_solutions_on_crossword_id"
   end
 end

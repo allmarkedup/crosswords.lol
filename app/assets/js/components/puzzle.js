@@ -53,7 +53,7 @@ export default function Puzzle({ id, entries }) {
       if (!Array.isArray(this.state.events)) {
         this.state.events = [];
       }
-      this.state.events.push({ name, detail });
+      this.state.events.push(detail ? { name, detail } : name);
     },
 
     reset() {

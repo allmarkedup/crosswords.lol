@@ -21,6 +21,15 @@ export default function AnswerData(answer) {
         Alpine.raw(this.$puzzle.state.values),
         Alpine.raw(answer.values)
       );
+
+      if (answer.events.length > 0) {
+        this.$puzzle.state.events = Alpine.raw(answer.events);
+      }
+
+      if (answer.timer && answer.timer.seconds > this.$puzzle.state.timer.seconds) {
+        this.$puzzle.state.timer = Alpine.raw(answer.timer);
+      }
+
       this.$nextTick(() => this.save());
     },
 
@@ -34,38 +43,41 @@ export default function AnswerData(answer) {
     },
 
     updateDataReceived(data) {
-      if (
-        parseInt(data.initiator_id) !== this.clientId &&
-        isDifferent(this.$puzzle.state.values, data.answer.values)
-      ) {
-        this.$puzzle.state.values = data.answer.values;
+      if (parseInt(data.initiator_id) !== this.clientId) {
+        if (isDifferent(this.$puzzle.state.values, data.answer.values)) {
+          this.$puzzle.state.values = data.answer.values;
+        }
+        this.$puzzle.state.events = data.answer.events;
+        this.$puzzle.state.timer = data.answer.timer;
       }
     },
 
     async save() {
-      if (isDifferent(this.$puzzle.state.values, this._lastSaved)) {
-        if (!this.completedAt && this.$puzzle.finished) {
-          this.completedAt = new Date();
-        } else if (!this.$puzzle.finished) {
-          this.completedAt = null;
-        }
+      if (!this.completedAt && this.$puzzle.finished) {
+        this.completedAt = new Date();
+      } else if (!this.$puzzle.finished) {
+        this.completedAt = null;
+      }
 
-        const values = Object.assign({}, Alpine.raw(this.$puzzle.state.values));
+      const answerState = {
+        completed_at: this.completedAt,
+        events: [...Alpine.raw(this.$puzzle.state.events)],
+        values: Object.assign({}, Alpine.raw(this.$puzzle.state.values)),
+        timer: Object.assign({}, Alpine.raw(this.$puzzle.state.timer)),
+      };
 
+      if (isDifferent(answerState, this._lastSaved)) {
         try {
           const request = new FetchRequest("put", `/answers/${this.answerId}.json`, {
             body: {
               client_id: this.clientId,
-              answer: {
-                completed_at: this.completedAt,
-                values: values,
-              },
+              answer: answerState,
             },
           });
 
           const response = await request.perform();
           if (response.ok) {
-            this._lastSaved = values;
+            this._lastSaved = answerState;
           } else {
             console.error("Error saving answers", response);
           }
@@ -74,19 +86,13 @@ export default function AnswerData(answer) {
         }
       }
     },
+
+    destroy() {
+      return this.save();
+    },
   };
 }
 
 function isDifferent(obj1, obj2) {
   return !isEqual(Alpine.raw(obj1), Alpine.raw(obj2));
-}
-
-function convertToDateTimeLocalString(date) {
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
-  const hours = date.getHours().toString().padStart(2, "0");
-  const minutes = date.getMinutes().toString().padStart(2, "0");
-
-  return `${year}-${month}-${day}T${hours}:${minutes}`;
 }

@@ -25,6 +25,10 @@
         <span class="summary-stat-label">Word reveals:</span>
         <strong class="summary-stat-value" x-text="wordReveals" :class="{zero: wordReveals === 0}"></strong>
       </li>
+      <li class="summary-stat">
+        <span class="summary-stat-label">Revealed all?</span>
+        <strong class="summary-stat-value" x-text="revealedAll ? 'yes' : 'no'" :class="{zero: revealedAll === false}"></strong>
+      </li>
     </ul>
   </section>
   <section class="modal-section">

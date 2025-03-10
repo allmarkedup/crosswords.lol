@@ -19,10 +19,12 @@ export default function Timer() {
     start() {
       this.running = true;
       this.$puzzle.state.timer.started = true;
+      this.$dispatch("timer:change");
     },
 
-    stop() {
+    stop(silent = false) {
       this.running = false;
+      if (!silent) this.$dispatch("timer:change");
     },
 
     toggle() {
@@ -30,9 +32,10 @@ export default function Timer() {
     },
 
     reset() {
-      this.stop();
+      this.stop(true);
       this.$puzzle.state.timer.started = false;
       this.timeElapsed = 0;
+      this.$dispatch("timer:change");
     },
 
     destroy() {

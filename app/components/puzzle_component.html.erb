@@ -8,6 +8,7 @@
   @event:reveal-letter.document="record('rl')"
   @event:reveal-word.document="record('rw')"
   @event:check-all.document="record('ca')"
+  @event:reveal-all.document="record('ra')"
   @action:reset="reset">
   <header class="puzzle-header<%= " sync-challenge" if params[:challenge] == "true" %>">
     <div class="puzzle-header-container">
@@ -80,6 +81,10 @@
     %>
   </div>
   <% if answer %>
-    <div x-data="answerData(<%= answer.to_json %>)" @crossword:change.document="setTimeout(() => save())"></div>
+    <div
+      x-data="answerData(<%= answer.to_json %>)"
+      @crossword:change.document="save()"
+      @timer:change.document="save()"
+      ></div>
   <% end %>
 </div>
