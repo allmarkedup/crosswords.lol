@@ -1,0 +1,28 @@
+<%
+@page_title = "About"
+%>
+
+<section class="prose">
+  <p>
+    I love doing <%= link_to "Guardian quick crosswords", "https://www.theguardian.com/crosswords/series/quick" %>.
+    But I've always found the Guardian website crossword UI a bit 💩 on mobile devices - which is frustrating as I'm normally doing them on my phone.
+  </p>
+  <p>
+    So I built <strong>crosswords.lol</strong> as a little side-project to provide an alternative, mobile-optimised interface for solving the excellent Guardian quick crossword clues.
+  </p>
+  <p>
+    The app uses <%= link_to "Ruby on Rails", "https://rubyonrails.org/" %> for the backend and vanilla HTML/CSS with a sprinkling of <%= link_to "AlpineJS", "https://alpinejs.dev" %>
+    for the UI. The underlying clue data is all (a little cheekily 🙈) scraped from the daily quick crossword pages on the Guardian website.
+  </p>
+  <p>
+    I've also added a few extra features that I wanted to experiment with, including <span>timers</span> and <span>single-letter reveals</span>.
+    More to come too!
+  </p>
+  <p style="margin-top: 1.4em">
+    &mdash; <%= link_to tag.strong("allmarkedup"), "https:://github.com/allmarkedup" %>
+  </p>
+</section>
+
+<footer class="prose centered">
+  <p style="opacity: 0.7">&larr; <%= link_to "Back to the crosswords", root_path %></p>
+</footer>

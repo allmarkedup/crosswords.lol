@@ -75,7 +75,7 @@
         width: min(38px, 1.5em);
 
         svg {
-          stroke-width: 1;
+          stroke-width: 1.5;
         }
 
         &:hover {

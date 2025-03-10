@@ -32,17 +32,21 @@
             <%= image_tag "icon.svg", class: "app-header-logo", alt: "Logo for Crosswords.lol" %>
             <span class="app-header-name">crosswords.lol</span>
           <% end %>
+          
           <div class="app-header-nav">
             <% if devmode? %>
               <%= button_to devmode_path, method: :delete, id: "app-header-devmode-off" do %>
                 <%= button :bug_off, tag: :span, alt: "Devmode off" %>
               <% end %>
-              
-                <%= button :arrow_down_up,
-                  href: syncing? ? sync_path : new_sync_path(challenge: params[:challenge]),
-                  alt: "Sync",
-                  id: "app-header-sync-link" %>
-              
+            <% end %>
+            <%= button :circle_help,
+              href: about_page_path,
+              alt: "About" %> 
+            <% if devmode? %>
+              <%= button :arrow_down_up,
+                href: syncing? ? sync_path : new_sync_path(challenge: params[:challenge]),
+                alt: "Sync",
+                id: "app-header-sync-link" %>
             <% end %>
             <%= button :settings, "@click": "toggleSettings", alt: "Settings", id: "app-header-settings-link" %>
           </div>

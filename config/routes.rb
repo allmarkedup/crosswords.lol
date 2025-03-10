@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   mount MissionControl::Jobs::Engine, at: "/jobs"
 
   root "quick_crosswords#index"
+  get "/about", to: "pages#about", as: :about_page
 
   resource :sync, only: [:new, :create, :show], controller: :sync do
     resource :device, only: [:create, :destroy], controller: "sync/device"
