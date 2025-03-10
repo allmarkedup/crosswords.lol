@@ -26,7 +26,7 @@ module Sync
       cookies.delete(:current_account_id)
       Current.account = nil
 
-      redirect_to new_sync_path, notice: "Syncing disabled", status: :see_other
+      redirect_to root_path, notice: "Syncing disabled", status: :see_other
     end
 
     private
