@@ -28,7 +28,7 @@
         ) if older_link %>
         <div class="puzzle-header-main">
           <div class="puzzle-header-date">
-            <span><%= date %></span>
+            <%= link_to date, provider_url, target: "_blank" %>
           </div>
           <div class="puzzle-header-complete" @click="$app.modal = 'summary'" x-show="finished" x-cloak>
             <%= icon :dot, class: "puzzle-header-separator" %>

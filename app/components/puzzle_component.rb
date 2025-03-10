@@ -19,4 +19,8 @@ class PuzzleComponent < BaseComponent
   def date
     @crossword.date.strftime("%-d/%-m/%y")
   end
+
+  def provider_url
+    "https://guardian.co.uk/#{@crossword.provider_reference}"
+  end
 end

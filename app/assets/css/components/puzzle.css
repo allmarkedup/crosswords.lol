@@ -113,6 +113,16 @@
       }
     }
 
+    .puzzle-header-date a {
+      color: var(--color-light-3);
+      text-decoration: none;
+
+      .icon {
+        width: 1em;
+        height: 1em;
+      }
+    }
+
     .puzzle-header-separator {
       flex: none;
       font-size: 0.5em;
