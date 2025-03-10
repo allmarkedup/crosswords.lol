@@ -12,7 +12,7 @@ module Sync
     end
 
     def create
-      account = Account.find_by!(key: account_params[:key].downcase)
+      account = Account.find_by!(key: account_params[:key].downcase.strip)
       self.current_account = account.id
 
       redirect_to sync_path, notice: "Syncing enabled"
