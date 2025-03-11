@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+gem "administrate", ">= 1.0.0.beta3"
 gem "cssbundling-rails", "~> 1.4"
 gem "draper"
 gem "faker"
