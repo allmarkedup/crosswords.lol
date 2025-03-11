@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     @last_import ||= Import.latest
 
     if @last_import
-      last_import_hours_ago = (@last_import.created_at.to_time - Time.zone.now) / 1.hour
+      last_import_hours_ago = ((Time.zone.now - @last_import.created_at.to_time) / 1.hour).floor
       return if last_import_hours_ago <= 24
     end
 
