@@ -17,10 +17,10 @@ class PuzzleComponent < BaseComponent
   end
 
   def date
-    @crossword.date.strftime("%-d/%-m/%y")
+    @crossword.published_at.strftime("%-d/%-m/%y")
   end
 
   def provider_url
-    "https://guardian.co.uk/#{@crossword.provider_reference}"
+    "https://guardian.co.uk/crosswords/quick/#{@crossword.number}"
   end
 end

@@ -9,7 +9,7 @@ module Admin
     # end
 
     def find_resource(param)
-      Crossword.find_by!(slug: param)
+      Crossword.find_by!(number: param)
     end
 
     # The result of this lookup will be available as `requested_resource`

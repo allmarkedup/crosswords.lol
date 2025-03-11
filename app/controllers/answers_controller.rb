@@ -9,7 +9,7 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_to quick_crossword_path(@answer.crossword), status: :see_other
+        redirect_to crossword_path(@answer.crossword), status: :see_other
       end
       format.json do
         render json: @answer

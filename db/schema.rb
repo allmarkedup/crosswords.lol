@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_10_135459) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_11_225320) do
   create_table "accounts", force: :cascade do |t|
     t.string "key", null: false
     t.datetime "created_at", null: false
@@ -36,12 +36,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_10_135459) do
     t.integer "column_count", null: false
     t.integer "row_count", null: false
     t.text "entries", null: false
-    t.string "provider_name", null: false
-    t.string "provider_reference", null: false
-    t.datetime "provider_published_on"
+    t.string "provider_name"
+    t.string "provider_reference"
+    t.datetime "published_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.integer "number"
   end
 
 # Could not dump table "data" because of following StandardError

@@ -26,7 +26,7 @@
       <h4>Your clue:</h4>
       <div class="challenge-clue-info">
         <label><%= Current.challenge.clue %></label>
-        <%= button href: quick_crossword_path(Current.challenge.crossword, entry: Current.challenge.entry.id, challenge: true), theme: :secondary do %>
+        <%= button href: crossword_path(Current.challenge.crossword, entry: Current.challenge.entry.id, challenge: true), theme: :secondary do %>
           See it in the crossword (<%= Current.challenge.crossword_name %>) &nbsp;<strong>&rarr;</strong>
         <% end %>
       </div>

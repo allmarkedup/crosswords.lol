@@ -11,11 +11,10 @@ class CrosswordDashboard < Administrate::BaseDashboard
     id: Field::Number,
     slug: Field::String,
     provider_name: Field::String,
-    provider_reference: Field::String,
+    number: Field::Number,
     column_count: Field::Number,
     row_count: Field::Number,
-    provider_published_on: Field::DateTime,
-    crossword_type: Field::String,
+    published_at: Field::DateTime,
     entries: Field::Text,
     answers: Field::HasMany,
     created_at: Field::DateTime,
@@ -29,8 +28,8 @@ class CrosswordDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
-    slug
-    provider_reference
+    number
+    published_at
     answers
   ].freeze
 
@@ -38,9 +37,8 @@ class CrosswordDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
-    slug
-    provider_reference
-    provider_published_on
+    number
+    published_at
     updated_at
     created_at
     entries
@@ -51,9 +49,8 @@ class CrosswordDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    slug
-    provider_published_on
-    provider_reference
+    number
+    published_at
   ].freeze
 
   # COLLECTION_FILTERS
