@@ -186,6 +186,11 @@
   resolved "https://registry.yarnpkg.com/@rails/request.js/-/request.js-0.0.11.tgz#4d9be25a49d97911c64ccd0f00b79d57fca4c3b4"
   integrity sha512-2U3uYS0kbljt+pAstN+LIlZOl7xmOKig5N6FrvtUWO1wq0zR1Hf90fHfD2SYiyV8yH1nyKpoTmbLqWT0xe1zDg==
 
+"@ryangjchandler/alpine-clipboard@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@ryangjchandler/alpine-clipboard/-/alpine-clipboard-2.3.0.tgz#44d7a9e8c4446fd24ece2d6be0d23fac7dd59b20"
+  integrity sha512-r1YL/LL851vSemjgcca+M6Yz9SNtA9ATul8nJ0n0sAS1W3V1GUWvH0Od2XdQF1r36YJF+/4sUc0eHF/Zexw7dA==
+
 "@sindresorhus/merge-streams@^2.1.0":
   version "2.3.0"
   resolved "https://registry.npmjs.org/@sindresorhus/merge-streams/-/merge-streams-2.3.0.tgz"

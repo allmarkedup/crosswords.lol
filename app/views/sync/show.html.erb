@@ -8,10 +8,14 @@
   </p>
 </section>
 
-<section class="prose">
-  <h3>Your sync key</h3>
+<section class="prose" x-data="<%= {key: Current.account.key, copied: false, timeout: nil}.to_json %>">
+  <h3>Your sync key <span style="font-weight: normal; opacity: 0.7; font-size: 0.8em">(click to copy)</span></h3>
 
-  <div class="account-key">
+  <div
+    class="account-key"
+    x-clipboard="key"
+    @click="clearTimeout(timeout); copied = true; timeout = setTimeout(() => { copied = false }, 200)"
+    :class="{copied}">
     <%= Current.account.key %>
   </div>
 

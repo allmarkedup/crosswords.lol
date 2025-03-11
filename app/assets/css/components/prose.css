@@ -96,6 +96,13 @@
     margin-block: 1em;
     border-radius: 0.4em;
     font-size: 0.9em;
+    cursor: pointer;
+    transition: color 0.1s;
+
+    &.copied {
+      color: var(--color-bg-positive);
+      opacity: 1;
+    }
   }
 
   .challenge-clue {

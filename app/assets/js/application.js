@@ -4,6 +4,7 @@ import Alpine from "alpinejs";
 import focus from "@alpinejs/focus";
 import persist from "@alpinejs/persist";
 import morph from "@alpinejs/morph";
+import Clipboard from "@ryangjchandler/alpine-clipboard";
 
 import AnswerData from "./components/answer_data";
 import App from "./components/app";
@@ -20,6 +21,7 @@ import Timer from "./components/timer";
 Alpine.plugin(focus);
 Alpine.plugin(persist);
 Alpine.plugin(morph);
+Alpine.plugin(Clipboard);
 
 Alpine.data("answerData", AnswerData);
 Alpine.data("app", App);

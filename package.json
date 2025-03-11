@@ -15,6 +15,7 @@
     "@alpinejs/persist": "^3.14.8",
     "@rails/actioncable": "^8.0.100",
     "@rails/request.js": "^0.0.11",
+    "@ryangjchandler/alpine-clipboard": "^2.3.0",
     "alpinejs": "^3.14.8",
     "autoprefixer": "^10.4.20",
     "container-query-polyfill": "^1.0.2",
