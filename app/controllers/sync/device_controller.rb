@@ -2,7 +2,6 @@ module Sync
   class DeviceController < ApplicationController
     rate_limit to: 3, within: 1.minute, only: [:create]
 
-    before_action :ensure_devmode
     before_action :redirect_if_syncing, only: [:new, :create]
 
     layout "page"

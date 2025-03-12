@@ -42,12 +42,10 @@
             <%= button :circle_help,
               href: about_page_path,
               alt: "About" %> 
-            <% if devmode? %>
-              <%= button :arrow_down_up,
-                href: syncing? ? sync_path : new_sync_path(challenge: params[:challenge]),
-                alt: "Sync",
-                id: "app-header-sync-link" %>
-            <% end %>
+            <%= button :arrow_down_up,
+              href: syncing? ? sync_path : new_sync_path(challenge: params[:challenge]),
+              alt: "Sync",
+              id: "app-header-sync-link" %>
             <%= button :settings,
               href: settings_page_path,
               alt: "Settings",
