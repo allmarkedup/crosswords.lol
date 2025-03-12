@@ -3,14 +3,14 @@ Rails.application.routes.draw do
 
   root "crosswords#index"
 
-  get "🧩:number", to: "crosswords#show", as: :crossword
+  get "/★/:number", to: "crosswords#show", as: :crossword
 
-  get "/about", to: "pages#about", as: :about_page
+  get "/⁇", to: "pages#about", as: :about_page
 
-  resource :sync, only: [:new, :create, :show], controller: :sync do
+  resource "⇪", only: [:new, :create, :show], controller: :sync, as: :sync do
     resource :device, only: [:create, :destroy], controller: "sync/device"
   end
-  get "/sync/device", to: "sync/device#new", as: :new_sync_device
+  get "/⇪/device", to: "sync/device#new", as: :new_sync_device
 
   resources :answers, only: [:update]
 
