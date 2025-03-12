@@ -8,9 +8,11 @@ Rails.application.routes.draw do
   get "/⁇", to: "pages#about", as: :about_page
 
   resource "⇪", only: [:new, :create, :show], controller: :sync, as: :sync do
-    resource :device, only: [:create, :destroy], controller: "sync/device"
+    resource :device, only: [:create, :destroy], controller: "sync/device", as: :device
   end
   get "/⇪/device", to: "sync/device#new", as: :new_sync_device
+
+  get "/sync", to: "sync#redirect"
 
   resources :answers, only: [:update]
 
