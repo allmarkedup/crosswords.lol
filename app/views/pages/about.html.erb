@@ -4,22 +4,19 @@
 
 <section class="prose">
   <p>
-    I love doing <%= link_to "Guardian quick crosswords", "https://www.theguardian.com/crosswords/series/quick" %>.
-    But I've always found the Guardian website crossword UI a bit 💩 on mobile devices - which is frustrating as I'm normally doing them on my phone.
+    <%= crosswords_dot_lol %> scrapes the daily quick crossword data from the source code of the <%= link_to "Guardian website", "https://www.theguardian.com/crosswords/series/quick" %>
+    and uses it to render a custom, mobile-optimised crossword UI (with a few extra bells and whistles added on top).
   </p>
+
   <p>
-    So I built <strong>crosswords.lol</strong> as a little side-project to provide an alternative, mobile-optimised interface for solving the excellent Guardian quick crossword clues.
+    Why? Because the Guardian crossword setters are great ❤️ but the website crossword UI has always been a bit 'basic' on mobile devices.
+    So it seemed like a fun little project to try and build a nicer, more mobile-friendly app experience to complement their 👌 clue-setting.
   </p>
+
   <p>
-    The app uses <%= link_to "Ruby on Rails", "https://rubyonrails.org/" %> for the backend and vanilla HTML/CSS with a sprinkling of <%= link_to "AlpineJS", "https://alpinejs.dev" %>
-    for the UI. The underlying clue data is all (a little cheekily 🙈) scraped from the daily quick crossword pages on the Guardian website.
-  </p>
-  <p>
-    I've also added a few extra features that I wanted to experiment with, including <span>timers</span> and <span>single-letter reveals</span>.
-    More to come too!
-  </p>
-  <p style="margin-top: 1.4em">
-    &mdash; <%= link_to tag.strong("allmarkedup"), "https:://github.com/allmarkedup" %>
+    If you enjoy using <%= crosswords_dot_lol %> then please consider heading over to the
+    <%= link_to "Guardian website", "https://www.theguardian.com/" %> to donate / subscribe / click on some ads or something.
+    This is all (a bit cheekily) built on their data and it's always nice to say thank you 🙏
   </p>
 </section>
 

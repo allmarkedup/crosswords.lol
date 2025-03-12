@@ -74,3 +74,21 @@ body {
 [x-cloak] {
   display: none;
 }
+
+.crosswords-dot-lol {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  column-gap: 0.2em;
+  font-size: 1em;
+  vertical-align: bottom;
+  text-decoration: none !important;
+
+  img {
+    width: 0.8em;
+  }
+
+  span {
+    white-space: nowrap;
+    color: var(--color-light-1);
+  }
+}
