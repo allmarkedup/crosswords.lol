@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/★/:number", to: "crosswords#show", as: :crossword
 
   get "/⁇", to: "pages#about", as: :about_page
+  get "/settings", to: "pages#settings", as: :settings_page
 
   resource "⇪", only: [:new, :create, :show], controller: :sync, as: :sync do
     resource :device, only: [:create, :destroy], controller: "sync/device", as: :device

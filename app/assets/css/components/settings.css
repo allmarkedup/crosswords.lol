@@ -11,12 +11,11 @@
 
   .settings-option {
     display: contents;
-    font-family: var(--font-mono);
   }
 
   .settings-option-label {
     color: var(--color-light-2);
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
 
   .settings-option-label,
@@ -39,12 +38,13 @@
   }
 
   .settings-option-toggle {
+    font-family: var(--font-mono);
     display: flex;
     align-items: center;
     padding: 4px;
     background-color: var(--color-dark-1);
     border-radius: 6px;
-    font-size: 0.8em;
+    font-size: 0.9em;
 
     button {
       border-radius: 6px;

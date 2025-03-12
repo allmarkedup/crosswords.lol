@@ -1,11 +1,8 @@
-<%# locals: (back: nil) %>
+<%
+@page_title = "Settings"
+%>
 
-<%= render ModalComponent.new(
-  id: "settings",
-  title: "Settings",
-  class: "settings",
-  blocking: true
-) do |modal| %>
+<div class="settings">
   <div class="settings-options">
     <div class="settings-option">
       <div class="settings-option-label">
@@ -38,9 +35,10 @@
       </div>
     </div>
   </div>
-  <% if back %>
-    <footer class="settings-footer">
-      <%= button "Back to crossword", "@click": "hide" %>
-    </footer>
-  <% end %>
-<% end %>
+</div>
+
+<footer class="prose centered">
+  <p style="opacity: 0.7">
+    &larr; <%= back_to_crosswords_link %>
+  </p>
+</footer>

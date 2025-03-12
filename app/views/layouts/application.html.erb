@@ -48,14 +48,16 @@
                 alt: "Sync",
                 id: "app-header-sync-link" %>
             <% end %>
-            <%= button :settings, "@click": "toggleSettings", alt: "Settings", id: "app-header-settings-link" %>
+            <%= button :settings,
+              href: settings_page_path,
+              alt: "Settings",
+              id: "app-header-settings-link" %>
           </div>
         </div>
       </header>
       <div data-morph-root>
         <%= content_for?(:main) ? yield(:main) : yield %>
       </div>
-      <%= render "settings", back: ("Back to crossword" if @crossword) %>
     </div>
   </body>
 </html>
