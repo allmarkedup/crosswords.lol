@@ -20,9 +20,7 @@ On the frontend, each crossword is rendered using SVG using the scraped data to 
 
 ### Disclaimer
 
-I don't want the scary Guardian lawyers to sue me for `$billions` 🤑. So you probably shouldn't acually use this. Or at least if you do then maybe go to [theguardian.com](https://www.theguardian.com) afterwards and click on a few of their ads or subscribe to the newspaper or _whatever_.
-
-They really do have the best crossword setters and I really don't want their entire online puzzle empire to collapse because I felt the need to scratch my itch for a better mobile UI... 😜
+I don't want the scary Guardian lawyers to sue me 🤑. So you probably shouldn't acually use this. Or at least if you do then maybe go to [theguardian.com](https://www.theguardian.com) afterwards and click on a few of their ads or subscribe to the newspaper or _whatever_.
 
 
 
