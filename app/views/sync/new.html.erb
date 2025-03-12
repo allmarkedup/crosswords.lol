@@ -11,7 +11,7 @@
       <li><strong>That's it!</strong> Your crossword data will now be automagically synced between your devices.</li>
     </ol>
 
-    <p class="highlight"><span><span class="emoji">🔑</span> <em>Already got a sync key? <%= link_to tag.strong("Link your device here"), new_sync_device_path %></em>.</span></p>
+    <p class="highlight"><span><span class="emoji">🔑</span> <em>Already got a sync key? <%= link_to tag.strong("Link your device here"), new_sync_device_path, "@click.prevent": "hijax" %></em>.</span></p>
   </section>
 <% end %>
 
@@ -26,7 +26,7 @@
       <h4>Your clue:</h4>
       <div class="challenge-clue-info">
         <label><%= Current.challenge.clue %></label>
-        <%= button href: crossword_path(Current.challenge.crossword, entry: Current.challenge.entry.id, challenge: true), theme: :secondary do %>
+        <%= button href: crossword_path(Current.challenge.crossword, entry: Current.challenge.entry.id, challenge: true), theme: :secondary, "@click.prevent": "hijax" do %>
           See it in the crossword (<%= Current.challenge.crossword_name %>) &nbsp;<strong>&rarr;</strong>
         <% end %>
       </div>

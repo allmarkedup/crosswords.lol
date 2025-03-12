@@ -41,15 +41,18 @@
             <% end %>
             <%= button :circle_help,
               href: about_page_path,
-              alt: "About" %> 
+              alt: "About",
+              "@click.prevent": "hijax" %> 
             <%= button :arrow_down_up,
               href: syncing? ? sync_path : new_sync_path(challenge: params[:challenge]),
               alt: "Sync",
-              id: "app-header-sync-link" %>
+              id: "app-header-sync-link",
+              "@click.prevent": "hijax" %>
             <%= button :settings,
               href: settings_page_path,
               alt: "Settings",
-              id: "app-header-settings-link" %>
+              id: "app-header-settings-link",
+              "@click.prevent": "hijax" %>
           </div>
         </div>
       </header>

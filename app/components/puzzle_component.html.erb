@@ -14,7 +14,7 @@
     <div class="puzzle-header-container">
       <% if params[:challenge] == "true" %>
         <div class="puzzle-challenge-back">
-          <%= link_to new_sync_path(challenge: true), class: "puzzle-challenge-back-link" do %>
+          <%= link_to new_sync_path(challenge: true), class: "puzzle-challenge-back-link", "@click.prevent": "hijax" do %>
             <%= icon :arrow_big_left %>
             <span>Back to sync key generator</span>
           <% end %>
