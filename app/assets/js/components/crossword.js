@@ -160,6 +160,7 @@ export default function Crossword(opts) {
       } else {
         this.goToPreviousCell();
       }
+      this.$dispatch("crossword:change");
     },
 
     goToNextCell() {
