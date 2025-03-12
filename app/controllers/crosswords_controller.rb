@@ -11,7 +11,10 @@ class CrosswordsController < ApplicationController
     if Current.account
       @answer = Current.account.answers.find_or_create_by(crossword_id: @crossword.id)
     end
-    session[:latest_crossword_number] = @crossword.number
+
+    unless params[:challenge] == "true"
+      session[:last_visited_crossword_number] = @crossword.number
+    end
   end
 
   private

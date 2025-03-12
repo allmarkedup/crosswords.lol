@@ -9,12 +9,12 @@ module ApplicationHelper
   end
 
   def recent_crossword_path
-    session[:latest_crossword_number] ? crossword_path(session[:latest_crossword_number]) : root_path
+    session[:last_visited_crossword_number] ? crossword_path(session[:last_visited_crossword_number]) : root_path
   end
 
   def back_to_crosswords_link
     link_to(
-      "Back to the crossword#{"s" unless session[:latest_crossword_number]}",
+      "Back to the crosswords",
       recent_crossword_path,
       "@click.prevent": "hijax"
     )

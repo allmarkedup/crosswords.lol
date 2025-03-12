@@ -81,6 +81,16 @@
         &:hover {
           opacity: 1;
         }
+
+        &.active {
+          opacity: 0.5;
+          cursor: auto;
+          pointer-events: none;
+        }
+
+        &[disabled] {
+          opacity: 0.3;
+        }
       }
     }
   }
@@ -94,7 +104,7 @@
     }
   }
 
-  [data-logged-in] & #app-header-sync-link svg {
+  [data-syncing="true"] & #app-header-sync-link svg {
     color: var(--color-bg-positive);
   }
 
