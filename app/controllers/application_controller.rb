@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
     end
 
     @last_import = nil
-    ImportCrosswordsJob.perform_now
+    ImportLatestCrosswordsJob.perform_now
   end
 
   def ensure_devmode
