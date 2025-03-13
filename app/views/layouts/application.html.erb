@@ -29,7 +29,7 @@
       <div data-morph-root>
         <header class="app-header">
           <div class="app-header-container">
-            <%= link_to root_path, class: "app-header-branding" do %>
+            <%= link_to crossword_path(Crossword.latest), class: "app-header-branding", "@click.prevent": "hijax" do %>
               <%= image_tag "icon.svg", class: "app-header-logo", alt: "Logo for Crosswords.lol" %>
               <span class="app-header-name">crosswords.lol</span>
             <% end %>
