@@ -9,7 +9,7 @@ page_id = url_for.delete_prefix("/").tr("/", "-")
         <div class="page-bg"></div>
         <% if @page_title %>
           <header class="page-header">
-            <h2 class="page-title"><%= @page_title %></h2>
+            <h2 class="page-title"><%== @page_title %></h2>
           </header>
         <% end %>
         <div class="page-content">

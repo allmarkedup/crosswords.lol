@@ -1,10 +1,12 @@
 <% 
-@page_title = "Enable syncing"
+@page_title = "Sync your data &nbsp;↑↓"
 %>
+
+<% content_for :title do %>Sync your data ↑↓<% end %>
 
 <section>
   <div class="prose">
-    <p>Enable crossword data syncing with this device by entering your unique key below.</p>
+    <p>Enable crossword data syncing on this device by entering your unique key below.</p>
     <p class="highlight"><span><span class="emoji">🔑</span> <em>Don't have a sync key? <%= link_to tag.strong("Generate one now!"), new_sync_path %></em></span></p>
   </div>
 </section>

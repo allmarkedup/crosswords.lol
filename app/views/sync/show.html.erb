@@ -1,10 +1,12 @@
 <%
-@page_title = "✅ &nbsp; Syncing enabled".html_safe
+@page_title = "✅ &nbsp; Cloud sync enabled"
 %>
+
+<% content_for :title do %>Your sync key<% end %>
 
 <section class="prose">
   <p>
-    Your crossword answers will be <strong>automatically synced across all devices</strong> that have been connected using the key below.
+    Your crossword answers are being automatically saved to the cloud and will be synced across any devices connected using your key below.
   </p>
 </section>
 
@@ -23,14 +25,15 @@
 </section>
 
 <section class="prose">
-  <h3>To link another device:</h3>
+  <h3>To sync with another device:</h3>
   <ol>
-    <li>Visit <%= link_to "crosswords.lol/sync", sync_device_url %> on the other device and enter the key above.</li>
-    <li><strong>That's it!</strong> Your crossword data will now be automagically synced between your devices.</li>
-  </ol>
+      <li>Visit <%= link_to "crosswords.lol/sync", sync_device_url %> on the other device.</li>
+      <li>Enter the <strong>sync key above</strong> and click on the 'Enable syncing' button.</li>
+      <li><strong class="emoji" style="color: var(--color-bg-positive)">✅ All done!</strong> Now any changes you make on either device will be automatically <strong>saved to the cloud</strong> and <strong>synced across all devices</strong>.</li>
+    </ol>
 </section>
 
 <footer class="prose centered">
-  <div class="p">To disable syncing on this device <em><%= button_to tag.strong("click here"), sync_device_path, method: :delete %></em>.</div>
+  <div class="p">To disable cloud syncing on this device <em><%= button_to tag.strong("click here"), sync_device_path, method: :delete %></em>.</div>
   <p style="opacity: 0.7">&larr; <%= back_to_crosswords_link %></p>
 </footer>
