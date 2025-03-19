@@ -22,10 +22,13 @@ module Crisscross
     config.generators.system_tests = nil
 
     config.action_mailer.delivery_method = :mailgun
-    config.action_mailer.mailgun_settings = {
-      domain: Rails.application.credentials.mailgun.domain,
-      api_key: Rails.application.credentials.mailgun.api_key
-    }
+
+    if Rails.application.credentials.mailgun
+      config.action_mailer.mailgun_settings = {
+        domain: Rails.application.credentials.mailgun.domain,
+        api_key: Rails.application.credentials.mailgun.api_key
+      }
+    end
 
     config.hosts << "crosswords.ngrok.dev"
     config.hosts << "crosswords.lol"
