@@ -2,12 +2,12 @@ require "test_helper"
 
 class CrosswordsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @crossword = Crossword.random
+    @crossword = crosswords.random
   end
 
   test "root URL should redirect to latest crossword" do
     get root_url
-    assert_redirected_to crossword_url(Crossword.latest)
+    assert_redirected_to crossword_url(crosswords.latest)
   end
 
   test "should show crossword" do
