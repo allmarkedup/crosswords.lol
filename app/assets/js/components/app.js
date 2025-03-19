@@ -49,6 +49,7 @@ export default function App() {
       const { ok, doc } = await fetchHTML(url);
       if (ok) {
         this._morphRoot.innerHTML = doc.querySelector("[data-morph-root]").innerHTML;
+        document.title = doc.title;
         loadIcons();
 
         if (updateHistory) history.pushState({}, "", url);
