@@ -17,12 +17,12 @@ class CrosswordIntent
 
   def fetch_data
     html = get_html(path)
-    json_data = html.css("[data-crossword-data]")&.first&.attribute("data-crossword-data")&.value&.strip
+    json_data = html.css("[name='CrosswordComponent']")&.attribute("props")&.value&.strip
     if json_data.present?
       raw_data = parse_json(json_data)
-      normalize_data(raw_data)
+      normalize_data(raw_data[:data])
     else
-      raise CrosswordProviderError, "Failed to extract crossword data"
+      raise CrosswordProviderError, "Failed to extract crossword data #{raw_data}"
     end
   end
 
