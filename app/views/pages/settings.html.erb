@@ -21,6 +21,21 @@
     </div>
     <div class="settings-option">
       <div class="settings-option-label">
+        Start timer automatically
+      </div>
+      <div class="settings-option-control">
+        <div class="settings-option-toggle">
+          <button @click="$settings.timerAutoStart = true" :class="{enabled: $settings.timerAutoStart}">
+            Yes
+          </button>
+          <button @click="$settings.timerAutoStart = false" :class="{enabled: !$settings.timerAutoStart}">
+            No
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="settings-option">
+      <div class="settings-option-label">
         Show stats when finished
       </div>
       <div class="settings-option-control">

@@ -6,6 +6,7 @@
   @timer:start.document="start"
   @timer:reset.document="reset"
   @crossword:complete.document="stop"
+  @crossword:change.document="if ($settings.timerAutoStart && !running) start()"
   :class="{running,started}">
   <span class="timer-display" x-text="formattedTimeElapsed" @click.stop="toggle">00:00:00</span>
   <%= button(
