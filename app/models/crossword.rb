@@ -2,7 +2,7 @@ class Crossword < ApplicationRecord
   has_many :answers
 
   serialize :entries, coder: JsonCoder
-  attribute :slug, :string, default: -> { SlugGenerator.generate }
+  attribute :slug, :string, default: -> { SlugGenerator.call }
 
   def next
     self.class

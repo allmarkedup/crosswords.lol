@@ -6,6 +6,6 @@ class Account < ApplicationRecord
   private
 
   def assign_key
-    self.key ||= AccountKeyGenerator.generate
+    self.key ||= AccountKeyGenerator.call
   end
 end
