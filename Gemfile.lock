@@ -226,6 +226,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.3-x86_64-linux-musl)
       racc (~> 1.4)
+    oaken (0.7.1)
     oj (3.16.9)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
@@ -415,6 +416,7 @@ DEPENDENCIES
   mailgunner
   mission_control-jobs
   nokogiri
+  oaken
   premailer-rails
   propshaft
   puma (>= 5.0)

@@ -20,9 +20,9 @@ module Crisscross
     config.autoload_lib(ignore: %w[assets tasks])
 
     config.generators.system_tests = nil
+    config.app_generators { _1.test_framework _1.test_framework, fixture: false }
 
     config.action_mailer.delivery_method = :mailgun
-
     if Rails.application.credentials.mailgun
       config.action_mailer.mailgun_settings = {
         domain: Rails.application.credentials.mailgun.domain,
