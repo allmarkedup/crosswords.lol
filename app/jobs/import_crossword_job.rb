@@ -6,7 +6,7 @@ class ImportCrosswordJob < ApplicationJob
     data = crossword_intent.data
     Crossword
       .create_with(**data.slice(:column_count, :row_count, :published_at, :entries))
-      .find_or_create_by(**data.slice(:provider_name, :number))
+      .find_or_create_by(**data.slice(:number))
     logger.info "Imported crossword ##{data[:number]}"
   rescue => error
     AdminMailer.with(

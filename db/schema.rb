@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_19_202604) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_19_205020) do
   create_table "accounts", force: :cascade do |t|
     t.string "key", null: false
     t.datetime "created_at", null: false
@@ -36,8 +36,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_19_202604) do
     t.integer "column_count", null: false
     t.integer "row_count", null: false
     t.text "entries", null: false
-    t.string "provider_name"
-    t.string "provider_reference"
     t.datetime "published_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
