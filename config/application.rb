@@ -5,6 +5,7 @@ require "active_model/railtie"
 require "active_job/railtie"
 require "active_record/railtie"
 require "action_controller/railtie"
+require "action_mailer/railtie"
 require "action_cable/engine"
 require "action_view/railtie"
 require "rails/test_unit/railtie"
@@ -20,10 +21,13 @@ module Crisscross
 
     config.generators.system_tests = nil
 
+    config.action_mailer.delivery_method = :mailgun
+    config.action_mailer.mailgun_settings = {
+      domain: Rails.application.credentials.mailgun.domain,
+      api_key: Rails.application.credentials.mailgun.api_key
+    }
+
     config.hosts << "crosswords.ngrok.dev"
     config.hosts << "crosswords.lol"
-
-    # config.logger = Logger.new($stdout)
-    # config.logger.level = Logger::DEBUG
   end
 end

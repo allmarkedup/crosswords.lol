@@ -1,0 +1,24 @@
+<div style="border-bottom: 2px dashed #ccc; padding-bottom: 4px;">
+  <h1>An import failed 💥</h1>
+</div>
+
+<div style="margin-top: 28px; margin-bottom: 24px;">
+  <p style="margin-bottom: 8px"><strong>Computer says</strong> 🤖</p>
+  <code><%= @error %></code>
+</div>
+
+<% if @context %>
+  <div style="margin-top: 24px; margin-bottom: 24px;">
+    <p style="margin-bottom: 8px"><strong>Error context</strong></p>
+    <code><%= @context %></code>
+  </div>
+<% end %>
+
+<div style="margin-top: 24px; margin-bottom: 24px;">
+  <% if @data.present? %>
+    <p style="margin-bottom: 8px"><strong>Scraped data</strong></p>
+    <code><%= @data %></code>
+  <% else %>
+    <p style="margin-top: 30px; margin-bottom: 0;">❌ <em style="opacity: 0.6">Did not manage to extract and parse any data from the page.</em></p>
+  <% end %>
+</div>
