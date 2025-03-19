@@ -1,8 +1,8 @@
 <%
-@page_title = "Save your data to the cloud &nbsp;☁️✨"
+@page_title = "Sync your data with the cloud &nbsp;☁️✨"
 %>
 
-<% content_for :title do %>Sync your data ↑↓<% end %>
+<% content_for :title do %>Sync your data<% end %>
 
 <% unless params[:challenge] == "true" %>
   <section class="prose">
@@ -12,31 +12,13 @@
 
     <p class="highlight" style="margin-block: 1.5em;"><span><span class="emoji">🔑</span> <em>Already got a sync key? <%= link_to tag.strong("Link your device here"), new_sync_device_path, "@click.prevent": "hijax" %></em>.</span></p>
   </section>
-  
-  <section class="prose">
-    <h3><span class="emoji">➡️</span> <strong>How to enable cloud syncing</strong></h3>
-
-    <p>On <strong>this device</strong>:</p>
-    <ol>
-      <li>Ganerate a <strong>unique sync key</strong> using the form below.</li>
-      <li>All your answers will now be saved to the cloud as well as on your device.</li>
-    </ol>
-
-    <p>On any <strong>other devices</strong> that you want to sync with your cloud data:</p>
-    <ol>
-      <li>Visit <%= link_to "crosswords.lol/sync", sync_device_url %> on the device.</li>
-      <li>Enter the <strong>sync key you just generated</strong> and click on the 'Enable syncing' button.</li>
-      <li><strong class="emoji" style="color: var(--color-bg-positive)">✅ All done!</strong> Now any changes you make on either device will be automatically <strong>saved to the cloud</strong> and <strong>synced across all devices</strong>.</li>
-    </ol>
-  </section>
 <% end %>
 
 <section>
   <div class="prose" id="key">
-    <% unless params[:challenge] == "true" %>
-      <h3><span class="emoji">➡️</span> <strong>Generate a unique sync key</strong></h3>
-    <% end %>
-    <p>To help us keep the pesky robots <span class="emoji">🤖</span> out you will need to <span style="color: var(--color-light-1)">find the solution to the crossword clue below</span> before we can generate a sync key for you.</p>
+    <h3><span class="emoji">1.</span> <strong>Generate a unique sync key</strong></h3>
+    <p>A sync key allows your data to be saved online and synced across devices.</p>
+    <p>But to help us keep the pesky robots <span class="emoji">🤖</span> out you will need to <span style="color: var(--color-light-1)">find the solution to the crossword clue below</span> before we can generate a key for you.</p>
     
     <div class="challenge-clue">
       <h4>Your clue:</h4>
@@ -65,6 +47,18 @@
   <% end %>  
 </section>
 
+  <section class="prose">
+    <h3><span class="emoji">2.</span> <strong>Link your other devices (optional)</strong></h3>
+
+    <p>Once you have your own unique key you can link your other devices so that your crossword data is synced between them.</p>
+
+    <p><strong>On your other devices</strong>:</p>
+    <ol>
+      <li>Visit <%= link_to "crosswords.lol/sync", sync_device_url %></li>
+      <li>Enter the <strong>sync key you just generated</strong> and click on the 'Enable syncing' button.</li>
+      <li><strong class="emoji" style="color: var(--color-bg-positive)">All done!</strong> Now any changes you make on this other device will also be automatically <strong>saved to the cloud</strong> and <strong>synced across all devices</strong>.</li>
+    </ol>
+  </section>
 
 <footer class="prose centered">
   <p><em>Already got a sync key? <%= link_to "Link your device here", new_sync_device_path %></em>.</p>
