@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_11_225320) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_19_202604) do
   create_table "accounts", force: :cascade do |t|
     t.string "key", null: false
     t.datetime "created_at", null: false
@@ -43,6 +43,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_11_225320) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.integer "number"
+    t.index ["number"], name: "index_crosswords_on_number", unique: true
   end
 
   create_table "imports", force: :cascade do |t|
