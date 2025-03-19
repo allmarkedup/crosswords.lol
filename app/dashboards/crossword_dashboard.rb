@@ -10,7 +10,6 @@ class CrosswordDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     slug: Field::String,
-    provider_name: Field::String,
     number: Field::Number,
     column_count: Field::Number,
     row_count: Field::Number,
