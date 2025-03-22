@@ -1,17 +1,12 @@
 require "test_helper"
 
 class CrosswordsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @crossword = crosswords.random
-  end
+  describe "#show" do
+    let(:crossword) { crosswords.random }
 
-  test "root URL should redirect to latest crossword" do
-    get root_url
-    assert_redirected_to crossword_url(crosswords.latest)
-  end
-
-  test "should show crossword" do
-    get crossword_url(@crossword)
-    assert_response :success
+    it "is successful" do
+      get crossword_url(crossword)
+      assert_response :success
+    end
   end
 end

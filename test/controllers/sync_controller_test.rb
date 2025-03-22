@@ -1,9 +1,11 @@
 require "test_helper"
 
 class SyncControllerTest < ActionDispatch::IntegrationTest
-  test "should show page to create new sync key" do
-    get new_sync_url
+  describe "#new" do
+    it "shows the new sync key page" do
+      get new_sync_url
 
-    assert_response :success
+      assert_response :success
+    end
   end
 end

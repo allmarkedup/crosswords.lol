@@ -1,17 +1,21 @@
 require "test_helper"
 
 class PagesControllerTest < ActionDispatch::IntegrationTest
-  test "should show about page" do
-    get about_page_url
+  describe "#about" do
+    it "shows the about page" do
+      get about_page_url
 
-    assert_response :success
-    assert_dom ".page-title", "What's this?"
+      assert_response :success
+      assert_dom ".page-title", "What's this?"
+    end
   end
 
-  test "should show settings page" do
-    get settings_page_url
+  describe "#settings" do
+    it "shows the settings page" do
+      get settings_page_url
 
-    assert_response :success
-    assert_dom ".page-title", "Settings"
+      assert_response :success
+      assert_dom ".page-title", "Settings"
+    end
   end
 end
