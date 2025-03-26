@@ -32,5 +32,6 @@ module Crisscross
 
     config.hosts << "crosswords.ngrok.dev"
     config.hosts << "crosswords.lol"
+    config.hosts << "dev.crosswords.lol"
   end
 end
