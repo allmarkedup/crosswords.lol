@@ -32,7 +32,7 @@
   </div>
 
   <%= form_with model: @account, url: sync_path(challenge: params[:challenge]), method: :post, class: "form" do |form| %>    
-    <%= form_errors(@account.errors) %>
+    <%= form_errors @account.errors %>
 
     <div class="form-field">
       <%= form.label :challenge_solution do %>

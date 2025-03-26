@@ -1,0 +1,79 @@
+<%# locals: (crossword:, active_entry: nil) -%>
+
+<%
+cell_size = 30
+number_text_height = 9
+
+width = (cell_size * crossword.column_count) + 2
+height = (cell_size * crossword.row_count) + 2
+cells = crossword.cells_display_data(cell_size)
+separators = crossword.separators_display_data(cell_size)
+%>
+
+<%= tag.div(
+  class: "crossword",
+  "x-data": "crossword(#{{activeEntry: active_entry}.to_json})",
+  "x-trap": "true",
+  "@keyup.up.document": "handleCellNavigation",
+  "@keyup.left.document": "handleCellNavigation",
+  "@keyup.down.document": "handleCellNavigation",
+  "@keyup.right.document": "handleCellNavigation",
+  "@keyup.shift.tab.document": "goToPreviousEntry",
+  "@keyup.tab.document": "goToNextEntry",
+  "@navigate:next-entry.document": "goToNextEntry",
+  "@navigate:previous-entry.document": "goToPreviousEntry",
+  "@navigate:entry.document": "goToEntry",
+  "@keyup.backspace.document": "handleBackspace",
+  "@keyboard:backspace.document": "handleBackspace",
+  "@keyup.document": "handleInput($event?.key, $event)",
+  "@keyboard:input.document": "handleInput($event.detail.key, $event)",
+  "@action:check-word.document": "checkActiveEntry",
+  "@action:check-all.document": "checkAllEntries",
+  "@action:reveal-letter.document": "revealActiveCell",
+  "@action:reveal-word.document": "revealActiveEntry",
+  "@action:reveal-all.document": "revealAllEntries",
+  "@action:clear-all.document": "clearAllEntries",
+  "@action:reset.document": "reset") do
+%>
+  <%= tag.svg("viewBox": "0 0 #{width} #{height}", class: "crossword-board") do %>
+    <%= tag.rect x: 0, y: 0, width: width, height: height, class: "crossword-background" %>
+
+    <% cells.each do |cell| %>
+      <g
+        class="crossword-cell"
+        id="<%= cell.id %>"
+        x-data="crosswordCell(<%= {parentEntryIds: cell.parent_entries, solution: cell.solution}.to_json %>)"
+        :class="{active, highlighted, correct, incorrect, checking}"
+        >
+        <%= tag.rect(
+          x: cell.x,
+          y: cell.y,
+          width: cell_size,
+          height: cell_size,
+          class: "crossword-cell-background",
+          "@click": "active = true",
+        ) %>
+        <% if cell.number %>
+          <%= tag.text(
+            x: cell.x + 2,
+            y: cell.y + number_text_height,
+            class: "crossword-cell-number"
+          ) do %>
+            <%= cell.number %>
+          <% end %>
+        <% end %>
+        <%= tag.text(
+          x: cell.x + 15,
+          y: cell.y + 21,
+          "text-anchor": "middle",
+          class: "crossword-cell-text",
+          "x-effect": "$el.textContent = text"
+        ) %>
+      </g>
+    <% end %>
+
+    <% separators.each do |separator_data| %>
+      <%= tag.rect(**separator_data, class: "crossword-separator") %>
+    <% end %>
+  <% end %>
+<% end %>

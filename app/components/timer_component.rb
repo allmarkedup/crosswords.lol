@@ -1,2 +1,0 @@
-class TimerComponent < BaseComponent
-end

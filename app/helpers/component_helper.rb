@@ -1,19 +1,27 @@
 module ComponentHelper
+  # Elements
+
   def icon(name, **)
-    render IconComponent.new(name: name, **)
+    render "components/elements/icon", name: name, **
   end
 
-  def button(*args, **, &block)
+  def button(*args, **, &)
     if args.size == 1
       label, icon = args.first.is_a?(Symbol) ? [nil, args.first] : [args.first, nil]
     else
       label, icon = args
     end
 
-    render ButtonComponent.new(label:, icon:, **), &block
+    render "components/elements/button", label:, icon:, **, &
   end
 
+  def modal(**, &)
+    render "components/elements/modal", **, &
+  end
+
+  # Forms
+
   def form_errors(errors)
-    render FormErrorsComponent.new(errors:)
+    render "components/forms/errors", errors:
   end
 end

@@ -1,6 +1,8 @@
+<%# locals: (id:, title:, blocking: false, **html_attrs)  -%>
+
 <%= tag.div id:,
-  class: class_names,
-  **html_attrs,
+  class: class_names(["modal", html_attrs[:class], {blocking:}]),
+  **html_attrs.except(:class),
   "x-data": "modal",
   "x-show": "ready && $app.modal == id",
   "x-transition:enter.opacity.1000ms": true,
@@ -11,7 +13,7 @@
       <%= button :x, class: "modal-close", "@click": "hide" %>
     </div>
     <div class="modal-content">
-      <%= content %>
+      <%= yield %>
     </div>
   </div>
 <% end %>

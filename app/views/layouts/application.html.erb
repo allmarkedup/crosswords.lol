@@ -38,7 +38,7 @@
               <%=
                 if devmode?
                   button_to devmode_path, method: :delete, id: "app-header-devmode-off" do
-                    button :bug_off, tag: :span, alt: "Devmode off"
+                    button :bug_off, tag_name: :span, alt: "Devmode off"
                   end
                 end
               %>

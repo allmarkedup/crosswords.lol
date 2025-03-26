@@ -1,7 +1,22 @@
+<%# locals: (label: nil, alt: nil, icon: nil, confirm: false, theme: nil, click: nil, href: nil, tag_name: nil, **attrs) -%>
+
+<% 
+button_tag = tag_name&.to_sym || (href ? :a : :button)
+classes = class_names([
+  "button",
+  ("with-icon" if icon),
+  ("with-label" if label),
+  ("with-icon-only" if icon && !label),
+  ("theme-#{@theme}" if theme),
+  attrs[:class]
+])
+html_attrs = attrs.except(:class)
+%>
+
 <%= tag.public_send(button_tag,
   href: href,
   "x-data": "button",
-  class: class_names,
+  class: classes,
   aria: {label: alt},
   type: "button",
   "@click": ("handleClick($event, () => { #{click} })" if click),
@@ -9,16 +24,16 @@
   ":class": "{confirming}",
   **html_attrs) do %>
   <span class="button-content">
-    <% if icon? %>
+    <% if icon %>
       <div class="button-icon" x-show="ready">
-        <%= icon %>
+        <%= render "components/elements/icon", name: icon %>
       </div>
     <% end %>
-    <% if label? %>
+    <% if label %>
       <span class="button-label" x-show="ready">
         <%= label %>
       </span>
-      <% if confirmable? %>
+      <% if confirm %>
         <span class="button-confirmation" x-ref="confirmation" x-show="confirming">
           <%= confirm %>
         </span>

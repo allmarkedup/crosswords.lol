@@ -1,0 +1,11 @@
+<%# locals: (errors: []) -%>
+
+<% if errors.any? %>
+  <div class="form-errors">
+    <% errors.full_messages.each do |msg| %>
+      <div class="form-errors-error">
+        <span class="form-errors-msg"><%= msg %></span>
+      </div>
+    <% end %>
+  </div>
+<% end %>

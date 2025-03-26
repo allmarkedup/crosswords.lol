@@ -184,7 +184,6 @@ GEM
       net-http
       uri (~> 1)
     marcel (1.0.4)
-    method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.5)
     minitest-reporters (1.7.1)
@@ -389,10 +388,6 @@ GEM
     unicode-emoji (4.0.4)
     uri (1.0.3)
     useragent (0.16.11)
-    view_component (3.21.0)
-      activesupport (>= 5.2.0, < 8.1)
-      concurrent-ruby (~> 1.0)
-      method_source (~> 1.0)
     websocket-driver (0.7.7)
       base64
       websocket-extensions (>= 0.1.0)
@@ -439,7 +434,6 @@ DEPENDENCIES
   standard
   standard-rails
   tzinfo-data
-  view_component
 
 BUNDLED WITH
    2.6.6

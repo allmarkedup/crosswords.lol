@@ -15,7 +15,7 @@
 
 <section>
   <%= form_with model: @account, url: sync_device_path, method: :post, class: "form" do |form| %>
-    <%= form_errors(@account.errors) %>
+    <%= form_errors @account.errors %>
     
     <div class="form-field">
       <%= form.label :key do %>

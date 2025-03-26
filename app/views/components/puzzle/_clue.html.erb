@@ -1,0 +1,9 @@
+<%# locals: (clue:) -%>
+
+<div class="clue" data-entry-id="<%= clue.id %>">
+  <span class="clue-reference">
+    <span class="clue-reference-number"><%= clue.number %></span>
+    <span class="clue-reference-direction"><%= clue.direction.first.downcase %></span>
+  </span>
+  <span class="clue-text"><%== clue.clue %></span>
+</div>

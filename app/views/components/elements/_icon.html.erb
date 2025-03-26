@@ -1,0 +1,10 @@
+<%# locals: (name:, **attrs) -%>
+
+<%
+classes = class_names("icon", attrs[:class])
+html_attrs = attrs.except(:class)
+%>
+
+<%= tag.i class: classes, **html_attrs do %>
+  <span data-lucide="<%= name.to_s.dasherize %>"></span>
+<% end %>

@@ -1,3 +1,5 @@
+<%# locals: (clues:) -%>
+
 <div class="cluesheet">
   <div class="cluesheet-container">
     <% ["across", "down"].each do |direction| %>
@@ -7,7 +9,7 @@
           <% clues.select { _1.direction == direction }.each do |clue| %>
             <li class="cluesheet-clue" value="<%= clue.number %>">
               <button type="button" @click="$dispatch('navigate:entry', {id: <%= clue.id.to_json %>}); $dispatch('keyboard:reset'); $puzzle.cluesheet = false;">
-                <%== helpers.sanitize(clue.to_s) %>
+                <%= render "components/puzzle/clue", clue: %>
               </button>
             </li>
           <% end %>

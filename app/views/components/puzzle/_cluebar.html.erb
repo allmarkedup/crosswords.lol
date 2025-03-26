@@ -1,3 +1,5 @@
+<%# locals: (clues:) -%>
+
 <div class="cluebar">
   <div class="cluebar-container">
     <%= button :chevron_left,
@@ -10,7 +12,7 @@
           x-show="$puzzle.state.activeEntryId === <%= clue.id.to_json %>"
           @click.stop="$puzzle.cluesheet = !$puzzle.cluesheet"
           x-cloak>
-          <%== helpers.sanitize(clue.to_s) %>
+          <%= render "components/puzzle/clue", clue: %>
         </li>
       <% end %>
     </ol>
