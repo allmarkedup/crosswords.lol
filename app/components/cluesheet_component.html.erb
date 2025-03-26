@@ -1,0 +1,18 @@
+<div class="cluesheet">
+  <div class="cluesheet-container">
+    <% ["across", "down"].each do |direction| %>
+      <div class="cluesheet-clues-group">
+        <h3 class="cluesheet-clues-group-title"><%= direction.capitalize %></h3>
+        <ol class="cluesheet-clues">
+          <% clues.select { _1.direction == direction }.each do |clue| %>
+            <li class="cluesheet-clue" value="<%= clue.number %>">
+              <button type="button" @click="$dispatch('navigate:entry', {id: <%= clue.id.to_json %>}); $dispatch('keyboard:reset'); $puzzle.cluesheet = false;">
+                <%== helpers.sanitize(clue.to_s) %>
+              </button>
+            </li>
+          <% end %>
+        </ol>
+      </div>
+    <% end %>
+  </div>
+</div>

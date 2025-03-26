@@ -8,6 +8,7 @@
         <li
           class="cluebar-clue"
           x-show="$puzzle.state.activeEntryId === <%= clue.id.to_json %>"
+          @click.stop="$puzzle.cluesheet = !$puzzle.cluesheet"
           x-cloak>
           <%== helpers.sanitize(clue.to_s) %>
         </li>

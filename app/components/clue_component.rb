@@ -1,14 +1,10 @@
 class ClueComponent < BaseComponent
-  attr_reader :id
+  attr_reader :id, :direction, :number
 
   def initialize(id:, clue:, number:, direction:)
     @id = id
     @clue = clue
-    @current_id = number
+    @number = number
     @direction = direction
-  end
-
-  def reference
-    "#{@current_id}#{@direction.first.downcase}"
   end
 end

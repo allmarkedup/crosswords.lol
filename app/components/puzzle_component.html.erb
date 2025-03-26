@@ -9,7 +9,8 @@
   @event:reveal-word.document="record('rw')"
   @event:check-all.document="record('ca')"
   @event:reveal-all.document="record('ra')"
-  @action:reset="reset">
+  @action:reset="reset"
+  @click="if ($puzzle.cluesheet) $puzzle.cluesheet = false">
   <header class="puzzle-header<%= " sync-challenge" if params[:challenge] == "true" %>">
     <div class="puzzle-header-container">
       <% if params[:challenge] == "true" %>
@@ -56,16 +57,6 @@
     </div>
   </div>
   <div class="puzzle-cluebar">
-    <% if false && params[:challenge] == "true" %>
-      <div class="puzzle-challenge-back">
-        <div class="puzzle-challenge-back-container">
-          <%= button "Back to sync key generator", icon: :arrow_big_left, theme: :primary %>
-          <%= link_to url_for, class: "puzzle-challenge-back-close" do %>
-            <%= icon :x %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
     <%= cluebar %>
   </div>
   <div class="puzzle-keyboard">
@@ -80,11 +71,13 @@
       end
     %>
   </div>
+  <div class="puzzle-cluesheet" :class="{open: cluesheet}">
+    <%= cluesheet %>
+  </div>
   <% if answer %>
     <div
       x-data="answerData(<%= answer.to_json %>)"
       @crossword:change.document="save()"
-      @timer:change.document="save()"
-      ></div>
+      @timer:change.document="save()"></div>
   <% end %>
 </div>

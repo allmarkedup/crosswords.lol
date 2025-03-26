@@ -205,6 +205,11 @@ export default function Crossword(opts) {
       this.$puzzle.state.activeEntryId = previousEntry.id;
     },
 
+    goToEntry(event) {
+      if (event) event.stopImmediatePropagation();
+      this.$puzzle.state.activeEntryId = event.detail.id;
+    },
+
     toggleActiveEntry() {
       for (let i = 0; i < this.activeCell.parentEntryIds.length; i++) {
         if (this.$puzzle.state.activeEntryId !== this.activeCell.parentEntryIds[i]) {

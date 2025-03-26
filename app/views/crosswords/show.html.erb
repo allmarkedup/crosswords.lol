@@ -19,6 +19,12 @@
       end
     end
 
+    puzzle.with_cluesheet do |cluesheet|
+      @crossword.entries.each do |entry|
+        cluesheet.with_clue(**entry.slice(:id, :clue, :number, :direction))
+      end
+    end
+
     puzzle.with_keyboard
   end
 %>

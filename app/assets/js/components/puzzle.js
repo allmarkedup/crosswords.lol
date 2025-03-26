@@ -9,6 +9,7 @@ export default function Puzzle({ id, entries }) {
     vibing: false,
     finished: false,
     summary: false,
+    cluesheet: false,
     $puzzle: null,
 
     init() {

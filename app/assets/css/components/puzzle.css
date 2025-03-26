@@ -5,6 +5,7 @@
   display: grid;
   grid-template-rows: min-content 1fr min-content;
   user-select: none;
+  position: relative;
 
   .puzzle-header {
     padding-inline: var(--app-padding-inline);
@@ -161,6 +162,25 @@
     max-width: var(--puzzle-max-width);
     aspect-ratio: 1 / 1;
     margin: 0 auto;
+  }
+
+  .puzzle-cluesheet {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: fit-content;
+    z-index: 50;
+    transform: translateX(100%);
+    transition: all 0.15s ease;
+
+    &.open {
+      transform: translateX(0);
+      .cluesheet {
+        box-shadow: -12px 0px 28px 0px rgba(0, 0, 0, 0.5);
+      }
+    }
   }
 }
 

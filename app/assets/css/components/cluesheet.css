@@ -1,0 +1,66 @@
+.cluesheet {
+  background-color: var(--color-dark-1);
+  height: 100%;
+  overflow: hidden;
+  padding-block: 1em;
+  max-width: min(25em, 90vw);
+  font-size: 0.9em;
+  width: 100%;
+
+  .cluesheet-container {
+    width: 100%;
+    margin: 0 auto;
+    column-gap: 1em;
+    padding-inline: 1em;
+    overflow: auto;
+    height: 100%;
+  }
+
+  .cluesheet-clues-group {
+    & + .cluesheet-clues-group {
+      margin-top: 1em;
+    }
+  }
+
+  .cluesheet-clues-group-title {
+    font-size: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  .cluesheet-clues {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      font-size: 0.95em;
+      color: var(--color-bg-highlight);
+      display: flex;
+      altugn-items: start;
+      column-gap: 0.5em;
+
+      &::before {
+        content: attr(value);
+      }
+    }
+
+    li + li {
+      margin-top: 0.5em;
+    }
+
+    button {
+      text-align: left;
+      display: block;
+    }
+  }
+
+  .clue {
+    line-height: 1.3;
+    color: var(--color-light-1);
+  }
+
+  .clue-reference {
+    display: none;
+  }
+}

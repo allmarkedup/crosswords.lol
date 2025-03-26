@@ -31,13 +31,17 @@
   .cluebar-clue {
     width: 100%;
   }
+
   .clue {
     font-size: 0.9em;
     line-height: 1.1;
     text-align: center;
+    cursor: pointer;
   }
 
   .clue-reference {
+    display: inline-flex;
+    align-items: center;
     color: var(--color-bg-highlight);
   }
 }
