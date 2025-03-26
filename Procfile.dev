@@ -1,3 +1,4 @@
 web: env RUBY_DEBUG_OPEN=true bin/rails server -p 3456
 js: yarn build --watch
-css: yarn build:css --watch
+app_css: yarn build:css:app --watch
+mailer_css: yarn build:css:mailer --watch
