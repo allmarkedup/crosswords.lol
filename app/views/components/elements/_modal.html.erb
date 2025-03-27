@@ -1,7 +1,8 @@
-<%# locals: (id:, title:, blocking: false, **html_attrs)  -%>
+<%# locals: (id:, title:, blocking: false, data: {}, **html_attrs)  -%>
 
 <%= tag.div id:,
   class: class_names(["modal", html_attrs[:class], {blocking:}]),
+  data: {component: "modal"}.merge(data),
   **html_attrs.except(:class),
   "x-data": "modal",
   "x-show": "ready && $app.modal == id",

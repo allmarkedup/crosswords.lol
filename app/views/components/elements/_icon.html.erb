@@ -1,10 +1,10 @@
-<%# locals: (name:, **attrs) -%>
+<%# locals: (name:, data: {}, **attrs) -%>
 
 <%
 classes = class_names("icon", attrs[:class])
-html_attrs = attrs.except(:class)
+html_attrs = attrs.except(:class, :data)
 %>
 
-<%= tag.i class: classes, **html_attrs do %>
+<%= tag.i class: classes, data: {component: "icon"}.merge(data), **html_attrs do %>
   <span data-lucide="<%= name.to_s.dasherize %>"></span>
 <% end %>

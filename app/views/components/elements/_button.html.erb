@@ -1,4 +1,4 @@
-<%# locals: (label: nil, alt: nil, icon: nil, confirm: false, theme: nil, click: nil, href: nil, tag_name: nil, **attrs) -%>
+<%# locals: (label: nil, alt: nil, icon: nil, confirm: false, theme: nil, click: nil, href: nil, tag_name: nil, data: {}, **attrs) -%>
 
 <% 
 button_tag = tag_name&.to_sym || (href ? :a : :button)
@@ -22,6 +22,7 @@ html_attrs = attrs.except(:class)
   "@click": ("handleClick($event, () => { #{click} })" if click),
   "@click.outside": "reset",
   ":class": "{confirming}",
+  data: {component: "button"}.merge(data),
   **html_attrs) do %>
   <span class="button-content">
     <% if icon %>

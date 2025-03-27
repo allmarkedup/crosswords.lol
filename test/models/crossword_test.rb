@@ -6,13 +6,13 @@ class CrosswordTest < ActiveSupport::TestCase
 
   describe "#next" do
     it "returns the next crossowrd" do
-      penultimate.next.must_equal latest
+      expect(penultimate.next).must_equal latest
     end
   end
 
   describe "#previous" do
     it "returns the previous crossowrd" do
-      latest.previous.must_equal penultimate
+      expect(latest.previous).must_equal penultimate
     end
   end
 end
