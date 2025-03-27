@@ -3,17 +3,15 @@ Rails.application.routes.draw do
 
   root "crosswords#index"
 
-  get "/★/:number", to: "crosswords#show", as: :crossword
+  get "/:number", to: "crosswords#show", as: :crossword, constraints: {number: /\d.+/}
 
-  get "/⁇", to: "pages#about", as: :about_page
-  get "/✐", to: "pages#settings", as: :settings_page
+  get "/about", to: "pages#about", as: :about_page
+  get "/settings", to: "pages#settings", as: :settings_page
 
-  resource "⇪", only: [:new, :create, :show], controller: :sync, as: :sync do
+  resource "sync", only: [:new, :create, :show], controller: :sync, as: :sync do
     resource :device, only: [:create, :destroy], controller: "sync/device", as: :device
   end
-  get "/⇪/device", to: "sync/device#new", as: :new_sync_device
-
-  get "/sync", to: "sync#redirect"
+  get "/sync/device", to: "sync/device#new", as: :new_sync_device
 
   resources :answers, only: [:update]
 
