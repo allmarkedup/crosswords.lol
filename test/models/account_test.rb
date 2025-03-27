@@ -5,7 +5,7 @@ class AccountTest < ActiveSupport::TestCase
 
   describe "#key" do
     it "returns an identifier key" do
-      assert_kind_of(String, account.key)
+      account.key.must_be_kind_of String
     end
   end
 end

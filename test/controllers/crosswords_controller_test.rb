@@ -5,8 +5,9 @@ class CrosswordsControllerTest < ActionDispatch::IntegrationTest
     let(:crossword) { crosswords.random }
 
     it "is successful" do
-      get crossword_url(crossword)
-      assert_response :success
+      visit crossword_url(crossword)
+
+      page.must_have_css(".crossword")
     end
   end
 end

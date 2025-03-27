@@ -33,3 +33,7 @@ group :development, :test do
   gem "standard"
   gem "standard-rails"
 end
+
+group :test do
+  gem "capybara"
+end

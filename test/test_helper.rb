@@ -2,6 +2,10 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 
+require "capybara/rails"
+require "capybara/minitest"
+require "capybara/minitest/spec"
+
 require "minitest/spec"
 require "minitest/reporters"
 
@@ -11,6 +15,13 @@ end
 
 class ActionDispatch::IntegrationTest
   extend Minitest::Spec::DSL
+  include Capybara::DSL
+  include Capybara::Minitest::Assertions
+
+  teardown do
+    Capybara.reset_sessions!
+    Capybara.use_default_driver
+  end
 end
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new

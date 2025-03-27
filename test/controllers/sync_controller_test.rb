@@ -3,9 +3,9 @@ require "test_helper"
 class SyncControllerTest < ActionDispatch::IntegrationTest
   describe "#new" do
     it "shows the new sync key page" do
-      get new_sync_url
+      visit new_sync_url
 
-      assert_response :success
+      page.must_have_css(".page-title", text: "Sync your data")
     end
   end
 end
