@@ -4,6 +4,6 @@ class PagesController < ApplicationController
   def about
   end
 
-  def ssettings
+  def settings
   end
 end

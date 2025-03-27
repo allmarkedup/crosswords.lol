@@ -27,10 +27,6 @@ class SyncController < ApplicationController
     @account = Current.account
   end
 
-  def redirect
-    redirect_to "/⇪", allow_other_host: true
-  end
-
   private
 
   def challenge_params
