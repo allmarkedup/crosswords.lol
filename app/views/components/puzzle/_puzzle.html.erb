@@ -1,0 +1,88 @@
+<%# locals: (crossword:, answer: nil) -%>
+<%# slots: (board:, cluebar:, keyboard:, summary:, cluesheet:, next_link:, previous_link:) -%>
+
+<div 
+  class="puzzle"
+  :class="{finished}"
+  x-data="puzzle(<%= crossword.puzzle_data_json %>)"
+  crossword:complete="markComplete"
+  crossword:incomplete="markIncomplete"
+  @event:check-word.document="record('cw')"
+  @event:reveal-letter.document="record('rl')"
+  @event:reveal-word.document="record('rw')"
+  @event:check-all.document="record('ca')"
+  @event:reveal-all.document="record('ra')"
+  @action:reset="reset"
+  @click="if ($puzzle.cluesheet) $puzzle.cluesheet = false">
+  <header class="puzzle-header<%= " sync-challenge" if params[:challenge] == "true" %>">
+    <div class="puzzle-header-container">
+      <% if params[:challenge] == "true" %>
+        <div class="puzzle-challenge-back">
+          <%= link_to new_sync_path(challenge: true), class: "puzzle-challenge-back-link", "@click.prevent": "hijax" do %>
+            <%= icon :arrow_big_left %>
+            <span>Back to sync key generator</span>
+          <% end %>
+          <%= link_to "(hide this)", url_for, class: "puzzle-challenge-back-hide", "@click.prevent": "hijax" %>
+        </div>
+      <% else %>
+        <%= button(
+          href: previous_link.to_s,
+          icon: :circle_arrow_left,
+          class: "puzzle-header-link puzzle-header-link-older",
+          "@click.prevent": "hijax",
+        ) %>
+        <div class="puzzle-header-main">
+          <div class="puzzle-header-date">
+            <%= link_to crossword.formatted_date, crossword.provider_url, target: "_blank" %>
+          </div>
+          <div
+            class="puzzle-header-complete"
+            @click="$app.modal = 'summary'"
+            x-show="finished"
+            x-cloak>
+            <%= icon :dot, class: "puzzle-header-separator" %>
+            <%= button :circle_check, class: "puzzle-complete-marker" %>
+            <span>Complete</span>
+          </div>
+          <div
+            class="puzzle-header-timer"
+            x-show="($settings.timer && !$puzzle.finished) || $puzzle.state?.timer?.started"
+            x-cloak>
+            <%= icon :dot, class: "puzzle-header-separator" %>
+            <%= render "components/puzzle/timer" %>
+          </div>
+        </div>
+        <%= button(
+          href: next_link.to_s,
+          **next_link.options,
+          icon: :circle_arrow_right,
+          class: "puzzle-header-link puzzle-header-link-newer",
+          "@click.prevent": "hijax",
+        ) %>
+      <% end %>
+    </div>
+  </header>
+  <div class="puzzle-board">
+    <div class="puzzle-board-container">
+      <%= board %>
+    </div>
+  </div>
+ <div class="puzzle-cluebar">
+    <%= cluebar %>
+  </div>
+  <div class="puzzle-keyboard">
+    <%= keyboard %>
+  </div>
+  <div x-show="$app.modal == 'summary'" x-cloak>
+    <%= summary %>
+  </div>
+  <div class="puzzle-cluesheet" :class="{open: cluesheet}">
+    <%= cluesheet %>
+  </div>
+  <% if answer %>
+    <div
+      x-data="answerData(<%= answer.to_json %>)"
+      crossword:change.document="save()"
+      @timer:change.document="save()"></div>
+  <% end %>
+</div>

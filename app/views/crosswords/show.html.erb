@@ -5,119 +5,29 @@
   <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.8.1/tsparticles.confetti.bundle.min.js"></script>
 <% end %>
 
-<div
-  class="puzzle"
-  :class="{finished}"
-  x-data="puzzle(<%= @crossword.puzzle_data_json %>)"
-  @crossword:complete="markComplete"
-  @crossword:incomplete="markIncomplete"
-  @event:check-word.document="record('cw')"
-  @event:reveal-letter.document="record('rl')"
-  @event:reveal-word.document="record('rw')"
-  @event:check-all.document="record('ca')"
-  @event:reveal-all.document="record('ra')"
-  @action:reset="reset"
-  @click="if ($puzzle.cluesheet) $puzzle.cluesheet = false">
-  <header class="puzzle-header<%= " sync-challenge" if params[:challenge] == "true" %>">
-    <div class="puzzle-header-container">
-      <% if params[:challenge] == "true" %>
-        <div class="puzzle-challenge-back">
-          <%= link_to new_sync_path(challenge: true), class: "puzzle-challenge-back-link", "@click.prevent": "hijax" do %>
-            <%= icon :arrow_big_left %>
-            <span>Back to sync key generator</span>
-          <% end %>
-          <%= link_to "(hide this)", url_for, class: "puzzle-challenge-back-hide", "@click.prevent": "hijax" %>
-        </div>
-      <% else %>
-        <%= button(
-          href: crossword_path(@previous),
-          icon: :circle_arrow_left,
-          class: "puzzle-header-link puzzle-header-link-older",
-          "@click.prevent": "hijax",
-        ) %>
-        <div class="puzzle-header-main">
-          <div class="puzzle-header-date">
-            <%= link_to @crossword.formatted_date, @crossword.provider_url, target: "_blank" %>
-          </div>
-          <div
-            class="puzzle-header-complete"
-            @click="$app.modal = 'summary'"
-            x-show="finished"
-            x-cloak>
-            <%= icon :dot, class: "puzzle-header-separator" %>
-            <%= button :circle_check, class: "puzzle-complete-marker" %>
-            <span>Complete</span>
-          </div>
-          <div
-            class="puzzle-header-timer"
-            x-show="($settings.timer && !$puzzle.finished) || $puzzle.state?.timer?.started"
-            x-cloak>
-            <%= icon :dot, class: "puzzle-header-separator" %>
-            <%= render "components/puzzle/timer" %>
-          </div>
-        </div>
-        <%= button(
-          href: crossword_path(@next),
-          disabled: @crossword == @latest,
-          icon: :circle_arrow_right,
-          class: "puzzle-header-link puzzle-header-link-newer",
-          "@click.prevent": "hijax",
-        ) %>
-      <% end %>
-    </div>
-  </header>
-  <div class="puzzle-board">
-    <div class="puzzle-board-container">
-      <%= render "components/puzzle/crossword", crossword: @crossword, active_entry: params[:entry] %>
-    </div>
-  </div>
-  <div class="puzzle-cluebar">
-    <%= render "components/puzzle/cluebar", clues: @crossword.clues %>
-  </div>
-  <div class="puzzle-keyboard">
-    <%= render "components/puzzle/keyboard" %>
-  </div>
-  <div x-show="$app.modal == 'summary'" x-cloak>
-    <%= render "components/puzzle/summary_modal",
-      linked: {
-        next: @next,
-        previous: @previous,
-        random: @random
-      } %>
-  </div>
-  <div class="puzzle-cluesheet" :class="{open: cluesheet}">
-    <%= render "components/puzzle/cluesheet", clues: @crossword.clues %>
-  </div>
-  <% if @answer %>
-    <div
-      x-data="answerData(<%= @answer.to_json %>)"
-      @crossword:change.document="save()"
-      @timer:change.document="save()"></div>
-  <% end %>
-</div>
-
 <%=
-  if false
-  render PuzzleComponent.new(crossword: @crossword, answer: @answer) do |puzzle|
-    puzzle.with_newer_link(href: crossword_path(@next), disabled: @crossword == @latest)
-    puzzle.with_older_link(href: crossword_path(@previous))
-    puzzle.with_random_link(href: crossword_path(@random))
-
-    puzzle.with_crossword(crossword: @crossword, active_entry: params[:entry])
-
-    puzzle.with_cluebar do |cluebar|
-      @crossword.entries.each do |entry|
-        cluebar.with_clue(**entry.slice(:id, :clue, :number, :direction))
-      end
-    end
-
-    puzzle.with_cluesheet do |cluesheet|
-      @crossword.entries.each do |entry|
-        cluesheet.with_clue(**entry.slice(:id, :clue, :number, :direction))
-      end
-    end
-
-    puzzle.with_keyboard
+render "components/puzzle/puzzle", crossword: @crossword do |partial|
+  partial.with_next_link crossword_path(@next)
+  partial.with_previous_link crossword_path(@previous), disabled: @crossword == @latest
+  
+  partial.with_board do 
+    render "components/puzzle/crossword", crossword: @crossword, active_entry: params[:entry]
   end
+
+  partial.with_cluebar do
+    render "components/puzzle/cluebar", clues: @crossword.clues
   end
+
+  partial.with_keyboard do
+    render "components/puzzle/keyboard"
+  end
+
+  partial.with_summary do
+    render "components/puzzle/summary_modal", linked: { next: @next, previous: @previous, random: @random }
+  end
+
+  partial.with_cluesheet do
+    render "components/puzzle/cluesheet", clues: @crossword.clues
+  end
+end
 %>
