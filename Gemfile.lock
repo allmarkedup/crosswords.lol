@@ -356,7 +356,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    slotify (0.0.5)
+    slotify (0.1.0)
       actionview
       zeitwerk
     solid_cache (1.0.7)
