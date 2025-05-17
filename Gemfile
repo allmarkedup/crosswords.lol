@@ -24,6 +24,8 @@ gem "solid_cache"
 gem "solid_queue"
 gem "sqlite3", ">= 2.1"
 gem "tzinfo-data", platforms: %i[windows jruby]
+# gem "view_spec", path: "../../lookbook/view_spec"
+gem "view_spec", path: "../../lookbook/view_spec"
 
 group :development do
   gem "dockerfile-rails", ">= 1.7"

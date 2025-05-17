@@ -11,6 +11,16 @@ GIT
       sqlite3 (>= 1.6.0, < 3.0.0)
       tilt (~> 2)
 
+PATH
+  remote: ../../lookbook/view_spec
+  specs:
+    view_spec (0.0.1)
+      activemodel (>= 7.1)
+      activesupport (>= 7.1)
+      method_source (~> 1.0)
+      redcarpet (~> 3.6)
+      zeitwerk (>= 2.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -194,6 +204,7 @@ GEM
       uri (~> 1)
     marcel (1.0.4)
     matrix (0.4.2)
+    method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.5)
     minitest-reporters (1.7.1)
@@ -316,6 +327,7 @@ GEM
     rake (13.2.1)
     rdoc (6.13.1)
       psych (>= 4.0.0)
+    redcarpet (3.6.1)
     redis (4.8.1)
     regexp_parser (2.10.0)
     reline (0.6.1)
@@ -462,6 +474,7 @@ DEPENDENCIES
   standard
   standard-rails
   tzinfo-data
+  view_spec!
 
 BUNDLED WITH
    2.6.6

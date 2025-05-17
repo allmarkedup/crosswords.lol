@@ -14,6 +14,7 @@ Capybara.default_driver = :selenium_chrome_headless
 
 class ActiveSupport::TestCase
   extend Minitest::Spec::DSL
+  include Capybara::Minitest::Assertions
 end
 
 class ActionDispatch::IntegrationTest
